@@ -1,13 +1,31 @@
 {
   "name": "ask-widget",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
+  "homepage": "https://www.chitrankagnihotri.com",
+  "author": {
+    "name": "Chitrank agnihotri",
+    "email": "chitrank2050@gmail.com",
+    "url": "https://wwww.chitrankagnihotri.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chitrank2050/ask-widget"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "init": "./scripts/install.sh",
+    "nuke": "./scripts/obliviate.sh",
+    "clean-setup": "pnpm run nuke && pnpm run init",
+    "clean-build": "pnpm run nuke && pnpm run init && ./scripts/build.sh",
+    "git-tag": "./scripts/git-tag.sh",
+    "git-release": "./scripts/git-release.sh",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
   },
   "dependencies": {
     "react": "^19.2.4",
@@ -25,10 +43,22 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.1",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.56.1",
     "vite": "^8.0.0",
     "vite-plugin-dts": "^4.5.4",
     "vitest": "^4.1.0"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "**/*.{json,md,css}": [
+      "prettier --write"
+    ]
   }
 }
