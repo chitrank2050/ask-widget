@@ -1,73 +1,123 @@
-# React + TypeScript + Vite
+# ask-widget
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A lightweight, RAG-powered chat widget for developer portfolios. Drop-in floating chat with SSE streaming, dark/light themes, and configurable positioning.
 
-Currently, two official plugins are available:
+![npm](https://img.shields.io/npm/v/ask-widget)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
+![React](https://img.shields.io/badge/React-18+-61dafb)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+![Version](https://img.shields.io/badge/version-0.1.0-brightgreen)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Links
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| | URL |
+|---|---|
+<!-- | 📦 npm | https://www.npmjs.com/package/ask-widget | -->
+| 📚 Documentation | https://chitrank2050.github.io/ask-widget |
+| 👤 Portfolio | https://chitrankagnihotri.com |
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## What It Does
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+A floating chat button that expands into a full chat panel. Connects to any [ask-chitrank](https://github.com/chitrank2050/askchitrank) compatible RAG API and streams responses token by token via Server-Sent Events.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Installation
+
+```bash
+npm install ask-widget
+# or
+pnpm add ask-widget
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Usage
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```tsx
+import { ChatWidget } from 'ask-widget'
+import 'ask-widget/styles.css'
+
+export default function Portfolio() {
+  return (
+    <main>
+      <ChatWidget
+        apiUrl="https://your-api.railway.app"
+        apiToken={process.env.NEXT_PUBLIC_CHAT_API_TOKEN}
+        position="bottom-right"
+        theme="dark"
+        title="Ask Chitrank"
+      />
+    </main>
+  )
+}
 ```
+
+---
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `apiUrl` | `string` | required | Base URL of the ask-chitrank API |
+| `apiToken` | `string` | required | Bearer token for API auth. Use env var — never hardcode. |
+| `position` | `"bottom-right" \| "bottom-left" \| "bottom-center"` | `"bottom-right"` | Widget position on screen |
+| `theme` | `"dark" \| "light"` | `"dark"` | Color theme preset |
+| `colors` | `ChatColors` | — | Custom color overrides |
+| `title` | `string` | `"Ask Chitrank"` | Chat panel header title |
+| `placeholder` | `string` | `"Ask me anything..."` | Input placeholder text |
+| `initialMessage` | `string` | `"Hi! Ask me about Chitrank's experience..."` | First message shown on open |
+| `defaultOpen` | `boolean` | `false` | Whether panel starts open |
+
+---
+
+## Theming
+
+### Built-in themes
+
+```tsx
+<ChatWidget theme="dark" ... />   // dark background, light text
+<ChatWidget theme="light" ... />  // light background, dark text
+```
+
+### Custom colors
+
+```tsx
+<ChatWidget
+  theme="dark"
+  colors={{
+    primary: '#6366f1',      // accent color — buttons, user messages
+    background: '#0f0f0f',   // panel background
+    text: '#ffffff',         // text color
+    border: '#2a2a2a',       // border color
+  }}
+  ...
+/>
+```
+
+---
+
+## Roadmap
+
+- [x] Phase 1 — Project setup (config, tooling, build pipeline)
+- [ ] Phase 2 — Core types and theme system
+- [ ] Phase 3 — Hooks (session, SSE streaming, chat state)
+- [ ] Phase 4 — Components (button, panel, message, input)
+- [ ] Phase 5 — Testing
+- [ ] Phase 6 — npm publish + portfolio integration
+
+---
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+---
+
+## License
+
+MIT — see [LICENSE](LICENSE).
