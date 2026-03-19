@@ -47,7 +47,7 @@ export default function Portfolio() {
     <main>
       <ChatWidget
         apiUrl="https://your-api.railway.app"
-        apiToken={process.env.NEXT_PUBLIC_CHAT_API_TOKEN}
+        apiToken={process.env.VITE_PUBLIC_CHAT_API_TOKEN}
         position="bottom-right"
         theme="dark"
         title="Ask Chitrank"

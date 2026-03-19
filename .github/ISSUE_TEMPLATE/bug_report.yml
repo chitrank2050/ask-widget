@@ -47,7 +47,7 @@ body:
     id: environment
     attributes:
       label: Environment
-      placeholder: React 18, Next.js 14, Safari 17, iOS 17
+      placeholder: React 18, Vite 8, Safari 17, iOS 17
     validations:
       required: true
 
