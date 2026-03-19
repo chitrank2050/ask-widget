@@ -14,7 +14,7 @@
 
 | | URL |
 |---|---|
-<!-- | 📦 npm | https://www.npmjs.com/package/ask-widget | -->
+| 📦 npm | https://www.npmjs.com/package/ask-widget |
 | 📚 Documentation | https://chitrank2050.github.io/ask-widget |
 | 👤 Portfolio | https://chitrankagnihotri.com |
 
@@ -47,7 +47,7 @@ export default function Portfolio() {
     <main>
       <ChatWidget
         apiUrl="https://your-api.railway.app"
-        apiToken={process.env.VITE_PUBLIC_CHAT_API_TOKEN}
+        apiToken={process.env.NEXT_PUBLIC_CHAT_API_TOKEN}
         position="bottom-right"
         theme="dark"
         title="Ask Chitrank"
@@ -121,3 +121,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+---
+
+Developed by [Chitrank Agnihotri](https://www.chitrankagnihotri.com)

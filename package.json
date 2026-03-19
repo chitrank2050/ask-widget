@@ -3,20 +3,53 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "homepage": "https://www.chitrankagnihotri.com",
+  "homepage": "https://github.com/chitrank2050/ask-widget#readme",
   "author": {
     "name": "Chitrank agnihotri",
     "email": "chitrank2050@gmail.com",
     "url": "https://wwww.chitrankagnihotri.com"
   },
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/chitrank2050/ask-widget"
   },
+  "bugs": {
+    "url": "https://github.com/chitrank2050/ask-widget/issues"
+  },
+  "keywords": [
+    "react",
+    "chat",
+    "widget",
+    "rag",
+    "portfolio",
+    "sse",
+    "streaming",
+    "chatbot",
+    "ai"
+  ],
+  "main": "./dist/ask-widget.umd.js",
+  "module": "./dist/ask-widget.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/ask-widget.es.js",
+      "require": "./dist/ask-widget.umd.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles.css": "./dist/style.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
     "preview": "vite preview",
     "menu": "node scripts/menu.mjs",
     "init": "./scripts/install.sh",
@@ -27,8 +60,18 @@
     "git": "node scripts/menu.mjs git",
     "git-tag": "./scripts/git-tag.sh",
     "git-release": "./scripts/git-release.sh",
-    "format:check": "prettier --check .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint src --ext .ts,.tsx --max-warnings 0",
+    "format": "prettier --write src",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm build"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "dependencies": {
     "react": "^19.2.4",
@@ -39,10 +82,12 @@
     "@eslint/js": "^9.39.4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^24.12.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.0",
+    "@vitest/coverage-v8": "^4.1.0",
     "eslint": "^9.39.4",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
@@ -56,6 +101,11 @@
     "vite": "^8.0.0",
     "vite-plugin-dts": "^4.5.4",
     "vitest": "^4.1.0"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=9.0.0"
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
