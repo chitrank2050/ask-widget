@@ -1,0 +1,157 @@
+import {
+  intro,
+  outro,
+  multiselect,
+  spinner,
+  cancel,
+  isCancel,
+} from "@clack/prompts";
+import pc from "picocolors";
+import { execSync } from "node:child_process";
+import { resolve } from "node:path";
+import { select } from '@clack/prompts';
+
+const ROOT = resolve(import.meta.dirname, "..");
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
+function runScript(path) {
+  try {
+    execSync(`bash ${resolve(ROOT, path)}`, { stdio: "inherit", cwd: ROOT });
+  } catch (error) {
+    console.error(pc.red(`\n  ⚠️  Script ${path} failed.\n`));
+  }
+}
+
+function runCommand(cmd) {
+  try {
+    execSync(cmd, { stdio: "inherit", cwd: ROOT });
+  } catch (error) {
+    console.error(pc.red(`\n  ⚠️  Command \`${cmd}\` failed.\n`));
+  }
+}
+
+function handleCancel(value) {
+  if (isCancel(value)) {
+    cancel("Operation cancelled.");
+    process.exit(0);
+  }
+}
+
+// ── Execution Logic ──────────────────────────────────────────────────────────
+const ACTIONS = {
+  // Obliviate
+  build: () => runCommand("rm -rf dist"),
+  node_modules: () => runCommand("rm -rf node_modules"),
+  lockfiles: () =>
+    runCommand("rm -f pnpm-lock.yaml package-lock.json yarn.lock bun.lockb"),
+  cache: () => runCommand("rm -rf .eslintcache"),
+  lint: () => runCommand("pnpm run lint"),
+  format: () => runCommand("pnpm run format:check"),
+
+  // Git
+  tag: () => runScript("scripts/git-tag.sh"),
+  release: () => runScript("scripts/git-release.sh"),
+
+  // Quality
+  lint: () => runCommand("pnpm run lint"),
+  format: () => runCommand("pnpm run format:check"),
+};
+
+// ── Menus ────────────────────────────────────────────────────────────────────
+async function modeObliviate() {
+  const choices = await multiselect({
+    message: "🧹 Obliviate — select what to obliterate",
+    options: [
+      { value: "build", label: "Build artifacts", hint: "dist/" },
+      { value: "node_modules", label: "Dependencies", hint: "node_modules/" },
+      { value: "lockfiles", label: "Lockfiles", hint: "pnpm-lock.yaml…" },
+      { value: "cache", label: "Internal caches", hint: ".eslintcache" },
+    ],
+    required: true,
+  });
+
+  handleCancel(choices);
+
+  const s = spinner();
+  s.start("Executing cleanup...");
+
+  for (const choice of choices) {
+    s.message(`Running ${choice}...`);
+    ACTIONS[choice]();
+  }
+
+  s.stop(pc.green("Cleanup complete!"));
+}
+
+async function modeGit() {
+  const choices = await multiselect({
+    message: "🐙 Git — select actions",
+    options: [
+      { value: "tag", label: "Tag version", hint: "from package.json" },
+      {
+        value: "release",
+        label: "Release bundle",
+        hint: "Tag + Changelog + GH Release",
+      },
+    ],
+    required: true,
+  });
+
+  handleCancel(choices);
+
+  for (const choice of choices) {
+    ACTIONS[choice]();
+  }
+}
+
+async function modeQuality() {
+  const choices = await multiselect({
+    message: '🔧 Maintain Code Quality — select actions',
+    options: [
+      { value: 'lint', label: 'Lint code', hint: 'eslint' },
+      { value: 'format', label: 'Format check', hint: 'prettier' },
+    ],
+    required: true,
+  });
+
+  handleCancel(choices);
+
+  for (const choice of choices) {
+    ACTIONS[choice]();
+  }
+}
+// ── Main ─────────────────────────────────────────────────────────────────────
+async function main() {
+  const mode = process.argv[2];
+
+  intro(pc.cyan(pc.bold(" Ask Widget CLI ")));
+
+  if (mode === "obliviate") {
+    await modeObliviate();
+  } else if (mode === "git") {
+    await modeGit();
+  } else if (mode === 'quality') {
+    await modeQuality();
+  } else {
+    // Default interactive switcher?
+    const action = await select({
+      message: "What would you like to do?",
+      options: [
+        { value: "quality", label: "🔧 Maintain Code Quality" },
+        { value: "obliviate", label: "🧹 Cleanup (Obliviate)" },
+        { value: "git", label: "🐙 Version Control (Git)" },
+        { value: "exit", label: "👋 Exit" },
+      ],
+    });
+
+    handleCancel(action);
+
+    if (action === "obliviate") await modeObliviate();
+    if (action === "git") await modeGit();
+    if (action === "exit") process.exit(0);
+  }
+
+  outro(pc.green("Done!"));
+}
+
+main().catch(console.error);
