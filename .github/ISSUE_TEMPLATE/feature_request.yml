@@ -1,0 +1,41 @@
+name: Feature Request
+description: Suggest a new feature or improvement
+labels: ['enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before requesting a feature, check if it already exists or has been discussed.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      placeholder: I want to support a custom header component but there is no slot for it...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      placeholder: Add a header prop that accepts a React node...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      placeholder: I could wrap the widget but that breaks the positioning...
+
+  - type: dropdown
+    id: contribution
+    attributes:
+      label: Would you be willing to open a PR for this?
+      options:
+        - 'Yes'
+        - 'No'
+        - 'Maybe'
+    validations:
+      required: true
