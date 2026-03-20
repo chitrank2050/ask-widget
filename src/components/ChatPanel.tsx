@@ -80,7 +80,7 @@ export default function ChatPanel({
           <span className="chat-widget__title-mark" />
           <div>
             <p className="chat-widget__title">{title}</p>
-            <p className="chat-widget__status">SYSTEM.LINK_ESTABLISHED</p>
+            {/* <p className="chat-widget__status">SYSTEM.LINK_ESTABLISHED</p> */}
           </div>
         </div>
 

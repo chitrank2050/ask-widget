@@ -40,6 +40,8 @@ export default function ChatMessage({ message, isStreaming }: ChatMessageProps) 
     )
   }
 
+  const isWaitingForFirstToken = isStreaming && message.content.length === 0
+
   return (
     <article className="chat-widget__message chat-widget__message--assistant">
       <div className="chat-widget__assistant-label">
@@ -50,8 +52,18 @@ export default function ChatMessage({ message, isStreaming }: ChatMessageProps) 
       <div className="chat-widget__assistant-body">
         <div className="chat-widget__assistant-rail" />
         <div className="chat-widget__assistant-copy">
-          <p>{message.content}</p>
-          {isStreaming ? <span className="chat-widget__cursor" aria-hidden="true" /> : null}
+          {isWaitingForFirstToken ? (
+            <div className="chat-widget__loading" aria-label="Loading response">
+              <div className="chat-widget__loading-line" />
+              <div className="chat-widget__loading-line" />
+              <div className="chat-widget__loading-line" />
+            </div>
+          ) : (
+            <>
+              <p>{message.content}</p>
+              {isStreaming ? <span className="chat-widget__cursor" aria-hidden="true" /> : null}
+            </>
+          )}
         </div>
       </div>
     </article>

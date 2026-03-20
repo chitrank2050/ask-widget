@@ -115,7 +115,7 @@ async function* defaultDemoStream(prompt: string) {
   )
 
   for (const [index, chunk] of chunks.entries()) {
-    await wait(index === 0 ? 120 : 85)
+    await wait(index === 0 ? 600 : 85)
     yield chunk
   }
 }
