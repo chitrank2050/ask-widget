@@ -1,120 +1,83 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+/**
+ * Local development preview.
+ * Shows the widget in both dark and light themes side by side.
+ * This file is NOT included in the published package.
+ */
+
+import ChatWidget from './components/ChatWidget'
+
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
+    <div className="app-shell">
+      <div className="app-shell__glow app-shell__glow--left" />
+      <div className="app-shell__glow app-shell__glow--right" />
+
+      <main className="app-layout">
+        <section className="app-hero">
+          <p className="app-eyebrow">ASK_WIDGET // VITE PROTOTYPE</p>
+          <h1>Streaming chat UI with a compact launcher and terminal panel.</h1>
+          <p className="app-copy">
+            This prototype gives the widget the two core modes you described: collapsed as a
+            floating trigger, and expanded as a full response surface. The assistant stream is
+            mocked locally for now so the API can be wired in later without redesigning the
+            interface.
           </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
 
-      <div className="ticks"></div>
+          <div className="app-pills" aria-label="Widget capabilities">
+            <span>Compact mode</span>
+            <span>Expanded mode</span>
+            <span>Streaming replies</span>
+            <span>API-ready hook</span>
+          </div>
+        </section>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        <section className="app-notes" aria-label="Implementation notes">
+          <article className="app-card">
+            <p className="app-card__label">01 // Launcher</p>
+            <h2>Floating entry point</h2>
+            <p>
+              A fixed trigger stays visible in the corner and expands into the main chat terminal on
+              demand.
+            </p>
+          </article>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+          <article className="app-card">
+            <p className="app-card__label">02 // Conversation</p>
+            <h2>Stream-first layout</h2>
+            <p>
+              Assistant messages render token-by-token, which should map cleanly to SSE or fetch
+              streaming once the backend is connected.
+            </p>
+          </article>
+
+          <article className="app-card">
+            <p className="app-card__label">03 // Styling</p>
+            <h2>Terminal-inspired visual language</h2>
+            <p>
+              The panel keeps the monochrome, ops-console feel from your reference while staying
+              responsive on smaller screens.
+            </p>
+          </article>
+        </section>
+      </main>
+
+      <ChatWidget
+        title="ARCHITECT_OS // TERMINAL"
+        placeholder="$ run command..."
+        initialMessage="Link established. Ask me to inspect architecture, summarize a codebase, or sketch the API integration path."
+        defaultOpen={false}
+        position="bottom-right"
+        theme="dark"
+      />
+
+      {/* Dark theme — bottom right */}
+      <ChatWidget theme="dark" position="bottom-right" title="Ask Chitrank" defaultOpen={false} />
+
+      {/* Light theme — bottom left */}
+      <ChatWidget theme="light" position="bottom-left" title="Ask Chitrank" defaultOpen={false} />
+    </div>
   )
 }
 

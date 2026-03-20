@@ -1,0 +1,59 @@
+/**
+ * Renders a single message — either user bubble or assistant response.
+ * Handles the streaming cursor when the assistant is actively responding.
+ */
+
+import type { ChatMessage as ChatMessageType } from '../types'
+import { TerminalIcon } from './Icons'
+
+const timeFormatter = new Intl.DateTimeFormat('en-US', {
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+  hour12: false,
+})
+
+const formatTimestamp = (timestamp: Date) => `T-${timeFormatter.format(timestamp)}`
+
+interface ChatMessageProps {
+  /** The message data to render */
+  message: ChatMessageType
+  /** Whether this message is currently being streamed — shows blinking cursor */
+  isStreaming: boolean
+}
+
+/**
+ * Renders a single chat message — user bubble or assistant response.
+ * Shows a blinking cursor on the active streaming assistant message.
+ *
+ * @param props - See ChatMessageProps
+ */
+export default function ChatMessage({ message, isStreaming }: ChatMessageProps) {
+  if (message.role === 'user') {
+    return (
+      <article className="chat-widget__message chat-widget__message--user">
+        <div className="chat-widget__bubble">
+          <p>{message.content}</p>
+        </div>
+        <span className="chat-widget__timestamp">{formatTimestamp(message.timestamp)}</span>
+      </article>
+    )
+  }
+
+  return (
+    <article className="chat-widget__message chat-widget__message--assistant">
+      <div className="chat-widget__assistant-label">
+        <TerminalIcon />
+        <span>{message.cached ? 'AI_ANALYSIS_CACHE' : 'AI_ANALYSIS_STREAM'}</span>
+      </div>
+
+      <div className="chat-widget__assistant-body">
+        <div className="chat-widget__assistant-rail" />
+        <div className="chat-widget__assistant-copy">
+          <p>{message.content}</p>
+          {isStreaming ? <span className="chat-widget__cursor" aria-hidden="true" /> : null}
+        </div>
+      </div>
+    </article>
+  )
+}

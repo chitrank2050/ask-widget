@@ -1,0 +1,124 @@
+/**
+ * Expanded chat panel — header, message feed, and composer.
+ * Rendered when the widget is open.
+ */
+
+import { useEffect, useRef } from 'react'
+import type { FormEvent } from 'react'
+import type { ChatMessage as ChatMessageType } from '../types'
+import ChatInput from './ChatInput'
+import ChatMessage from './ChatMessage'
+import { ResetIcon } from './Icons'
+
+interface ChatPanelProps {
+  /** Chat panel header title */
+  title: string
+  /** All messages in the current conversation */
+  messages: ChatMessageType[]
+  /** ID of the message currently being streamed — null when not streaming */
+  activeStreamId: string | null
+  /** Whether the assistant is currently streaming */
+  isStreaming: boolean
+  /** Current input field value */
+  inputValue: string
+  /** Called when the input value changes */
+  onInputChange: (value: string) => void
+  /** Called when the message form is submitted */
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void
+  /** Called when the collapse button is clicked */
+  onCollapse: () => void
+  /** Input placeholder text */
+  placeholder: string
+  /** Latency of the last response in seconds */
+  latency: number | null
+}
+
+/**
+ * Full chat panel with header, scrollable message feed, and composer.
+ * Auto-scrolls to the latest message when new content arrives.
+ *
+ * @param props - See ChatPanelProps
+ */
+export default function ChatPanel({
+  title,
+  messages,
+  activeStreamId,
+  isStreaming,
+  inputValue,
+  onInputChange,
+  onSubmit,
+  onCollapse,
+  placeholder,
+  latency,
+}: ChatPanelProps) {
+  const feedRef = useRef<HTMLDivElement | null>(null)
+
+  // Auto-scroll to bottom on new messages or streaming updates
+  useEffect(() => {
+    if (!feedRef.current) return
+
+    const nextFrame = window.requestAnimationFrame(() => {
+      const node = feedRef.current
+      if (!node) return
+
+      node.scrollTo({
+        top: node.scrollHeight,
+        behavior: 'smooth',
+      })
+    })
+
+    return () => {
+      window.cancelAnimationFrame(nextFrame)
+    }
+  }, [messages, isStreaming])
+
+  return (
+    <section className="chat-widget__panel" aria-label={title}>
+      {/* ── Header ────────────────────────────────────────────────────── */}
+      <header className="chat-widget__header">
+        <div className="chat-widget__title-wrap">
+          <span className="chat-widget__title-mark" />
+          <div>
+            <p className="chat-widget__title">{title}</p>
+            <p className="chat-widget__status">SYSTEM.LINK_ESTABLISHED</p>
+          </div>
+        </div>
+
+        <div className="chat-widget__actions">
+          <button
+            type="button"
+            className="chat-widget__header-button"
+            onClick={onCollapse}
+            disabled={isStreaming}
+            aria-label="Reset conversation"
+          >
+            <ResetIcon />
+          </button>
+        </div>
+      </header>
+
+      {/* ── Message feed ──────────────────────────────────────────────── */}
+      <div className="chat-widget__feed" ref={feedRef} role="log" aria-live="polite">
+        <div className="chat-widget__system-chip">SYSTEM.LINK_ESTABLISHED</div>
+
+        {messages.map((message) => (
+          <ChatMessage
+            key={message.id}
+            message={message}
+            isStreaming={activeStreamId === message.id}
+          />
+        ))}
+      </div>
+
+      {/* ── Composer ──────────────────────────────────────────────────── */}
+      <ChatInput
+        value={inputValue}
+        onChange={onInputChange}
+        onSubmit={onSubmit}
+        isStreaming={isStreaming}
+        placeholder={placeholder}
+        latency={latency}
+      />
+    </section>
+  )
+}

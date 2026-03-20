@@ -1,0 +1,39 @@
+/**
+ * src/styles/themes.css
+ *
+ * Light and dark theme color tokens.
+ *
+ * Applied via [data-theme="dark"] and [data-theme="light"] on the widget
+ * root element. Scoped to the widget — never bleeds into consumer styles.
+ *
+ * The component sets data-theme={theme} on the root div.
+ * No inline styles or JS objects needed for theming.
+ */
+
+/* ── Dark theme ───────────────────────────────────────────────────────────── */
+[data-theme='dark'] {
+  --widget-primary: #f1eadf;
+  --widget-background: rgba(15, 15, 16, 0.96);
+  --widget-surface: #161617;
+  --widget-surface-alt: #111112;
+  --widget-text: #f6efe2;
+  --widget-muted: #9e988e;
+  --widget-border: rgba(255, 255, 255, 0.08);
+  --widget-shadow: 0 36px 120px rgba(0, 0, 0, 0.58);
+  --widget-user-bubble: #242427;
+  --widget-rail: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Light theme ──────────────────────────────────────────────────────────── */
+[data-theme='light'] {
+  --widget-primary: #1b1712;
+  --widget-background: rgba(247, 242, 233, 0.96);
+  --widget-surface: #ffffff;
+  --widget-surface-alt: #f0e8dc;
+  --widget-text: #171310;
+  --widget-muted: #6f665b;
+  --widget-border: rgba(23, 19, 16, 0.12);
+  --widget-shadow: 0 30px 90px rgba(33, 24, 14, 0.18);
+  --widget-user-bubble: #ebe2d6;
+  --widget-rail: rgba(23, 19, 16, 0.16);
+}

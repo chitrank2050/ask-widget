@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => {
     ],
     server: {
       port: env.APP_PORT ? Number(env.APP_PORT) : 5173,
-      host: env.APP_HOST || '[IP_ADDRESS]',
+      host: env.APP_HOST || '127.0.0.1',
     },
     build: {
       lib: {
@@ -26,6 +26,7 @@ export default defineConfig(({ mode }) => {
         fileName: (format) => `ask-widget.${format}.js`,
         formats: ['es', 'umd'],
       },
+      target: 'esnext',
       rollupOptions: {
         // React is a peer dep — never bundle it
         external: ['react', 'react-dom'],
@@ -40,7 +41,8 @@ export default defineConfig(({ mode }) => {
       },
       sourcemap: true,
       // Minify for production
-      minify: 'esbuild',
+      // minify: 'esbuild',
+      minify: false,
     },
     resolve: {
       alias: {

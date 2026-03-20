@@ -40,17 +40,18 @@ export interface ChatMessage {
   cached?: boolean
 }
 
-// ── API ──────────────────────────────────────────────────────────────────────
+/** Value returned by a response adapter */
+export type ChatStreamResult =
+  | string
+  | AsyncIterable<string>
+  | Promise<string | AsyncIterable<string>>
 
-/** SSE event types from the ask-chitrank API */
-export type SSEEventType = 'token' | 'done' | 'error'
-
-/** Parsed SSE event from the API */
-export interface SSEEvent {
-  type: SSEEventType
-  content?: string
-  cached?: boolean
-}
+/**
+ * Adapter invoked when the user submits a message.
+ * Return an async iterable for true token streaming, or a string/promise
+ * while the backend integration is still being prepared.
+ */
+export type ChatStreamHandler = (message: string, history: ChatMessage[]) => ChatStreamResult
 
 // ── Props ────────────────────────────────────────────────────────────────────
 
@@ -60,14 +61,14 @@ export interface ChatWidgetProps {
    * Base URL of the ask-chitrank API.
    * @example "https://your-api.railway.app"
    */
-  apiUrl: string
+  apiUrl?: string
 
   /**
    * Bearer token for API authentication.
    * Never commit this — pass via environment variable.
    * @example process.env.NEXT_PUBLIC_CHAT_API_TOKEN
    */
-  apiToken: string
+  apiToken?: string
 
   /**
    * Position of the floating button and chat panel.
@@ -109,4 +110,10 @@ export interface ChatWidgetProps {
    * @default false
    */
   defaultOpen?: boolean
+
+  /**
+   * Optional response adapter.
+   * Use this to plug in streaming fetch/SSE logic when the backend is ready.
+   */
+  streamResponse?: ChatStreamHandler
 }
