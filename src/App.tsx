@@ -33,7 +33,7 @@ function App() {
             rel="noreferrer"
             className="app-header__npm"
           >
-            NPM_v0.5.0
+            NPM_v0.5.2
           </a>
           <a
             href="https://github.com/chitrank2050/ask-widget"
@@ -144,6 +144,16 @@ function App() {
               Zero-config styling that aligns perfectly with the popular neutral/zinc palette of
               modern portfolios.
             </p>
+            <div style={{ marginTop: '20px' }}>
+              <a href="https://ko-fi.com/D1D71U581P" target="_blank" rel="noreferrer">
+                <img
+                  height="36"
+                  style={{ border: '0px', height: '36px' }}
+                  src="https://storage.ko-fi.com/cdn/kofi6.png?v=6"
+                  alt="Buy Me a Coffee at ko-fi.com"
+                />
+              </a>
+            </div>
           </article>
         </section>
       </main>
@@ -161,7 +171,7 @@ function App() {
         <div className="app-footer__wrap">
           <p>© 2026 CHITRANK AGNIHOTRI // ALL_RIGHTS_RESERVED</p>
           <div className="app-footer__meta">
-            <span>VERSION: 0.5.0-STABLE</span>
+            <span>VERSION: 0.5.2-STABLE</span>
             <span className="app-footer__status">RELEASED</span>
           </div>
         </div>
