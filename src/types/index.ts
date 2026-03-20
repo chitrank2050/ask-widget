@@ -37,6 +37,8 @@ export interface ChatLabels {
   resetAction?: string
   /** Text shown in the system chip at start (default: "SYSTEM.LINK_ESTABLISHED") */
   systemStatus?: string
+  /** Text shown inside the pill launcher button (default: title) */
+  launcherLabel?: string
 }
 
 // ── Position ─────────────────────────────────────────────────────────────────

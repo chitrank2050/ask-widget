@@ -91,7 +91,12 @@ export default function ChatWidget({
   return (
     <div className={`chat-widget chat-widget--${position}`} data-theme={theme} style={customStyles}>
       {!isOpen ? (
-        <ChatButton title={title} onClick={() => setIsOpen(true)} />
+        <ChatButton
+          title={title}
+          theme={theme}
+          label={labels?.launcherLabel}
+          onClick={() => setIsOpen(true)}
+        />
       ) : (
         <ChatPanel
           title={title}
