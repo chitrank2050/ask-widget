@@ -3,9 +3,11 @@
 > A lightweight chat widget for developer portfolios. Drop-in floating chat with SSE streaming, dark/light themes, and configurable positioning. Aligned with the neutral zinc palette.
 
 ![npm](https://img.shields.io/npm/v/ask-widget)
+![Install Size](https://img.shields.io/bundlephobia/min/ask-widget)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
 ![React](https://img.shields.io/badge/React-18+-61dafb)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
+![CI](https://github.com/chitrank2050/ask-widget/actions/workflows/ci.yml/badge.svg)
 ![Version](https://img.shields.io/badge/Version-0.3.0-blue)
 
 ---
