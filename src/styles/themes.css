@@ -8,32 +8,34 @@
  *
  * The component sets data-theme={theme} on the root div.
  * No inline styles or JS objects needed for theming.
+ *
+ * Color palette aligned with the personal-portfolio (zinc / neutral).
  */
 
 /* ── Dark theme ───────────────────────────────────────────────────────────── */
 [data-theme='dark'] {
-  --widget-primary: #f1eadf;
-  --widget-background: rgba(15, 15, 16, 0.96);
-  --widget-surface: #161617;
-  --widget-surface-alt: #111112;
-  --widget-text: #f6efe2;
-  --widget-muted: #9e988e;
-  --widget-border: rgba(255, 255, 255, 0.08);
+  --widget-primary: #fafafa; /* zinc-50  */
+  --widget-background: rgba(10, 10, 10, 0.96); /* near-black, matches portfolio bg */
+  --widget-surface: #1c1c1e; /* zinc-900-ish card surface */
+  --widget-surface-alt: #141415; /* slightly lighter than pure bg */
+  --widget-text: #fafafa; /* zinc-50  */
+  --widget-muted: #a1a1aa; /* zinc-400 */
+  --widget-border: rgba(255, 255, 255, 0.1); /* matches portfolio --border */
   --widget-shadow: 0 36px 120px rgba(0, 0, 0, 0.58);
-  --widget-user-bubble: #242427;
+  --widget-user-bubble: #27272a; /* zinc-800 */
   --widget-rail: rgba(255, 255, 255, 0.1);
 }
 
 /* ── Light theme ──────────────────────────────────────────────────────────── */
 [data-theme='light'] {
-  --widget-primary: #1b1712;
-  --widget-background: rgba(247, 242, 233, 0.96);
+  --widget-primary: #18181b; /* zinc-900 */
+  --widget-background: rgba(250, 250, 250, 0.96); /* zinc-50 */
   --widget-surface: #ffffff;
-  --widget-surface-alt: #f0e8dc;
-  --widget-text: #171310;
-  --widget-muted: #6f665b;
-  --widget-border: rgba(23, 19, 16, 0.12);
-  --widget-shadow: 0 30px 90px rgba(33, 24, 14, 0.18);
-  --widget-user-bubble: #ebe2d6;
-  --widget-rail: rgba(23, 19, 16, 0.16);
+  --widget-surface-alt: #f4f4f5; /* zinc-100 */
+  --widget-text: #18181b; /* zinc-900 */
+  --widget-muted: #71717a; /* zinc-500 */
+  --widget-border: rgba(0, 0, 0, 0.08);
+  --widget-shadow: 0 30px 90px rgba(0, 0, 0, 0.12);
+  --widget-user-bubble: #e4e4e7; /* zinc-200 */
+  --widget-rail: rgba(0, 0, 0, 0.12);
 }
