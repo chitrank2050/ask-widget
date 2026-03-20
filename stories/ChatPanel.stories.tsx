@@ -35,7 +35,7 @@ const mockMessages = [
   {
     id: '3',
     role: 'assistant' as const,
-    content: 'I am the Ask Chitrank widget, a RAG-powered chatbot.',
+    content: 'I am the Ask Chitrank widget, a streaming AI chatbot.',
     timestamp: new Date(),
   },
 ]

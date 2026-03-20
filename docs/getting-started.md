@@ -1,6 +1,6 @@
 # Getting Started
 
-**ask-widget** is a lightweight React component for adding a RAG-powered chat assistant to your developer portfolio. It’s strictly monochrome by default and designed to align with the popular "zinc/neutral" aesthetic.
+**ask-widget** is a lightweight React component for adding a streaming AI chat assistant to your developer portfolio. It’s strictly monochrome by default and designed to align with the popular "zinc/neutral" aesthetic.
 
 ## Installation
 

@@ -12,6 +12,16 @@
 
 ---
 
+## Links
+
+| | URL |
+|---|---|
+| 📚 Documentation | [Project Documentation](https://chitrank2050.github.io/ask-widget/) |
+| 🎨 Storybook | [Storybook](https://chitrank2050.github.io/ask-widget/storybook) |
+| 👤 Portfolio | [About me](https://chitrankagnihotri.com) |
+
+---
+
 ## 📖 Full Documentation
 **Visit the [ask-widget documentation site](https://chitrank2050.github.io/ask-widget/) for full details on API, theming, and standalone hooks.**
 
