@@ -9,9 +9,8 @@
 
 ---
 
-## What It Does
-
-A floating chat button that expands into a full chat panel. Connects to any [ask-chitrank](https://github.com/chitrank2050/askchitrank) compatible RAG API and streams responses token by token via Server-Sent Events.
+## 📖 Full Documentation
+**Visit the [ask-widget documentation site](https://github.com/chitrank2050/ask-widget/docs) for full details on API, theming, and standalone hooks.**
 
 ---
 
@@ -25,7 +24,7 @@ pnpm add ask-widget
 
 ---
 
-## Usage
+## Quick Start
 
 ```tsx
 import { ChatWidget } from 'ask-widget'
@@ -39,7 +38,7 @@ export default function Portfolio() {
         apiToken={process.env.NEXT_PUBLIC_CHAT_API_TOKEN}
         position="bottom-right"
         theme="dark"
-        title="Ask Chitrank"
+        title="Ask AI"
       />
     </main>
   )
@@ -48,35 +47,27 @@ export default function Portfolio() {
 
 ---
 
-## Hooks
+## Features
 
-If you want to build a completely custom UI but keep the streaming and session logic, you can use the standalone hooks:
-
-### `useChat`
-Manages chat state, message history, and streaming lifecycle.
-
-### `useSSEStream`
-Handles the SSE connection and token parsing from the `ask-chitrank` backend.
-
-### `useSession`
-Persists message history to `localStorage` for returning users.
+- **⚡ SSE Streaming**: Built-in support for token-by-token streaming via Server-Sent Events.
+- **🎨 Zinc Aesthetic**: Strictly monochrome. Designed to match modern developer portfolios.
+- **🧩 Configurable API**: Control themes, initial messages, placeholders, and positions.
+- **🛠 Demo Mode**: Built-in fallback stream if no API is configured.
+- **🧩 Headless Hooks**: Build your own UI with `useChat`, `useSSEStream`, and `useSession`.
 
 ---
 
-## Props
+## Core Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `apiUrl` | `string` | required | Base URL of the ask-chitrank API |
-| `apiToken` | `string` | required | Bearer token for API auth. |
-| `position` | `"bottom-right" \| "bottom-left" \| "bottom-center"` | `"bottom-right"` | Widget position on screen |
-| `theme` | `"dark" \| "light"` | `"dark"` | Color theme preset |
-| `colors` | `ChatColors` | — | Custom color overrides |
-| `title` | `string` | `"Ask Chitrank"` | Chat panel header title |
-| `placeholder` | `string` | `"Ask me anything..."` | Input placeholder text |
-| `initialMessage` | `string` | `"Hi! Ask me about Chitrank's experience..."` | First message shown on open |
-| `defaultOpen` | `boolean` | `false` | Whether panel starts open |
-| `streamResponse` | `ChatStreamHandler` | — | Inject custom stream logic |
+| `apiUrl` | `string` | — | Base URL of your chat API. |
+| `apiToken` | `string` | — | Bearer token for API auth. |
+| `position` | `"bottom-right" \| "bottom-left" \| "bottom-center"` | `"bottom-right"` | Widget position on screen. |
+| `theme` | `"dark" \| "light"` | `"dark"` | Color theme preset. |
+| `title` | `string` | `"Ask AI"` | Header title. |
+| `placeholder` | `string` | `"Ask me anything..."` | Input placeholder. |
+| `initialMessage` | `string` | `"Hello! How can I help you today?"` | First message shown on open. |
 
 ---
 
@@ -87,16 +78,9 @@ Persists message history to `localStorage` for returning users.
 - [x] Phase 3 — Hooks (session, SSE streaming, chat state)
 - [x] Phase 4 — Components (button, panel, message, input)
 - [x] Phase 5 — Testing + Sample Stories
-- [ ] Phase 6 — npm publish + portfolio integration
+- [x] Phase 6 — Documentation (VitePress)
+- [ ] Phase 7 — npm publish + portfolio integration
 
 ---
-
-## Developing
-
-```bash
-pnpm install
-pnpm dev      # start preview page
-pnpm test     # run unit tests
-```
 
 Developed by [Chitrank Agnihotri](https://www.chitrankagnihotri.com)
