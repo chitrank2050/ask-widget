@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react'
 import type { ChatMessage, ChatStreamHandler, ChatStreamResult } from '../types'
+import { useSession } from './useSession'
 
 const getNow = () => performance.now()
 
@@ -40,13 +41,16 @@ async function* toAsyncChunks(stream: ChatStreamResult) {
 interface UseChatOptions {
   initialMessage?: string
   streamResponse?: ChatStreamHandler
+  persistenceKey?: string
 }
 
-export function useChat({ initialMessage, streamResponse }: UseChatOptions = {}) {
-  const [messages, setMessages] = useState<ChatMessage[]>(() => {
-    if (!initialMessage?.trim()) return []
-    return [createMessage('assistant', initialMessage, true)]
-  })
+export function useChat({ initialMessage, streamResponse, persistenceKey }: UseChatOptions = {}) {
+  const defaultMessages = initialMessage ? [createMessage('assistant', initialMessage, true)] : []
+  const { messages, setMessages, clearSession } = useSession(
+    persistenceKey || 'ask_widget_temp',
+    defaultMessages
+  )
+
   const [isStreaming, setIsStreaming] = useState(false)
   const [latency, setLatency] = useState<number | null>(null)
   const [activeStreamId, setActiveStreamId] = useState<string | null>(null)
@@ -107,14 +111,14 @@ export function useChat({ initialMessage, streamResponse }: UseChatOptions = {})
         setActiveStreamId(null)
       }
     },
-    [isStreaming, messages, streamResponse]
+    [isStreaming, messages, streamResponse, setMessages]
   )
 
   const clearHistory = useCallback(() => {
-    setMessages(initialMessage ? [createMessage('assistant', initialMessage, true)] : [])
+    clearSession()
     setLatency(null)
     setInputValue('')
-  }, [initialMessage])
+  }, [clearSession])
 
   return {
     messages,

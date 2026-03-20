@@ -45,6 +45,9 @@ export default function ChatWidget({
   apiUrl,
   apiToken,
   streamResponse,
+  colors,
+  labels,
+  persistenceKey = 'ask_widget_session',
 }: ChatWidgetProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen)
 
@@ -67,6 +70,7 @@ export default function ChatWidget({
   } = useChat({
     initialMessage,
     streamResponse: resolvedStreamResponse,
+    persistenceKey,
   })
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -74,8 +78,18 @@ export default function ChatWidget({
     sendMessage(inputValue)
   }
 
+  // Build custom styles from colors prop
+  const customStyles = {
+    ...(colors?.primary && { '--widget-primary': colors.primary }),
+    ...(colors?.background && { '--widget-background': colors.background }),
+    ...(colors?.text && { '--widget-text': colors.text }),
+    ...(colors?.border && { '--widget-border': colors.border }),
+    ...(colors?.userBubble && { '--widget-user-bubble': colors.userBubble }),
+    ...(colors?.surface && { '--widget-surface': colors.surface }),
+  } as React.CSSProperties
+
   return (
-    <div className={`chat-widget chat-widget--${position}`} data-theme={theme}>
+    <div className={`chat-widget chat-widget--${position}`} data-theme={theme} style={customStyles}>
       {!isOpen ? (
         <ChatButton title={title} onClick={() => setIsOpen(true)} />
       ) : (
@@ -91,6 +105,7 @@ export default function ChatWidget({
           onReset={clearHistory}
           placeholder={placeholder}
           latency={latency}
+          labels={labels}
         />
       )}
     </div>

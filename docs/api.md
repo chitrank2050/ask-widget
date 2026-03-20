@@ -12,7 +12,9 @@ Below is the list of props accepted by the `ChatWidget` component. All are optio
 | `apiToken` | `string` | — | Bearer token for API authentication. Provide via environment variables. |
 | `position` | `"bottom-right" \| "bottom-left" \| "bottom-center"` | `"bottom-right"` | Where the widget appears on screen. |
 | `theme` | `"dark" \| "light"` | `"dark"` | Color theme preset. |
-| `colors` | `ChatColors` | — | Custom color overrides for primary, background, text, and border. |
+| `colors` | `ChatColors` | — | Custom color overrides for primary, background, text, border, userbubble, and surface. |
+| `labels` | `ChatLabels` | — | Custom text for TECHNICAL indicators (assistant tags, latency text, etc.). |
+| `persistenceKey` | `string` | `"ask_widget_session"` | localStorage key for history persistence. |
 | `title` | `string` | `"Ask AI"` | Title shown in the chat panel header. |
 | `placeholder` | `string` | `"Ask me anything..."` | Placeholder text in the message input. |
 | `initialMessage` | `string` | `"Hello! How can I help you today?"` | First message displayed when the panel opens. |

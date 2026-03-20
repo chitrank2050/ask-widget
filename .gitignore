@@ -16,7 +16,13 @@ node_modules/
 # Build output
 dist/
 dist-ssr/
+storybook-static/
 coverage/
+*.tsbuildinfo
+
+# VitePress
+docs/.vitepress/dist
+docs/.vitepress/cache
 
 # Env files
 *.env
@@ -25,9 +31,6 @@ coverage/
 .env.test.local
 .env.production.local
 *.local
-
-# vercel
-.vercel
 
 # OS
 .DS_Store

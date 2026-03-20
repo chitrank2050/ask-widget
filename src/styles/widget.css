@@ -251,6 +251,7 @@
   margin: 0 auto 20px;
   padding: 8px 14px;
   border-radius: 8px;
+  background: var(--widget-surface);
   border: 1px solid var(--widget-border);
   color: var(--widget-muted);
   letter-spacing: 0.2em;
@@ -405,7 +406,7 @@
 .chat-widget__composer {
   padding: 14px 16px;
   border-top: 1px solid var(--widget-border);
-  background: rgba(0, 0, 0, 0.08);
+  background: var(--widget-surface);
 }
 
 .chat-widget__input-row {

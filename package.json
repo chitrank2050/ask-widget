@@ -60,6 +60,7 @@
     "git": "node scripts/menu.mjs git",
     "git-tag": "./scripts/git-tag.sh",
     "git-release": "./scripts/git-release.sh",
+    "docs-deploy": "./scripts/docs-deploy.sh",
     "prepare": "husky",
     "test": "vitest run",
     "test:watch": "vitest",

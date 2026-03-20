@@ -3,7 +3,7 @@
  * Handles the streaming cursor when the assistant is actively responding.
  */
 
-import type { ChatMessage as ChatMessageType } from '../types'
+import type { ChatMessage as ChatMessageType, ChatLabels } from '../types'
 import { TerminalIcon } from './Icons'
 
 const timeFormatter = new Intl.DateTimeFormat('en-US', {
@@ -20,6 +20,8 @@ interface ChatMessageProps {
   message: ChatMessageType
   /** Whether this message is currently being streamed — shows blinking cursor */
   isStreaming: boolean
+  /** Custom text labels */
+  labels?: ChatLabels
 }
 
 /**
@@ -28,7 +30,7 @@ interface ChatMessageProps {
  *
  * @param props - See ChatMessageProps
  */
-export default function ChatMessage({ message, isStreaming }: ChatMessageProps) {
+export default function ChatMessage({ message, isStreaming, labels }: ChatMessageProps) {
   if (message.role === 'user') {
     return (
       <article className="chat-widget__message chat-widget__message--user">
@@ -46,7 +48,11 @@ export default function ChatMessage({ message, isStreaming }: ChatMessageProps) 
     <article className="chat-widget__message chat-widget__message--assistant">
       <div className="chat-widget__assistant-label">
         <TerminalIcon />
-        <span>{message.cached ? 'AI_ANALYSIS_CACHE' : 'AI_ANALYSIS_STREAM'}</span>
+        <span>
+          {message.cached
+            ? labels?.cacheTag || 'AI_ANALYSIS_CACHE'
+            : labels?.assistantTag || 'AI_ANALYSIS_STREAM'}
+        </span>
       </div>
 
       <div className="chat-widget__assistant-body">

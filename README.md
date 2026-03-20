@@ -1,6 +1,6 @@
 # ask-widget
 
-> A lightweight, RAG-powered chat widget for developer portfolios. Drop-in floating chat with SSE streaming, dark/light themes, and configurable positioning. Aligned with the neutral zinc palette.
+> A lightweight chat widget for developer portfolios. Drop-in floating chat with SSE streaming, dark/light themes, and configurable positioning. Aligned with the neutral zinc palette.
 
 ![npm](https://img.shields.io/npm/v/ask-widget)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
@@ -34,8 +34,8 @@ export default function Portfolio() {
   return (
     <main>
       <ChatWidget
-        apiUrl="https://your-api.railway.app"
-        apiToken={process.env.NEXT_PUBLIC_CHAT_API_TOKEN}
+        apiUrl="https://your-api.example.com"
+        apiToken={import.meta.env.VITE_CHAT_API_TOKEN}
         position="bottom-right"
         theme="dark"
         title="Ask AI"

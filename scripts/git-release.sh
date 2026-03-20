@@ -19,4 +19,4 @@ gh release create "v$VERSION" \
   --notes "$NOTES"
 
 echo "✅ Released v$VERSION"
-echo "   https://github.com/chitrank2050/pharmoris/releases/tag/v$VERSION"
+echo "   https://github.com/chitrank2050/ask-widget/releases/tag/v$VERSION"

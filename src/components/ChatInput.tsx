@@ -1,9 +1,5 @@
-/**
- * Composer area — text input, send button, tool icons, and latency display.
- * Calls onSubmit when the form is submitted with a non-empty value.
- */
-
 import type { SyntheticEvent } from 'react'
+import type { ChatLabels } from '../types'
 import { SendIcon } from './Icons'
 
 interface ChatInputProps {
@@ -19,6 +15,8 @@ interface ChatInputProps {
   placeholder: string
   /** Latency of the last response in seconds — null while streaming */
   latency: number | null
+  /** Custom text labels */
+  labels?: ChatLabels
 }
 
 /**
@@ -33,6 +31,7 @@ export default function ChatInput({
   isStreaming,
   placeholder,
   latency,
+  labels,
 }: ChatInputProps) {
   return (
     <form
@@ -63,7 +62,8 @@ export default function ChatInput({
 
       <div className="chat-widget__composer-meta">
         <p className="chat-widget__latency">
-          LATENCY: {latency === null ? 'LIVE' : `${Math.max(latency, 0.003).toFixed(3)}s`}
+          {labels?.latencyPrefix || 'LATENCY'}:{' '}
+          {latency === null ? 'LIVE' : `${Math.max(latency, 0.003).toFixed(3)}s`}
         </p>
       </div>
     </form>

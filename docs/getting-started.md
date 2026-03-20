@@ -28,7 +28,7 @@ export default function App() {
     <main>
       <ChatWidget
         apiUrl="https://your-api.example.com"
-        apiToken={process.env.NEXT_PUBLIC_CHAT_API_TOKEN}
+        apiToken={import.meta.env.VITE_CHAT_API_TOKEN}
         position="bottom-right"
         theme="dark"
         title="Ask Anything"

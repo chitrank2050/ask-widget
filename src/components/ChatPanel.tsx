@@ -5,7 +5,7 @@
 
 import { useEffect, useRef } from 'react'
 import type { FormEvent } from 'react'
-import type { ChatMessage as ChatMessageType } from '../types'
+import type { ChatMessage as ChatMessageType, ChatLabels } from '../types'
 import ChatInput from './ChatInput'
 import ChatMessage from './ChatMessage'
 import { CloseIcon, ResetIcon } from './Icons'
@@ -33,6 +33,8 @@ interface ChatPanelProps {
   placeholder: string
   /** Latency of the last response in seconds */
   latency: number | null
+  /** Custom text labels */
+  labels?: ChatLabels
 }
 
 /**
@@ -53,6 +55,7 @@ export default function ChatPanel({
   onReset,
   placeholder,
   latency,
+  labels,
 }: ChatPanelProps) {
   const feedRef = useRef<HTMLDivElement | null>(null)
 
@@ -92,8 +95,8 @@ export default function ChatPanel({
             className="chat-widget__header-button"
             onClick={onReset}
             disabled={isStreaming}
-            title="Reset conversation"
-            aria-label="Reset conversation"
+            title={labels?.resetAction || 'Reset conversation'}
+            aria-label={labels?.resetAction || 'Reset conversation'}
           >
             <ResetIcon />
           </button>
@@ -102,8 +105,8 @@ export default function ChatPanel({
             className="chat-widget__header-button"
             onClick={onCollapse}
             disabled={isStreaming}
-            title="Close panel"
-            aria-label="Close panel"
+            title={labels?.collapseAction || 'Close panel'}
+            aria-label={labels?.collapseAction || 'Close panel'}
           >
             <CloseIcon />
           </button>
@@ -112,13 +115,16 @@ export default function ChatPanel({
 
       {/* ── Message feed ──────────────────────────────────────────────── */}
       <div className="chat-widget__feed" ref={feedRef} role="log" aria-live="polite">
-        <div className="chat-widget__system-chip">SYSTEM.LINK_ESTABLISHED</div>
+        <div className="chat-widget__system-chip">
+          {labels?.systemStatus || 'SYSTEM.LINK_ESTABLISHED'}
+        </div>
 
         {messages.map((message) => (
           <ChatMessage
             key={message.id}
             message={message}
             isStreaming={activeStreamId === message.id}
+            labels={labels}
           />
         ))}
       </div>
@@ -131,6 +137,7 @@ export default function ChatPanel({
         isStreaming={isStreaming}
         placeholder={placeholder}
         latency={latency}
+        labels={labels}
       />
     </section>
   )

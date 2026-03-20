@@ -21,6 +21,8 @@ If you need to align the widget's colors with your personal site, you can pass a
     background: "#09090b", /* Background color of the chat panel */
     text: "#fafafa",       /* Main text color */
     border: "#27272a",     /* Border colors for the widget */
+    userBubble: "#18181b", /* Background of user messages */
+    surface: "#111113",    /* Background of input and system chips */
   }}
 />
 ```

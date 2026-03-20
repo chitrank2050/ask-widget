@@ -17,6 +17,26 @@ export interface ChatColors {
   text?: string
   /** Border color */
   border?: string
+  /** Background of the user's message bubble */
+  userBubble?: string
+  /** Background of terminal-style blocks or the input area */
+  surface?: string
+}
+
+/** Localizable text strings used throughout the UI */
+export interface ChatLabels {
+  /** Label for live streaming responses (default: "AI_ANALYSIS_STREAM") */
+  assistantTag?: string
+  /** Label for cached responses (default: "AI_ANALYSIS_CACHE") */
+  cacheTag?: string
+  /** Prefix for the latency display (default: "LATENCY") */
+  latencyPrefix?: string
+  /** Aria-label for the collapse button */
+  collapseAction?: string
+  /** Aria-label for the reset/clear button */
+  resetAction?: string
+  /** Text shown in the system chip at start (default: "SYSTEM.LINK_ESTABLISHED") */
+  systemStatus?: string
 }
 
 // ── Position ─────────────────────────────────────────────────────────────────
@@ -70,7 +90,7 @@ export interface ChatWidgetProps {
    * Bearer token for API authentication.
    * Never commit this — pass via environment variable.
    *
-   * @example process.env.NEXT_PUBLIC_CHAT_API_TOKEN
+   * @example process.env.CHAT_API_TOKEN
    */
   apiToken?: string
 
@@ -114,6 +134,17 @@ export interface ChatWidgetProps {
    * @default false
    */
   defaultOpen?: boolean
+
+  /**
+   * Custom text labels for technical indicators in the UI.
+   */
+  labels?: ChatLabels
+
+  /**
+   * The localStorage key used to persist chat history.
+   * @default "ask_widget_session"
+   */
+  persistenceKey?: string
 
   /**
    * Custom response handler — takes full control of streaming.
