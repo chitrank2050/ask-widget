@@ -2,7 +2,7 @@
 
 All notable changes to Ask Widget.
 
-## [Unreleased]
+## [0.2.0] - 2026-03-20
 
 ### Documentation
 
