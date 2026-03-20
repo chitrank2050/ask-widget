@@ -8,7 +8,7 @@
 ![React](https://img.shields.io/badge/React-18+-61dafb)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 ![CI](https://github.com/chitrank2050/ask-widget/actions/workflows/ci.yml/badge.svg)
-![Version](https://img.shields.io/badge/Version-0.4.0-blue)
+![Version](https://img.shields.io/badge/Version-0.4.1-blue)
 
 ---
 
