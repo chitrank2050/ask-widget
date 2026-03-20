@@ -4,6 +4,7 @@
  */
 
 import { ChatWidget } from './index'
+import { version } from '../package.json'
 import './App.css'
 
 function App() {
@@ -33,7 +34,7 @@ function App() {
             rel="noreferrer"
             className="app-header__npm"
           >
-            NPM_v0.5.2
+            NPM_v{version}
           </a>
           <a
             href="https://github.com/chitrank2050/ask-widget"
@@ -171,7 +172,7 @@ function App() {
         <div className="app-footer__wrap">
           <p>© 2026 CHITRANK AGNIHOTRI // ALL_RIGHTS_RESERVED</p>
           <div className="app-footer__meta">
-            <span>VERSION: 0.5.2-STABLE</span>
+            <span>VERSION: {version}-STABLE</span>
             <span className="app-footer__status">RELEASED</span>
           </div>
         </div>
