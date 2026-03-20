@@ -7,7 +7,7 @@ import {
   isCancel,
 } from "@clack/prompts";
 import pc from "picocolors";
-import { execSync } from "node:child_process";
+import { execSync, execFileSync } from "node:child_process";
 import { resolve } from "node:path";
 import { select } from '@clack/prompts';
 
@@ -16,7 +16,7 @@ const ROOT = resolve(import.meta.dirname, "..");
 // ── Helpers ──────────────────────────────────────────────────────────────────
 function runScript(path) {
   try {
-    execSync(`bash ${resolve(ROOT, path)}`, { stdio: "inherit", cwd: ROOT });
+    execFileSync("bash", [resolve(ROOT, path)], { stdio: "inherit", cwd: ROOT });
   } catch (error) {
     console.error(pc.red(`\n  ⚠️  Script ${path} failed.\n`));
   }
