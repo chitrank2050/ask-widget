@@ -1,0 +1,1 @@
+import{_ as i,o as a,c as n,ae as t}from"./chunks/framework.sqtAkpti.js";const o=JSON.parse('{"title":"Standalone Hooks","description":"","frontmatter":{},"headers":[],"relativePath":"hooks.md","filePath":"hooks.md"}'),h={name:"hooks.md"};function e(l,s,p,k,E,r){return a(),n("div",null,[...s[0]||(s[0]=[t("",11)])])}const g=i(h,[["render",e]]);export{o as __pageData,g as default};

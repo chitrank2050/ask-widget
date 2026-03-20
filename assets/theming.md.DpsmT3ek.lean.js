@@ -1,0 +1,1 @@
+import{_ as i,o as a,c as t,ae as e}from"./chunks/framework.sqtAkpti.js";const c=JSON.parse('{"title":"Theming","description":"","frontmatter":{},"headers":[],"relativePath":"theming.md","filePath":"theming.md"}'),n={name:"theming.md"};function h(l,s,o,p,r,k){return a(),t("div",null,[...s[0]||(s[0]=[e("",10)])])}const E=i(n,[["render",h]]);export{c as __pageData,E as default};
