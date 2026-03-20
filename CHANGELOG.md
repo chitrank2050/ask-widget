@@ -2,6 +2,16 @@
 
 All notable changes to Ask Widget.
 
+## [0.4.0] - 2026-03-20
+
+### Features
+
+- Add a new CI workflow and update the README with CI and install size badges.
+
+### Maintenance
+
+- Prepare for package publishing by setting `private` to false, updating documentation links, and configuring the dts plugin.
+
 ## [0.2.0] - 2026-03-20
 
 ### Documentation
