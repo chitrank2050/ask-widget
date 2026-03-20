@@ -3,7 +3,8 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "ask-widget",
-  description: "A lightweight, RAG-powered chat widget for developer portfolios.",
+  description: "A lightweight chat widget for developer portfolios.",
+  base: '/ask-widget/',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: '/logo.svg',
