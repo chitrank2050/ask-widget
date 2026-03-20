@@ -2,13 +2,13 @@
 
 > A lightweight chat widget for developer portfolios. Drop-in floating chat with SSE streaming, dark/light themes, and configurable positioning. Aligned with the neutral zinc palette.
 
-![npm](https://img.shields.io/npm/v/ask-widget)
-![Install Size](https://img.shields.io/bundlephobia/min/ask-widget)
+![npm](https://img.shields.io/npm/v/@chitrank2050/ask-widget)
+![Install Size](https://img.shields.io/bundlephobia/min/@chitrank2050/ask-widget)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
 ![React](https://img.shields.io/badge/React-18+-61dafb)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 ![CI](https://github.com/chitrank2050/ask-widget/actions/workflows/ci.yml/badge.svg)
-![Version](https://img.shields.io/badge/Version-0.4.2-blue)
+![Version](https://img.shields.io/badge/Version-0.5.0-blue)
 
 ---
 
@@ -20,9 +20,9 @@
 ## Installation
 
 ```bash
-npm install ask-widget
+npm install @chitrank2050/ask-widget
 # or
-pnpm add ask-widget
+pnpm add @chitrank2050/ask-widget
 ```
 
 ---
@@ -30,8 +30,8 @@ pnpm add ask-widget
 ## Quick Start
 
 ```tsx
-import { ChatWidget } from 'ask-widget'
-import 'ask-widget/styles.css'
+import { ChatWidget } from '@chitrank2050/ask-widget'
+import '@chitrank2050/ask-widget/styles.css'
 
 export default function Portfolio() {
   return (
