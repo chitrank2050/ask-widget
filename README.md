@@ -16,6 +16,8 @@
 
 | | URL |
 |---|---|
+| 🌐 Demo | [Demo](https://ask-widget.vercel.app/) |
+| 📦 NPM | [NPM](https://www.npmjs.com/package/@chitrank2050/ask-widget) |
 | 📚 Documentation | [Project Documentation](https://chitrank2050.github.io/ask-widget/) |
 | 🎨 Storybook | [Storybook](https://chitrank2050.github.io/ask-widget/storybook) |
 | 👤 Portfolio | [About me](https://chitrankagnihotri.com) |
