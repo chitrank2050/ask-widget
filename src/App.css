@@ -178,3 +178,120 @@
     font-size: 1rem;
   }
 }
+
+/* ── Header ────────────────────────────────────────────────────────────────── */
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 40px 32px 0;
+  position: relative;
+  z-index: 10;
+}
+
+.app-header__logo {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  font-size: 0.85rem;
+  color: #fafafa;
+}
+
+.app-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.app-header__nav a {
+  text-decoration: none;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: #71717a;
+  transition: color 200ms ease;
+}
+
+.app-header__nav a:hover {
+  color: #fafafa;
+}
+
+.app-header__btn {
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* ── Footer ────────────────────────────────────────────────────────────────── */
+
+.app-footer {
+  max-width: 1180px;
+  margin: 80px auto 0;
+  padding: 40px 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+  z-index: 10;
+}
+
+.app-footer__wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.app-footer p {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  color: #52525b;
+  letter-spacing: 0.12em;
+}
+
+.app-footer__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: #3f3f46;
+}
+
+.app-footer__status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #10b981;
+}
+
+.app-footer__status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 8px currentColor;
+}
+
+@media (max-width: 960px) {
+  .app-header {
+    padding: 24px 20px 0;
+  }
+  .app-header__nav {
+    gap: 16px;
+  }
+  .app-header__btn {
+    display: none;
+  }
+  .app-footer__wrap {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .app-footer__meta {
+    align-items: flex-start;
+  }
+}

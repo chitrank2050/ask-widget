@@ -9,6 +9,18 @@ import './App.css'
 function App() {
   return (
     <div className="app-shell">
+      <header className="app-header">
+        <div className="app-header__logo">ASK_WIDGET</div>
+        <nav className="app-header__nav">
+          <a href="https://github.com/chitrank2050/ask-widget" target="_blank" rel="noreferrer">
+            SOURCE_CODE
+          </a>
+          <a href="/docs" className="app-header__btn">
+            DOCUMENTATION
+          </a>
+        </nav>
+      </header>
+
       <div className="app-shell__glow app-shell__glow--left" />
       <div className="app-shell__glow app-shell__glow--right" />
 
@@ -61,6 +73,15 @@ function App() {
         placeholder="Testing light mode..."
         defaultOpen={false}
       />
+      <footer className="app-footer">
+        <div className="app-footer__wrap">
+          <p>© 2026 CHITRANK AGNIHOTRI // ALL_RIGHTS_RESERVED</p>
+          <div className="app-footer__meta">
+            <span>VERSION: 0.1.0-STABLE</span>
+            <span className="app-footer__status">SYSTEM_LIVE</span>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
