@@ -58,7 +58,10 @@ export type ChatStreamHandler = (message: string, history: ChatMessage[]) => Cha
 /** Props for the main ChatWidget component */
 export interface ChatWidgetProps {
   /**
-   * Base URL of the ask-chitrank API.
+   * Base URL of your chat API.
+   * When provided (without a custom `streamResponse`), the widget will automatically
+   * use `useSSEStream` to connect to `<apiUrl>/v1/chat` with an OpenAI-compatible payload.
+   *
    * @example "https://your-api.railway.app"
    */
   apiUrl?: string
@@ -66,6 +69,7 @@ export interface ChatWidgetProps {
   /**
    * Bearer token for API authentication.
    * Never commit this — pass via environment variable.
+   *
    * @example process.env.NEXT_PUBLIC_CHAT_API_TOKEN
    */
   apiToken?: string
@@ -89,7 +93,7 @@ export interface ChatWidgetProps {
 
   /**
    * Title shown in the chat panel header.
-   * @default "Ask Chitrank"
+   * @default "Ask AI"
    */
   title?: string
 
@@ -100,8 +104,8 @@ export interface ChatWidgetProps {
   placeholder?: string
 
   /**
-   * First message shown when the panel opens.
-   * @default "Hi! Ask me about Chitrank's experience or projects."
+   * First message displayed when the panel opens.
+   * @default "Hello! How can I help you today?"
    */
   initialMessage?: string
 
@@ -112,8 +116,19 @@ export interface ChatWidgetProps {
   defaultOpen?: boolean
 
   /**
-   * Optional response adapter.
-   * Use this to plug in streaming fetch/SSE logic when the backend is ready.
+   * Custom response handler — takes full control of streaming.
+   *
+   * Use this when you need custom fetch logic, auth flows, or a non-SSE backend.
+   * When provided, `apiUrl` and `apiToken` are ignored.
+   *
+   * @example
+   * ```ts
+   * const streamResponse: ChatStreamHandler = async function* (message, history) {
+   *   const res = await fetch('/api/chat', { method: 'POST', body: JSON.stringify({ message }) })
+   *   const reader = res.body!.getReader()
+   *   // ... yield decoded tokens
+   * }
+   * ```
    */
   streamResponse?: ChatStreamHandler
 }

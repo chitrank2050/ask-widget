@@ -2,33 +2,99 @@ import { useCallback } from 'react'
 import type { ChatMessage } from '../types'
 
 /**
- * Hook providing a standard SSE-backed response adapter for the ask-chitrank API.
- * This can be passed to the ChatWidget's `streamResponse` prop if you want
- * to use the default API integration logic.
+ * SSE stream configuration options.
  */
-export function useSSEStream(apiUrl?: string, apiToken?: string) {
-  const streamResponse = useCallback(
-    async function* (_message: string, history: ChatMessage[]) {
-      if (!apiUrl) {
-        throw new Error('API URL is required to stream from backend.')
-      }
+export interface SSEStreamOptions {
+  /**
+   * Base URL of the chat API endpoint.
+   * @example "https://your-api.railway.app"
+   */
+  apiUrl: string
 
-      const response = await fetch(`${apiUrl}/v1/chat`, {
+  /**
+   * Optional Bearer token for API authentication.
+   * @example process.env.NEXT_PUBLIC_CHAT_API_TOKEN
+   */
+  apiToken?: string
+
+  /**
+   * Path to the chat endpoint.
+   * @default "/v1/chat"
+   */
+  path?: string
+
+  /**
+   * Custom function to build the request body from the current message and history.
+   * Override this to match your backend's expected payload shape.
+   *
+   * @default (message, history) => ({ messages: [...history, { role: 'user', content: message }] })
+   */
+  buildBody?: (message: string, history: ChatMessage[]) => unknown
+
+  /**
+   * Custom function to extract the text chunk from a parsed SSE data object.
+   * Override this to match your backend's streamed JSON shape.
+   *
+   * Defaults to OpenAI-compatible: `data.choices[0].delta.content`
+   */
+  extractChunk?: (data: unknown) => string | undefined
+}
+
+const defaultExtractChunk = (data: unknown): string | undefined => {
+  if (typeof data !== 'object' || data === null) return undefined
+  const choices = (data as Record<string, unknown>).choices
+  if (!Array.isArray(choices) || choices.length === 0) return undefined
+  const delta = (choices[0] as Record<string, unknown>).delta
+  if (typeof delta !== 'object' || delta === null) return undefined
+  const content = (delta as Record<string, unknown>).content
+  return typeof content === 'string' ? content : undefined
+}
+
+const defaultBuildBody = (message: string, history: ChatMessage[]) => ({
+  messages: [
+    ...history.map((m) => ({ role: m.role, content: m.content })),
+    { role: 'user' as const, content: message },
+  ],
+})
+
+/**
+ * Hook providing a generic SSE-backed response adapter.
+ *
+ * Pass the returned `streamResponse` to `ChatWidget`'s `streamResponse` prop.
+ *
+ * @example
+ * ```tsx
+ * const { streamResponse } = useSSEStream({
+ *   apiUrl: 'https://my-api.example.com',
+ *   apiToken: process.env.NEXT_PUBLIC_API_TOKEN,
+ * })
+ *
+ * return <ChatWidget streamResponse={streamResponse} />
+ * ```
+ */
+export function useSSEStream({
+  apiUrl,
+  apiToken,
+  path = '/v1/chat',
+  buildBody = defaultBuildBody,
+  extractChunk = defaultExtractChunk,
+}: SSEStreamOptions) {
+  const streamResponse = useCallback(
+    async function* (message: string, history: ChatMessage[]) {
+      const response = await fetch(`${apiUrl}${path}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           ...(apiToken ? { Authorization: `Bearer ${apiToken}` } : {}),
         },
-        body: JSON.stringify({
-          messages: history.map((m) => ({ role: m.role, content: m.content })),
-          // Send current message as the last item if it's not already in history
-          // although typically useChat adds it to history before calling this.
-        }),
+        body: JSON.stringify(buildBody(message, history)),
       })
 
       if (!response.ok) {
         const error = await response.json().catch(() => ({ detail: 'Unknown network error' }))
-        throw new Error(error.detail || 'API request failed')
+        throw new Error(
+          ((error as Record<string, unknown>).detail as string) || 'API request failed'
+        )
       }
 
       const reader = response.body?.getReader()
@@ -51,14 +117,14 @@ export function useSSEStream(apiUrl?: string, apiToken?: string) {
             if (!trimmed || !trimmed.startsWith('data: ')) continue
 
             const data = trimmed.slice(6)
-            if (data === '[DONE]') break
+            if (data === '[DONE]') return
 
             try {
-              const parsed = JSON.parse(data)
-              const content = parsed.choices?.[0]?.delta?.content || ''
+              const parsed: unknown = JSON.parse(data)
+              const content = extractChunk(parsed)
               if (content) yield content
             } catch (e) {
-              console.warn('Failed to parse SSE data:', e)
+              console.warn('[useSSEStream] Failed to parse SSE data:', e)
             }
           }
         }
@@ -66,7 +132,7 @@ export function useSSEStream(apiUrl?: string, apiToken?: string) {
         reader.releaseLock()
       }
     },
-    [apiUrl, apiToken]
+    [apiUrl, apiToken, path, buildBody, extractChunk]
   )
 
   return { streamResponse }

@@ -6,51 +6,54 @@
 import { useState } from 'react'
 import type { ChatWidgetProps } from '../types'
 import { useChat } from '../hooks/useChat'
+import { useSSEStream } from '../hooks/useSSEStream'
+import { demoStream } from '../lib/demoStream'
 import ChatButton from './ChatButton'
 import ChatPanel from './ChatPanel'
-
-// ── Demo logic ──────────────────────────────────────────────────────────────
-
-const wait = (ms: number) =>
-  new Promise<void>((resolve) => {
-    window.setTimeout(resolve, ms)
-  })
-
-const buildDemoReply = (prompt: string) => {
-  const normalized = prompt.toLowerCase()
-  if (normalized.includes('architecture') || normalized.includes('system')) {
-    return 'Analyzing core framework... Detected V3_4_STABLE kernel. The blueprint is ready for a clean UI layer and a streaming adapter.'
-  }
-  if (normalized.includes('api') || normalized.includes('backend')) {
-    return 'Interface boundary prepared. You can swap this demo for an async generator that yields tokens from your real API.'
-  }
-  return 'Signal received. The widget is streaming a mocked assistant reply right now, but it is ready for a real connection later.'
-}
-
-async function* defaultDemoStream(prompt: string) {
-  const reply = buildDemoReply(prompt)
-  const chunks = reply.split(' ')
-  for (const [index, chunk] of chunks.entries()) {
-    await wait(index === 0 ? 600 : 80)
-    yield chunk + ' '
-  }
-}
 
 /**
  * Root chat widget component.
  *
  * Renders a floating launcher button that expands into a full chat panel.
+ *
+ * **Response modes (in priority order):**
+ * 1. `streamResponse` — supply your own async generator / fetch logic
+ * 2. `apiUrl` — auto-connects to a standard SSE endpoint (OpenAI-compatible by default)
+ * 3. No props — runs a built-in demo stream so you can see the UI immediately
+ *
+ * @example Basic usage with your own API
+ * ```tsx
+ * <ChatWidget
+ *   apiUrl="https://your-api.example.com"
+ *   apiToken={process.env.NEXT_PUBLIC_API_TOKEN}
+ *   title="Ask Anything"
+ * />
+ * ```
+ *
+ * @example Bring your own stream handler
+ * ```tsx
+ * <ChatWidget streamResponse={myCustomHandler} />
+ * ```
  */
 export default function ChatWidget({
   position = 'bottom-right',
   theme = 'dark',
-  title = 'Ask Widget',
+  title = 'Ask AI',
   placeholder = 'Ask me anything...',
-  initialMessage = 'Link established. Ask the assistant to inspect your stack, summarize a feature, or explain a system.',
+  initialMessage = 'Hello! How can I help you today?',
   defaultOpen = false,
+  apiUrl,
+  apiToken,
   streamResponse,
 }: ChatWidgetProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen)
+
+  // When apiUrl is provided and no custom streamResponse is given, use the built-in SSE adapter.
+  const { streamResponse: sseStreamResponse } = useSSEStream(
+    apiUrl ? { apiUrl, apiToken } : { apiUrl: '' }
+  )
+
+  const resolvedStreamResponse = streamResponse ?? (apiUrl ? sseStreamResponse : demoStream)
 
   const {
     messages,
@@ -63,7 +66,7 @@ export default function ChatWidget({
     clearHistory,
   } = useChat({
     initialMessage,
-    streamResponse: streamResponse || defaultDemoStream,
+    streamResponse: resolvedStreamResponse,
   })
 
   const handleSubmit = (e: React.FormEvent) => {
