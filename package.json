@@ -58,9 +58,9 @@
     "clean-setup": "pnpm run obliviate && pnpm run init",
     "clean-build": "pnpm run obliviate && pnpm run init && ./scripts/build.sh",
     "git": "node scripts/menu.mjs git",
+    "docs": "node scripts/menu.mjs docs",
     "git-tag": "./scripts/git-tag.sh",
     "git-release": "./scripts/git-release.sh",
-    "docs-deploy": "./scripts/docs-deploy.sh",
     "prepare": "husky",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -73,7 +73,8 @@
     "build-storybook": "storybook build",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "npm:publish": "pnpm publish --access public"
   },
   "peerDependencies": {
     "react": ">=18.0.0",

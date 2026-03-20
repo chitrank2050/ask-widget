@@ -51,10 +51,16 @@ const ACTIONS = {
   // Git
   tag: () => runScript("scripts/git-tag.sh"),
   release: () => runScript("scripts/git-release.sh"),
+  publish: () => runCommand("pnpm publish --access public"),
 
   // Quality
   lint: () => runCommand("pnpm run lint"),
   format: () => runCommand("pnpm run format:check"),
+
+  // Docs
+  docs_dev: () => runCommand("pnpm run docs:dev"),
+  docs_build: () => runCommand("pnpm run docs:build"),
+  docs_deploy: () => runScript("scripts/docs-deploy.sh"),
 };
 
 // ── Menus ────────────────────────────────────────────────────────────────────
@@ -85,13 +91,18 @@ async function modeObliviate() {
 
 async function modeGit() {
   const choices = await multiselect({
-    message: "🐙 Git — select actions",
+    message: "🐙 Version Control — select actions",
     options: [
       { value: "tag", label: "Tag version", hint: "from package.json" },
       {
         value: "release",
-        label: "Release bundle",
-        hint: "Tag + Changelog + GH Release",
+        label: "GitHub Release",
+        hint: "Tag + Changelog + GH",
+      },
+      {
+        value: "publish",
+        label: "🚀 Publish to NPM",
+        hint: "--access public",
       },
     ],
     required: true,
@@ -102,6 +113,20 @@ async function modeGit() {
   for (const choice of choices) {
     ACTIONS[choice]();
   }
+}
+
+async function modeDocs() {
+  const choice = await select({
+    message: "📖 Documentation — select action",
+    options: [
+      { value: "docs_dev", label: "Preview docs", hint: "local dev" },
+      { value: "docs_build", label: "Build docs", hint: "vitepress build" },
+      { value: "docs_deploy", label: "Deploy to GH Pages", hint: "push to gh-pages" },
+    ],
+  });
+
+  handleCancel(choice);
+  ACTIONS[choice]();
 }
 
 async function modeQuality() {
@@ -132,6 +157,8 @@ async function main() {
     await modeGit();
   } else if (mode === 'quality') {
     await modeQuality();
+  } else if (mode === "docs") {
+    await modeDocs();
   } else {
     // Default interactive switcher?
     const action = await select({
@@ -140,6 +167,7 @@ async function main() {
         { value: "quality", label: "🔧 Maintain Code Quality" },
         { value: "obliviate", label: "🧹 Cleanup (Obliviate)" },
         { value: "git", label: "🐙 Version Control (Git)" },
+        { value: "docs", label: "📖 Documentation (Docs)" },
         { value: "exit", label: "👋 Exit" },
       ],
     });
@@ -148,6 +176,8 @@ async function main() {
 
     if (action === "obliviate") await modeObliviate();
     if (action === "git") await modeGit();
+    if (action === "docs") await modeDocs();
+    if (action === "quality") await modeQuality();
     if (action === "exit") process.exit(0);
   }
 
