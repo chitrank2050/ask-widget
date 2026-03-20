@@ -2,6 +2,36 @@
 
 All notable changes to Ask Widget.
 
+## [0.5.1] - 2026-03-20
+
+### Build
+
+- Update CI Node.js version to 20 and push specific git tags.
+
+### Documentation
+
+- Update project descriptions to emphasize streaming AI and add navigation links to the README.
+- Update custom funding link to PayPal.
+
+### Features
+
+- Add `docs` and `npm:publish` scripts, and remove `docs-deploy`.
+- Deploy Storybook alongside VitePress documentation and configure the base path for GitHub Pages.
+- Redesign the local development and demo preview page with a new header, hero section, and interactive elements.
+- Enhance chat launcher button with customizable label, theme, and pill-shaped design.
+- Separate Vite build configurations for application and library, updating package scripts and README for distribution.
+- Integrate Ko-fi support badge and widget.
+- Configure Vitest for testing, update ChatButton test props, and add Ko-fi funding details.
+- Add custom funding link to Ko-fi page.
+
+### Maintenance
+
+- Finalize build before publishing v0.4.2
+- Update Storybook dependencies to 8.6.17
+- Esbuild enables any website to send any requests to the development server and read the response
+- Security patches and project upkeep (v0.5.1)
+- 🔐 CI: Added explicit `contents: read` permissions to ci.yml following the Principle of Least Privilege.
+
 ## [0.4.0] - 2026-03-20
 
 ### Features
