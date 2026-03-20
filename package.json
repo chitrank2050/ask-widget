@@ -1,7 +1,7 @@
 {
   "name": "@chitrank2050/ask-widget",
   "private": false,
-  "version": "0.5.1",
+  "version": "0.5.2",
   "type": "module",
   "homepage": "https://github.com/chitrank2050/ask-widget#readme",
   "author": {
@@ -82,10 +82,7 @@
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
   },
-  "dependencies": {
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@clack/prompts": "^1.1.0",
     "@eslint/js": "^9.39.4",
@@ -97,16 +94,15 @@
     "@storybook/react": "^8.6.17",
     "@storybook/react-vite": "^8.6.17",
     "@storybook/test": "^8.6.17",
-    "@storybook/test-runner": "^0.21.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
-    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^24.12.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "@vitejs/plugin-react": "^6.0.0",
     "@vitest/coverage-v8": "^4.1.0",
-    "chromatic": "^15.3.0",
     "eslint": "^9.39.4",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
