@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => {
       dts({
         tsconfigPath: './tsconfig.app.json',
         include: ['src'],
+        exclude: ['src/App.tsx', 'src/Main.tsx'],
         insertTypesEntry: true,
       }),
     ],
