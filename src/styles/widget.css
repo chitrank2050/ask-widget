@@ -58,6 +58,7 @@
   cursor: pointer;
   font-family: inherit;
   color: inherit;
+  border-color: color-mix(in srgb, var(--widget-primary) 32%, var(--widget-border));
 }
 
 .chat-widget input {
@@ -89,22 +90,28 @@
   position: relative;
   display: grid;
   place-items: center;
-  width: 64px;
-  height: 64px;
-  border-radius: 16px;
+  width: var(--widget-launcher-size, 64px);
+  height: var(--widget-launcher-size, 64px);
+  border-radius: var(--widget-border-radius, 16px);
   border: 1px solid var(--widget-border);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 40%), var(--widget-surface);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 40%),
+    color-mix(in srgb, var(--widget-surface) 90%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: var(--widget-primary);
   box-shadow: var(--widget-shadow);
   transition:
-    transform 180ms ease,
-    border-color 180ms ease;
+    transform 220ms var(--widget-easing, ease),
+    border-color 220ms var(--widget-easing, ease),
+    box-shadow 220ms var(--widget-easing, ease);
 }
 
-.chat-widget__launcher:hover {
-  transform: translateY(-2px);
-  border-color: color-mix(in srgb, var(--widget-primary) 24%, var(--widget-border));
+.chat-widget button.chat-widget__launcher:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.4),
+    0 0 0 1px color-mix(in srgb, var(--widget-primary) 10%, transparent);
 }
 
 .chat-widget__launcher svg {

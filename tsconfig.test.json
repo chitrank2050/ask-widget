@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "composite": true,
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "types": ["node", "vite/client", "vitest/globals", "@testing-library/jest-dom/vitest"]
+  },
+  "include": ["tests", "src"],
+  "exclude": []
+}

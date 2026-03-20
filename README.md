@@ -1,22 +1,11 @@
 # ask-widget
 
-> A lightweight, RAG-powered chat widget for developer portfolios. Drop-in floating chat with SSE streaming, dark/light themes, and configurable positioning.
+> A lightweight, RAG-powered chat widget for developer portfolios. Drop-in floating chat with SSE streaming, dark/light themes, and configurable positioning. Aligned with the neutral zinc palette.
 
 ![npm](https://img.shields.io/npm/v/ask-widget)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
 ![React](https://img.shields.io/badge/React-18+-61dafb)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
-![Version](https://img.shields.io/badge/version-0.1.0-brightgreen)
-
----
-
-## Links
-
-| | URL |
-|---|---|
-| 📦 npm | https://www.npmjs.com/package/ask-widget |
-| 📚 Documentation | https://chitrank2050.github.io/ask-widget |
-| 👤 Portfolio | https://chitrankagnihotri.com |
 
 ---
 
@@ -59,12 +48,27 @@ export default function Portfolio() {
 
 ---
 
+## Hooks
+
+If you want to build a completely custom UI but keep the streaming and session logic, you can use the standalone hooks:
+
+### `useChat`
+Manages chat state, message history, and streaming lifecycle.
+
+### `useSSEStream`
+Handles the SSE connection and token parsing from the `ask-chitrank` backend.
+
+### `useSession`
+Persists message history to `localStorage` for returning users.
+
+---
+
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `apiUrl` | `string` | required | Base URL of the ask-chitrank API |
-| `apiToken` | `string` | required | Bearer token for API auth. Use env var — never hardcode. |
+| `apiToken` | `string` | required | Bearer token for API auth. |
 | `position` | `"bottom-right" \| "bottom-left" \| "bottom-center"` | `"bottom-right"` | Widget position on screen |
 | `theme` | `"dark" \| "light"` | `"dark"` | Color theme preset |
 | `colors` | `ChatColors` | — | Custom color overrides |
@@ -72,56 +76,27 @@ export default function Portfolio() {
 | `placeholder` | `string` | `"Ask me anything..."` | Input placeholder text |
 | `initialMessage` | `string` | `"Hi! Ask me about Chitrank's experience..."` | First message shown on open |
 | `defaultOpen` | `boolean` | `false` | Whether panel starts open |
-
----
-
-## Theming
-
-### Built-in themes
-
-```tsx
-<ChatWidget theme="dark" ... />   // dark background, light text
-<ChatWidget theme="light" ... />  // light background, dark text
-```
-
-### Custom colors
-
-```tsx
-<ChatWidget
-  theme="dark"
-  colors={{
-    primary: '#6366f1',      // accent color — buttons, user messages
-    background: '#0f0f0f',   // panel background
-    text: '#ffffff',         // text color
-    border: '#2a2a2a',       // border color
-  }}
-  ...
-/>
-```
+| `streamResponse` | `ChatStreamHandler` | — | Inject custom stream logic |
 
 ---
 
 ## Roadmap
 
 - [x] Phase 1 — Project setup (config, tooling, build pipeline)
-- [ ] Phase 2 — Core types and theme system
-- [ ] Phase 3 — Hooks (session, SSE streaming, chat state)
-- [ ] Phase 4 — Components (button, panel, message, input)
-- [ ] Phase 5 — Testing
+- [x] Phase 2 — Core types and theme system
+- [x] Phase 3 — Hooks (session, SSE streaming, chat state)
+- [x] Phase 4 — Components (button, panel, message, input)
+- [x] Phase 5 — Testing + Sample Stories
 - [ ] Phase 6 — npm publish + portfolio integration
 
 ---
 
-## Contributing
+## Developing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md).
-
----
-
-## License
-
-MIT — see [LICENSE](LICENSE).
-
----
+```bash
+pnpm install
+pnpm dev      # start preview page
+pnpm test     # run unit tests
+```
 
 Developed by [Chitrank Agnihotri](https://www.chitrankagnihotri.com)

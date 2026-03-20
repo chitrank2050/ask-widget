@@ -14,23 +14,24 @@
   --widget-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* ── Sizing ───────────────────────────────────────────────────────────── */
-  --widget-launcher-size: 96px;
-  --widget-panel-width: min(420px, calc(100vw - 24px));
-  --widget-panel-height: min(640px, calc(100svh - 24px));
-  --widget-header-height: 72px;
-  --widget-dot-size: 16px;
+  --widget-launcher-size: 64px;
+  --widget-panel-width: min(400px, calc(100vw - 32px));
+  --widget-panel-height: min(600px, calc(100svh - 32px));
+  --widget-header-height: 56px;
+  --widget-dot-size: 12px;
+  --widget-border-radius: 16px;
 
   /* ── Spacing ──────────────────────────────────────────────────────────── */
   --widget-offset-bottom: 24px;
   --widget-offset-side: 24px;
-  --widget-feed-padding: 22px 20px 28px;
-  --widget-composer-padding: 20px;
+  --widget-feed-padding: 16px 16px 20px;
+  --widget-composer-padding: 14px 16px;
 
   /* ── Z-index ──────────────────────────────────────────────────────────── */
   --widget-z: 9000;
 
   /* ── Animation ────────────────────────────────────────────────────────── */
   --widget-duration-fast: 160ms;
-  --widget-duration-normal: 180ms;
+  --widget-duration-normal: 200ms;
   --widget-easing: ease;
 }

@@ -1,11 +1,9 @@
 /**
  * Local development preview.
- * Shows the widget in both dark and light themes side by side.
  * This file is NOT included in the published package.
  */
 
 import ChatWidget from './components/ChatWidget'
-
 import './App.css'
 
 function App() {
@@ -16,67 +14,53 @@ function App() {
 
       <main className="app-layout">
         <section className="app-hero">
-          <p className="app-eyebrow">ASK_WIDGET // VITE PROTOTYPE</p>
-          <h1>Streaming chat UI with a compact launcher and terminal panel.</h1>
+          <p className="app-eyebrow">ASK_WIDGET // DEV_PREVIEW</p>
+          <h1>Drop-in AI chat for your developer portfolio.</h1>
           <p className="app-copy">
-            This prototype gives the widget the two core modes you described: collapsed as a
-            floating trigger, and expanded as a full response surface. The assistant stream is
-            mocked locally for now so the API can be wired in later without redesigning the
-            interface.
+            A production-ready React component with token-streaming, monochrome aesthetics, and
+            responsive layout. Aligned with the neutral zinc palette of your personal portfolio.
           </p>
 
           <div className="app-pills" aria-label="Widget capabilities">
-            <span>Compact mode</span>
-            <span>Expanded mode</span>
-            <span>Streaming replies</span>
-            <span>API-ready hook</span>
+            <span>SSE Streaming</span>
+            <span>Zero Global CSS</span>
+            <span>Mobile Ready</span>
+            <span>Zinc Palette</span>
           </div>
         </section>
 
-        <section className="app-notes" aria-label="Implementation notes">
+        <section className="app-notes" aria-label="Next steps">
           <article className="app-card">
-            <p className="app-card__label">01 // Launcher</p>
-            <h2>Floating entry point</h2>
+            <p className="app-card__label">PHASE_06</p>
+            <h2>Production Ready</h2>
             <p>
-              A fixed trigger stays visible in the corner and expands into the main chat terminal on
-              demand.
+              The package system is initialized. Once the backend is connected, swap the demo stream
+              for the production API hook.
             </p>
           </article>
 
           <article className="app-card">
-            <p className="app-card__label">02 // Conversation</p>
-            <h2>Stream-first layout</h2>
+            <p className="app-card__label">CUSTOMIZATION</p>
+            <h2>Fully Configurable</h2>
             <p>
-              Assistant messages render token-by-token, which should map cleanly to SSE or fetch
-              streaming once the backend is connected.
-            </p>
-          </article>
-
-          <article className="app-card">
-            <p className="app-card__label">03 // Styling</p>
-            <h2>Terminal-inspired visual language</h2>
-            <p>
-              The panel keeps the monochrome, ops-console feel from your reference while staying
-              responsive on smaller screens.
+              Adjust positions, themes, and initial messages directly through props. The style
+              system is isolated to prevent leakage.
             </p>
           </article>
         </section>
       </main>
 
-      <ChatWidget
-        title="ARCHITECT_OS // TERMINAL"
-        placeholder="$ run command..."
-        initialMessage="Link established. Ask me to inspect architecture, summarize a codebase, or sketch the API integration path."
-        defaultOpen={false}
-        position="bottom-right"
-        theme="dark"
-      />
-
-      {/* Dark theme — bottom right */}
+      {/* Primary preview widget — Dark Theme */}
       <ChatWidget theme="dark" position="bottom-right" title="Ask Chitrank" defaultOpen={false} />
 
-      {/* Light theme — bottom left */}
-      <ChatWidget theme="light" position="bottom-left" title="Ask Chitrank" defaultOpen={false} />
+      {/* Secondary preview — Light Theme for testing */}
+      <ChatWidget
+        theme="light"
+        position="bottom-left"
+        title="Ask Chitrank (Light)"
+        placeholder="Testing light mode..."
+        defaultOpen={false}
+      />
     </div>
   )
 }

@@ -6,6 +6,11 @@
 // ── Main component ────────────────────────────────────────────────────────────
 export { default as ChatWidget } from './components/ChatWidget'
 
+// ── Hooks — for custom UIs ────────────────────────────────────────────────────
+export { useChat } from './hooks/useChat'
+export { useSSEStream } from './hooks/useSSEStream'
+export { useSession } from './hooks/useSession'
+
 // ── Types — consumers need these to use the component ────────────────────────
 export type {
   ChatColors,

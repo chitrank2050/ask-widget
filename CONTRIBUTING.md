@@ -41,8 +41,15 @@ docs: add usage examples to README
 ## Code Style
 
 - TypeScript strict mode — no `any`
-- CSS Modules for all styles — no inline styles
+- Scoped Vanilla CSS — no global style pollution
 - Google-style JSDoc on all exported functions and components
+
+### Storybook
+Develop new components in isolation:
+```bash
+pnpm storybook
+```
+
 
 ```bash
 pnpm lint

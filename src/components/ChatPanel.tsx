@@ -8,7 +8,7 @@ import type { FormEvent } from 'react'
 import type { ChatMessage as ChatMessageType } from '../types'
 import ChatInput from './ChatInput'
 import ChatMessage from './ChatMessage'
-import { ResetIcon } from './Icons'
+import { CloseIcon, ResetIcon } from './Icons'
 
 interface ChatPanelProps {
   /** Chat panel header title */
@@ -27,6 +27,8 @@ interface ChatPanelProps {
   onSubmit: (event: FormEvent<HTMLFormElement>) => void
   /** Called when the collapse button is clicked */
   onCollapse: () => void
+  /** Called when the reset history button is clicked */
+  onReset: () => void
   /** Input placeholder text */
   placeholder: string
   /** Latency of the last response in seconds */
@@ -48,6 +50,7 @@ export default function ChatPanel({
   onInputChange,
   onSubmit,
   onCollapse,
+  onReset,
   placeholder,
   latency,
 }: ChatPanelProps) {
@@ -80,7 +83,6 @@ export default function ChatPanel({
           <span className="chat-widget__title-mark" />
           <div>
             <p className="chat-widget__title">{title}</p>
-            {/* <p className="chat-widget__status">SYSTEM.LINK_ESTABLISHED</p> */}
           </div>
         </div>
 
@@ -88,11 +90,22 @@ export default function ChatPanel({
           <button
             type="button"
             className="chat-widget__header-button"
-            onClick={onCollapse}
+            onClick={onReset}
             disabled={isStreaming}
+            title="Reset conversation"
             aria-label="Reset conversation"
           >
             <ResetIcon />
+          </button>
+          <button
+            type="button"
+            className="chat-widget__header-button"
+            onClick={onCollapse}
+            disabled={isStreaming}
+            title="Close panel"
+            aria-label="Close panel"
+          >
+            <CloseIcon />
           </button>
         </div>
       </header>

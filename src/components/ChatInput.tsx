@@ -35,7 +35,12 @@ export default function ChatInput({
   latency,
 }: ChatInputProps) {
   return (
-    <form className="chat-widget__composer" onSubmit={onSubmit}>
+    <form
+      className="chat-widget__composer"
+      onSubmit={onSubmit}
+      role="form"
+      aria-label="Chat message form"
+    >
       <div className="chat-widget__input-row">
         <input
           type="text"
