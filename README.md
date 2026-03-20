@@ -9,6 +9,8 @@
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 ![CI](https://github.com/chitrank2050/ask-widget/actions/workflows/ci.yml/badge.svg)
 ![Version](https://img.shields.io/badge/Version-0.5.1-blue)
+[![Support me on Ko-fi](https://img.shields.io/badge/Support%20me%20on%20Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/D1D71U581P)
+
 
 ---
 
@@ -21,6 +23,7 @@
 | 📚 Documentation | [Project Documentation](https://chitrank2050.github.io/ask-widget/) |
 | 🎨 Storybook | [Storybook](https://chitrank2050.github.io/ask-widget/storybook) |
 | 👤 Portfolio | [About me](https://chitrankagnihotri.com) |
+| ☕ Support | [Buy me a coffee](https://ko-fi.com/D1D71U581P) |
 
 ---
 
