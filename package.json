@@ -1,6 +1,6 @@
 {
   "name": "ask-widget",
-  "private": true,
+  "private": false,
   "version": "0.3.0",
   "type": "module",
   "homepage": "https://github.com/chitrank2050/ask-widget#readme",

@@ -11,6 +11,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       dts({
+        tsconfigPath: './tsconfig.app.json',
         include: ['src'],
         insertTypesEntry: true,
       }),

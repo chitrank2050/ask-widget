@@ -11,7 +11,7 @@
 ---
 
 ## 📖 Full Documentation
-**Visit the [ask-widget documentation site](https://github.com/chitrank2050/ask-widget/docs) for full details on API, theming, and standalone hooks.**
+**Visit the [ask-widget documentation site](https://chitrank2050.github.io/ask-widget/) for full details on API, theming, and standalone hooks.**
 
 ---
 
@@ -69,18 +69,6 @@ export default function Portfolio() {
 | `title` | `string` | `"Ask AI"` | Header title. |
 | `placeholder` | `string` | `"Ask me anything..."` | Input placeholder. |
 | `initialMessage` | `string` | `"Hello! How can I help you today?"` | First message shown on open. |
-
----
-
-## Roadmap
-
-- [x] Phase 1 — Project setup (config, tooling, build pipeline)
-- [x] Phase 2 — Core types and theme system
-- [x] Phase 3 — Hooks (session, SSE streaming, chat state)
-- [x] Phase 4 — Components (button, panel, message, input)
-- [x] Phase 5 — Testing + Sample Stories
-- [x] Phase 6 — Documentation (VitePress)
-- [ ] Phase 7 — npm publish + portfolio integration
 
 ---
 

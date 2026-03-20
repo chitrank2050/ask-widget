@@ -1,7 +1,6 @@
-/**
- * Public package entry point.
- * Only what is exported here is available to consumers of the package.
- */
+import './styles/variables.css'
+import './styles/themes.css'
+import './styles/widget.css'
 
 // ── Main component ────────────────────────────────────────────────────────────
 export { default as ChatWidget } from './components/ChatWidget'
