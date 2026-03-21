@@ -6,21 +6,26 @@ import type { ChatMessage } from '../types'
  * Helps with Phase 3 — Session Persistence.
  */
 export function useSession(id = 'ask-widget-session', initialMessages: ChatMessage[] = []) {
-  const [messages, setMessages] = useState<ChatMessage[]>(() => {
+  const [messages, setMessages] = useState<ChatMessage[]>(initialMessages)
+
+  // Load from localStorage on mount (Client-only)
+  useEffect(() => {
     try {
       const stored = localStorage.getItem(`widget-session-${id}`)
-      if (!stored) return initialMessages
-      const parsed = JSON.parse(stored) as Array<{ timestamp: string | Date }>
-      // Convert stored ISO string timestamps back to Date objects
-      return parsed.map((m) => ({
-        ...m,
-        timestamp: new Date(m.timestamp),
-      })) as ChatMessage[]
+      if (stored) {
+        const parsed = JSON.parse(stored) as Array<{ timestamp: string | Date }>
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setMessages(
+          parsed.map((m) => ({
+            ...m,
+            timestamp: new Date(m.timestamp),
+          })) as ChatMessage[]
+        )
+      }
     } catch (e) {
       console.warn('Failed to load chat session', e)
-      return initialMessages
     }
-  })
+  }, [id])
 
   // Sync to localStorage on message changes
   useEffect(() => {

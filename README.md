@@ -8,7 +8,7 @@
 ![React](https://img.shields.io/badge/React-18+-61dafb)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 ![CI](https://github.com/chitrank2050/ask-widget/actions/workflows/ci.yml/badge.svg)
-![Version](https://img.shields.io/badge/Version-0.5.2-blue)
+![Version](https://img.shields.io/badge/Version-0.5.3-blue)
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/D1D71U581P)
 
 
@@ -62,6 +62,34 @@ export default function Portfolio() {
   )
 }
 ```
+
+### Usage with Next.js (App Router)
+
+To avoid React Hydration Mismatch errors in Server-Rendered frameworks, you must import the widget dynamically with SSR disabled. Create a wrapper Client Component:
+
+```tsx
+// src/components/ClientChatWidget.tsx
+"use client";
+
+import dynamic from "next/dynamic";
+import "@chitrank2050/ask-widget/styles.css";
+
+const ChatWidget = dynamic(
+  () => import("@chitrank2050/ask-widget").then((mod) => mod.ChatWidget),
+  { ssr: false }
+);
+
+export default function ClientChatWidget() {
+  return (
+    <ChatWidget
+      apiUrl="https://your-api.example.com"
+      title="Ask AI"
+    />
+  );
+}
+```
+
+You can then freely import and use `<ClientChatWidget />` in your `layout.tsx` or any Server Component!
 
 ---
 
