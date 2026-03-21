@@ -1,0 +1,1 @@
+import"./iframe-MDTpfhUC.js";import{t as e}from"./react-BM3YizYA.js";import{t}from"./jsx-runtime-e6h2aeL2.js";e();var n=t(),r={decorators:[e=>(0,n.jsx)(`div`,{"data-theme":`dark`,style:{fontFamily:`sans-serif`},children:(0,n.jsx)(e,{})})],parameters:{actions:{argTypesRegex:`^on[A-Z].*`},controls:{matchers:{color:/(background|color)$/i,date:/Date$/i}}}};export{r as default};
