@@ -2,6 +2,24 @@
 
 All notable changes to Ask Widget.
 
+## [0.5.3] - 2026-03-21
+
+### Bug Fixes
+
+- Address SSR hydration mismatches by moving `useSession` localStorage loading to `useEffect` and updating build configuration and documentation.
+
+### Features
+
+- Dynamically display the application version from package.json in the UI.
+
+### Maintenance
+
+- Add pnpm peer dependency rules for ignoring missing and allowing specific versions.
+
+### Refactoring
+
+- Replace Ko-fi widget script with an image link and update version to 0.5.2.
+
 ## [0.5.1] - 2026-03-20
 
 ### Build
