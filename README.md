@@ -18,7 +18,7 @@
 
 | | URL |
 |---|---|
-| 🌐 Demo | [Demo](https://ask-widget.vercel.app/) |
+| 🌐 Demo | [Demo](https://ask-widget.chitrankagnihotri.app/) |
 | 📦 NPM | [NPM](https://www.npmjs.com/package/@chitrank2050/ask-widget) |
 | 📚 Documentation | [Project Documentation](https://chitrank2050.github.io/ask-widget/) |
 | 🎨 Storybook | [Storybook](https://chitrank2050.github.io/ask-widget/storybook) |
