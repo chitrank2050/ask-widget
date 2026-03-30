@@ -18,4 +18,7 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './tests/setup.ts',
   },
+  define: {
+    __APP_ENV__: JSON.stringify(process.env.VITE_VERCEL_ENV || 'development'),
+  },
 })

@@ -6,6 +6,8 @@
 
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { Analytics } from '@vercel/analytics/react'
+
 import App from './App'
 
 import './styles/variables.css'
@@ -18,5 +20,6 @@ if (!root) throw new Error('Root element not found')
 createRoot(root).render(
   <StrictMode>
     <App />
+    {__APP_ENV__ === 'production' && <Analytics />}
   </StrictMode>
 )
