@@ -20,8 +20,33 @@ pnpm dev
 1. [Open an issue](https://github.com/chitrank2050/ask-widget/issues/new/choose) before starting work
 2. Fork the repo and create a branch: `git checkout -b 42-fix-sse-reconnect`
 3. Make your changes
-4. Run `pnpm build` — must pass before opening a PR
-5. Open a pull request against `main`
+4. Run `pnpm changeset` and follow the prompts to describe your changes
+5. Run `pnpm build` — must pass before opening a PR
+6. Open a pull request against `main`
+
+---
+
+## Versioning & Releases
+
+We use [Changesets](https://github.com/changesets/changesets) to manage versioning and changelogs.
+
+### 1. Adding a Changeset
+Every PR that introduces code changes **must** include a changeset file.
+```bash
+pnpm changeset
+```
+- Select the appropriate bump type (**patch**, **minor**, or **major**).
+- Provide a clear, user-facing summary of what changed.
+- Commit the generated `.changeset/*.md` file with your PR.
+
+### 2. Automated Releases
+Releases are automated via GitHub Actions:
+- On merge to `main`, a "Version Bump" PR is automatically created/updated if changesets exist.
+- When the **Version Bump PR** is merged, the package is automatically:
+  - Published to npm
+  - Tagged on GitHub
+  - Released on GitHub (with changelog)
+  - Documentation and Storybook are redeployed to GitHub Pages
 
 ---
 

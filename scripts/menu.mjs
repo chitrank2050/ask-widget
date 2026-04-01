@@ -49,6 +49,7 @@ const ACTIONS = {
   format: () => runCommand("pnpm run format:check"),
 
   // Git
+  changeset: () => runCommand("pnpm changeset"),
   tag: () => runScript("scripts/git-tag.sh"),
   release: () => runScript("scripts/git-release.sh"),
   publish: () => runCommand("pnpm publish --access public"),
@@ -93,16 +94,17 @@ async function modeGit() {
   const choices = await multiselect({
     message: "🐙 Version Control — select actions",
     options: [
-      { value: "tag", label: "Tag version", hint: "from package.json" },
+      { value: "changeset", label: "Create Changeset", hint: "Recommended way" },
+      { value: "tag", label: "Tag version", hint: "Automated via CI" },
       {
         value: "release",
         label: "GitHub Release",
-        hint: "Tag + Changelog + GH",
+        hint: "Automated via CI",
       },
       {
         value: "publish",
         label: "🚀 Publish to NPM",
-        hint: "--access public",
+        hint: "Automated via CI",
       },
     ],
     required: true,
