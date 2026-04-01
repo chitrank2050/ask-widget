@@ -3,6 +3,11 @@ name: Release
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
+      - '.github/ISSUE_TEMPLATE/**'
+      - '.vscode/**'
 
 permissions:
   contents: write
@@ -29,7 +34,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: pnpm
           registry-url: https://registry.npmjs.org
 
@@ -46,8 +51,8 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          commit: "chore: version bump"
-          title: "chore: version bump"
+          commit: 'chore: version bump'
+          title: 'chore: version bump'
           version: pnpm version-packages
           publish: pnpm release
         env:
