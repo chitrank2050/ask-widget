@@ -1,5 +1,5 @@
 {
-  "name": "ask-widget",
+  "name": "@chitranklabs/ask-widget",
   "private": false,
   "version": "0.5.3",
   "type": "module",

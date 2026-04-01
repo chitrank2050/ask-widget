@@ -1,6 +1,6 @@
 # Maintenance & Release Guide
 
-This document describes the technical process for maintaining and releasing `ask-widget`.
+This document describes the technical process for maintaining and releasing `@chitranklabs/ask-widget`.
 
 ## Release Workflow
 
