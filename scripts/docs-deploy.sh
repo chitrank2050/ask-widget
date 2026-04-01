@@ -17,5 +17,5 @@ echo "🚀 Deploying unified site to GitHub Pages..."
 npx gh-pages -d docs/.vitepress/dist -m "docs: deploy v$(node -p "require('./package.json').version") with storybook"
 
 echo "✅ All-in-one site (Docs + Storybook) deployed!"
-echo "   Main site:   https://chitrank2050.github.io/ask-widget/"
-echo "   Playground:  https://chitrank2050.github.io/ask-widget/storybook/"
+echo "   Main site:   https://chitranklabs.github.io/ask-widget/"
+echo "   Playground:  https://chitranklabs.github.io/ask-widget/storybook/"

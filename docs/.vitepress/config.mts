@@ -32,7 +32,7 @@ export default defineConfig({
       },
     ],
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/chitrank2050/ask-widget' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/chitranklabs/ask-widget' }],
 
     footer: {
       message: 'Released under the MIT License.',

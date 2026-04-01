@@ -2,12 +2,12 @@
 
 > A lightweight chat widget for developer portfolios. Drop-in floating chat with SSE streaming, dark/light themes, and configurable positioning. Aligned with the neutral zinc palette.
 
-![npm](https://img.shields.io/npm/v/@chitrank2050/ask-widget)
-![Install Size](https://img.shields.io/bundlephobia/min/@chitrank2050/ask-widget)
+![npm](https://img.shields.io/npm/v/chitranklabs/ask-widget)
+![Install Size](https://img.shields.io/bundlephobia/min/chitranklabs/ask-widget)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
 ![React](https://img.shields.io/badge/React-18+-61dafb)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
-![CI](https://github.com/chitrank2050/ask-widget/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/chitranklabs/ask-widget/actions/workflows/ci.yml/badge.svg)
 ![Version](https://img.shields.io/badge/Version-0.5.3-blue)
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/D1D71U581P)
 
@@ -20,15 +20,15 @@
 |---|---|
 | 🌐 Demo | [Demo](https://ask-widget.chitrankagnihotri.app/) |
 | 📦 NPM | [NPM](https://www.npmjs.com/package/@chitrank2050/ask-widget) |
-| 📚 Documentation | [Project Documentation](https://chitrank2050.github.io/ask-widget/) |
-| 🎨 Storybook | [Storybook](https://chitrank2050.github.io/ask-widget/storybook) |
+| 📚 Documentation | [Project Documentation](https://chitranklabs.github.io/ask-widget/) |
+| 🎨 Storybook | [Storybook](https://chitranklabs.github.io/ask-widget/storybook) |
 | 👤 Portfolio | [About me](https://chitrankagnihotri.com) |
 | ☕ Support | [Buy me a coffee](https://ko-fi.com/D1D71U581P) |
 
 ---
 
 ## 📖 Full Documentation
-**Visit the [ask-widget documentation site](https://chitrank2050.github.io/ask-widget/) for full details on API, theming, and standalone hooks.**
+**Visit the [ask-widget documentation site](https://chitranklabs.github.io/ask-widget/) for full details on API, theming, and standalone hooks.**
 
 ---
 

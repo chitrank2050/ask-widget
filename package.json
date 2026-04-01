@@ -1,9 +1,9 @@
 {
-  "name": "@chitrank2050/ask-widget",
+  "name": "ask-widget",
   "private": false,
   "version": "0.5.3",
   "type": "module",
-  "homepage": "https://github.com/chitrank2050/ask-widget#readme",
+  "homepage": "https://github.com/chitranklabs/ask-widget#readme",
   "author": {
     "name": "Chitrank agnihotri",
     "email": "chitrank2050@gmail.com",
@@ -12,10 +12,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chitrank2050/ask-widget"
+    "url": "https://github.com/chitranklabs/ask-widget"
   },
   "bugs": {
-    "url": "https://github.com/chitrank2050/ask-widget/issues"
+    "url": "https://github.com/chitranklabs/ask-widget/issues"
   },
   "keywords": [
     "react",

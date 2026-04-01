@@ -7,7 +7,7 @@ Thanks for your interest in contributing to ask-widget.
 ## Getting Started
 
 ```bash
-git clone https://github.com/chitrank2050/ask-widget.git
+git clone https://github.com/chitranklabs/ask-widget.git
 cd ask-widget
 pnpm install
 pnpm dev
@@ -17,7 +17,7 @@ pnpm dev
 
 ## Workflow
 
-1. [Open an issue](https://github.com/chitrank2050/ask-widget/issues/new/choose) before starting work
+1. [Open an issue](https://github.com/chitranklabs/ask-widget/issues/new/choose) before starting work
 2. Fork the repo and create a branch: `git checkout -b 42-fix-sse-reconnect`
 3. Make your changes
 4. Run `pnpm changeset` and follow the prompts to describe your changes

@@ -18,11 +18,11 @@ function App() {
           <span>●</span> ASK_WIDGET
         </div>
         <nav className="app-header__nav">
-          <a href="https://chitrank2050.github.io/ask-widget/" target="_blank" rel="noreferrer">
+          <a href="https://chitranklabs.github.io/ask-widget/" target="_blank" rel="noreferrer">
             DOCUMENTATION
           </a>
           <a
-            href="https://chitrank2050.github.io/ask-widget/storybook/"
+            href="https://chitranklabs.github.io/ask-widget/storybook/"
             target="_blank"
             rel="noreferrer"
           >
@@ -37,7 +37,7 @@ function App() {
             NPM_v{version}
           </a>
           <a
-            href="https://github.com/chitrank2050/ask-widget"
+            href="https://github.com/chitranklabs/ask-widget"
             target="_blank"
             rel="noreferrer"
             className="app-header__github"
@@ -68,7 +68,7 @@ function App() {
             <button
               className="app-btn-primary"
               onClick={() =>
-                window.open('https://chitrank2050.github.io/ask-widget/getting-started')
+                window.open('https://chitranklabs.github.io/ask-widget/getting-started')
               }
             >
               GET STARTED
