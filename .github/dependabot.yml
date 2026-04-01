@@ -6,28 +6,30 @@ updates:
     schedule:
       interval: weekly
       day: monday
-    groups:
-      minor-and-patch:
-        update-types:
-          - minor
-          - patch
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     reviewers:
       - chitrank2050
     labels:
       - dependencies
     groups:
-      # Groups all production dependencies (stuff in 'dependencies')
-      production-dependencies:
-        dependency-type: "production"
-      # Groups all development dependencies (stuff in 'devDependencies')
-      development-dependencies:
-        dependency-type: "development"
+      # Capture all minor and patch updates in one PR to save CI minutes
+      patch-and-minor:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
 
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
       day: monday
+    open-pull-requests-limit: 3
     labels:
       - ci
+    groups:
+      # Group all action version bumps like v4 -> v5 together
+      all-actions:
+        patterns:
+          - "*"
