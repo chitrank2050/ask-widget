@@ -19,7 +19,7 @@
 | | URL |
 |---|---|
 | 🌐 Demo | [Demo](https://ask-widget.chitrankagnihotri.app/) |
-| 📦 NPM | [NPM](https://www.npmjs.com/package/@chitranklabs/ask-widget) |
+| 📦 NPM | [NPM](https://www.npmjs.com/package/@chitrank2050/ask-widget) |
 | 📚 Documentation | [Project Documentation](https://chitranklabs.github.io/ask-widget/) |
 | 🎨 Storybook | [Storybook](https://chitranklabs.github.io/ask-widget/storybook) |
 | 👤 Portfolio | [About me](https://chitrankagnihotri.com) |
