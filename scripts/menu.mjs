@@ -41,12 +41,10 @@ function handleCancel(value) {
 const ACTIONS = {
   // Obliviate
   build: () => runCommand("rm -rf dist"),
-  node_modules: () => runCommand("rm -rf node_modules"),
   lockfiles: () =>
     runCommand("rm -f pnpm-lock.yaml package-lock.json yarn.lock bun.lockb"),
   cache: () => runCommand("rm -rf .eslintcache"),
-  lint: () => runCommand("pnpm run lint"),
-  format: () => runCommand("pnpm run format:check"),
+  node_modules: () => runCommand("rm -rf node_modules"),
 
   // Git
   changeset: () => runCommand("pnpm changeset"),
