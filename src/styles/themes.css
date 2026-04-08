@@ -4,7 +4,7 @@
  * Light and dark theme color tokens.
  *
  * Applied via [data-theme="dark"] and [data-theme="light"] on the widget
- * root element. Scoped to the widget — never bleeds into consumer styles.
+ * root element. Scoped to the widget - never bleeds into consumer styles.
  *
  * The component sets data-theme={theme} on the root div.
  * No inline styles or JS objects needed for theming.

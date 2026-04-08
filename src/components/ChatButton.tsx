@@ -1,7 +1,7 @@
 import { TerminalIcon } from './Icons'
 
 interface ChatButtonProps {
-  /** Accessible label for the button — uses widget title */
+  /** Accessible label for the button - uses widget title */
   title: string
   /** Text shown in the pill (e.g., "ASK ME") */
   label?: string

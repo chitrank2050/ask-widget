@@ -1,7 +1,7 @@
 /**
  * src/styles/variables.css
  *
- * Design tokens — spacing, typography, sizing, z-index, animation.
+ * Design tokens - spacing, typography, sizing, z-index, animation.
  * Theme-independent values that stay constant across light and dark.
  *
  * All tokens use --widget- prefix to avoid conflicts with consumer styles.

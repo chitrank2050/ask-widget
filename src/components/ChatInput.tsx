@@ -9,11 +9,11 @@ interface ChatInputProps {
   onChange: (value: string) => void
   /** Called when the form is submitted */
   onSubmit: (event: SyntheticEvent<HTMLFormElement>) => void
-  /** Whether the assistant is currently streaming — disables input */
+  /** Whether the assistant is currently streaming - disables input */
   isStreaming: boolean
   /** Placeholder text for the input field */
   placeholder: string
-  /** Latency of the last response in seconds — null while streaming */
+  /** Latency of the last response in seconds - null while streaming */
   latency: number | null
   /** Custom text labels */
   labels?: ChatLabels

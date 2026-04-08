@@ -1,5 +1,5 @@
 /**
- * Renders a single message — either user bubble or assistant response.
+ * Renders a single message - either user bubble or assistant response.
  * Handles the streaming cursor when the assistant is actively responding.
  */
 
@@ -18,14 +18,14 @@ const formatTimestamp = (timestamp: Date) => `T-${timeFormatter.format(timestamp
 interface ChatMessageProps {
   /** The message data to render */
   message: ChatMessageType
-  /** Whether this message is currently being streamed — shows blinking cursor */
+  /** Whether this message is currently being streamed - shows blinking cursor */
   isStreaming: boolean
   /** Custom text labels */
   labels?: ChatLabels
 }
 
 /**
- * Renders a single chat message — user bubble or assistant response.
+ * Renders a single chat message - user bubble or assistant response.
  * Shows a blinking cursor on the active streaming assistant message.
  *
  * @param props - See ChatMessageProps

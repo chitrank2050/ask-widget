@@ -1,7 +1,7 @@
 /**
  * Development entry point.
  * Mounts the App component for local preview only.
- * This file is NOT included in the published package — only src/index.ts is.
+ * This file is NOT included in the published package - only src/index.ts is.
  */
 
 import { StrictMode } from 'react'

@@ -1,6 +1,6 @@
 # Standalone Hooks
 
-**ask-widget** is more than just a component—it's a collection of headless hooks that you can use to build your own completely custom chat interface.
+**ask-widget** is more than just a component-it's a collection of headless hooks that you can use to build your own completely custom chat interface.
 
 ### `useChat`
 

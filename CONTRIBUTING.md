@@ -21,7 +21,7 @@ pnpm dev
 2. Fork the repo and create a branch: `git checkout -b 42-fix-sse-reconnect`
 3. Make your changes
 4. Run `pnpm changeset` and follow the prompts to describe your changes
-5. Run `pnpm build` — must pass before opening a PR
+5. Run `pnpm build` - must pass before opening a PR
 6. Open a pull request against `main`
 
 ---
@@ -65,8 +65,8 @@ docs: add usage examples to README
 
 ## Code Style
 
-- TypeScript strict mode — no `any`
-- Scoped Vanilla CSS — no global style pollution
+- TypeScript strict mode - no `any`
+- Scoped Vanilla CSS - no global style pollution
 - Google-style JSDoc on all exported functions and components
 
 ### Storybook

@@ -3,7 +3,7 @@ import type { ChatMessage } from '../types'
 
 /**
  * Hook providing persistence for chat history.
- * Helps with Phase 3 — Session Persistence.
+ * Helps with Phase 3 - Session Persistence.
  */
 export function useSession(id = 'ask-widget-session', initialMessages: ChatMessage[] = []) {
   const [messages, setMessages] = useState<ChatMessage[]>(initialMessages)

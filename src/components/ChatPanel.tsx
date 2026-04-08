@@ -1,5 +1,5 @@
 /**
- * Expanded chat panel — header, message feed, and composer.
+ * Expanded chat panel - header, message feed, and composer.
  * Rendered when the widget is open.
  */
 
@@ -15,7 +15,7 @@ interface ChatPanelProps {
   title: string
   /** All messages in the current conversation */
   messages: ChatMessageType[]
-  /** ID of the message currently being streamed — null when not streaming */
+  /** ID of the message currently being streamed - null when not streaming */
   activeStreamId: string | null
   /** Whether the assistant is currently streaming */
   isStreaming: boolean

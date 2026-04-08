@@ -67,7 +67,7 @@ const ACTIONS = {
 // ── Menus ────────────────────────────────────────────────────────────────────
 async function modeObliviate() {
   const choices = await multiselect({
-    message: "🧹 Obliviate — select what to obliterate",
+    message: "🧹 Obliviate - select what to obliterate",
     options: [
       { value: "build", label: "Build artifacts", hint: "dist/" },
       { value: "node_modules", label: "Dependencies", hint: "node_modules/" },
@@ -92,7 +92,7 @@ async function modeObliviate() {
 
 async function modeGit() {
   const choices = await multiselect({
-    message: "🐙 Version Control — select actions",
+    message: "🐙 Version Control - select actions",
     options: [
       { value: "changeset", label: "Create Changeset", hint: "Recommended way" },
       { value: "tag", label: "Tag version", hint: "Automated via CI" },
@@ -119,7 +119,7 @@ async function modeGit() {
 
 async function modeDocs() {
   const choice = await select({
-    message: "📖 Documentation — select action",
+    message: "📖 Documentation - select action",
     options: [
       { value: "docs_dev", label: "Preview docs", hint: "local dev" },
       { value: "docs_build", label: "Build docs", hint: "vitepress build" },
@@ -133,7 +133,7 @@ async function modeDocs() {
 
 async function modeQuality() {
   const choices = await multiselect({
-    message: '🔧 Maintain Code Quality — select actions',
+    message: '🔧 Maintain Code Quality - select actions',
     options: [
       { value: 'lint', label: 'Lint code', hint: 'eslint' },
       { value: 'format', label: 'Format check', hint: 'prettier' },

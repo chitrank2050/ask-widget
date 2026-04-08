@@ -1,5 +1,5 @@
 /**
- * Root component — owns all state and orchestrates sub-components.
+ * Root component - owns all state and orchestrates sub-components.
  * Handles the open/closed toggle and connects UI to the useChat hook.
  */
 
@@ -17,9 +17,9 @@ import ChatPanel from './ChatPanel'
  * Renders a floating launcher button that expands into a full chat panel.
  *
  * **Response modes (in priority order):**
- * 1. `streamResponse` — supply your own async generator / fetch logic
- * 2. `apiUrl` — auto-connects to a standard SSE endpoint (OpenAI-compatible by default)
- * 3. No props — runs a built-in demo stream so you can see the UI immediately
+ * 1. `streamResponse` - supply your own async generator / fetch logic
+ * 2. `apiUrl` - auto-connects to a standard SSE endpoint (OpenAI-compatible by default)
+ * 3. No props - runs a built-in demo stream so you can see the UI immediately
  *
  * @example Basic usage with your own API
  * ```tsx

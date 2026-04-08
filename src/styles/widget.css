@@ -2,7 +2,7 @@
  * src/styles/widget.css
  *
  * All layout, component, and animation styles for the chat widget.
- * This file ships as part of the npm package — no global resets.
+ * This file ships as part of the npm package - no global resets.
  *
  * Depends on:
  *   - variables.css  (z-index, font tokens)
@@ -13,7 +13,7 @@
  *   import './styles/themes.css'
  *   import './styles/widget.css'
  *
- * Color palette: zinc / neutral — aligned with personal-portfolio.
+ * Color palette: zinc / neutral - aligned with personal-portfolio.
  */
 
 /* ── Widget root ───────────────────────────────────────────────────────────── */
@@ -78,7 +78,7 @@
   flex-shrink: 0;
 }
 
-/* ── Launcher & Panel — pointer-events gate ────────────────────────────────── */
+/* ── Launcher & Panel - pointer-events gate ────────────────────────────────── */
 
 .chat-widget__launcher,
 .chat-widget__panel {
@@ -563,7 +563,7 @@
   letter-spacing: 0.1em;
 }
 
-/* ── Responsive — Small screens ────────────────────────────────────────────── */
+/* ── Responsive - Small screens ────────────────────────────────────────────── */
 
 @media (max-width: 640px) {
   .chat-widget--bottom-right,
@@ -698,7 +698,7 @@
   }
 }
 
-/* ── Responsive — Very small screens (< 380px) ────────────────────────────── */
+/* ── Responsive - Very small screens (< 380px) ────────────────────────────── */
 
 @media (max-width: 380px) {
   .chat-widget--bottom-right,

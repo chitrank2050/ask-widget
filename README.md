@@ -107,8 +107,8 @@ You can then freely import and use `<ClientChatWidget />` in your `layout.tsx` o
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `apiUrl` | `string` | — | Base URL of your chat API. |
-| `apiToken` | `string` | — | Bearer token for API auth. |
+| `apiUrl` | `string` | - | Base URL of your chat API. |
+| `apiToken` | `string` | - | Bearer token for API auth. |
 | `position` | `"bottom-right" \| "bottom-left" \| "bottom-center"` | `"bottom-right"` | Widget position on screen. |
 | `theme` | `"dark" \| "light"` | `"dark"` | Color theme preset. |
 | `title` | `string` | `"Ask AI"` | Header title. |

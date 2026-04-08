@@ -7,9 +7,9 @@
 /** Built-in theme presets */
 export type ChatTheme = 'light' | 'dark'
 
-/** Custom color overrides — merged with theme defaults */
+/** Custom color overrides - merged with theme defaults */
 export interface ChatColors {
-  /** Primary accent color — buttons, user message bubbles */
+  /** Primary accent color - buttons, user message bubbles */
   primary?: string
   /** Background color of the chat panel */
   background?: string
@@ -90,7 +90,7 @@ export interface ChatWidgetProps {
 
   /**
    * Bearer token for API authentication.
-   * Never commit this — pass via environment variable.
+   * Never commit this - pass via environment variable.
    *
    * @example process.env.CHAT_API_TOKEN
    */
@@ -109,7 +109,7 @@ export interface ChatWidgetProps {
   theme?: ChatTheme
 
   /**
-   * Custom color overrides — merged with theme defaults.
+   * Custom color overrides - merged with theme defaults.
    */
   colors?: ChatColors
 
@@ -149,7 +149,7 @@ export interface ChatWidgetProps {
   persistenceKey?: string
 
   /**
-   * Custom response handler — takes full control of streaming.
+   * Custom response handler - takes full control of streaming.
    *
    * Use this when you need custom fetch logic, auth flows, or a non-SSE backend.
    * When provided, `apiUrl` and `apiToken` are ignored.

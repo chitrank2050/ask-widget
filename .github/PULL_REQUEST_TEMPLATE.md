@@ -17,8 +17,8 @@ Fixes # <!-- issue number if applicable -->
 
 - [ ] `pnpm build` passes
 - [ ] `pnpm lint` passes
-- [ ] Types are correct — no `any`
-- [ ] CSS uses CSS Modules — no inline styles
+- [ ] Types are correct - no `any`
+- [ ] CSS uses CSS Modules - no inline styles
 - [ ] New props have JSDoc comments
 - [ ] README updated if public API changed
 
