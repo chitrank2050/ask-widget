@@ -135,7 +135,7 @@ describe('useSSEStream', () => {
       useSSEStream({
         apiUrl,
         path: '/custom',
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
         extractChunk: (data: any) => data.text,
       }),
     );

@@ -14,7 +14,7 @@ describe('useSession', () => {
 
   it('should initialize with provided messages', () => {
     const initial: ChatMessage[] = [
-      { id: '1', role: 'user', content: 'Hi', timestamp: new Date() }
+      { id: '1', role: 'user', content: 'Hi', timestamp: new Date() },
     ];
     const { result } = renderHook(() => useSession(sessionId, initial));
     expect(result.current.messages).toEqual(initial);
@@ -22,7 +22,7 @@ describe('useSession', () => {
 
   it('should load messages from localStorage on mount', () => {
     const storedMessages = [
-      { id: '1', role: 'user', content: 'Stored', timestamp: new Date().toISOString() }
+      { id: '1', role: 'user', content: 'Stored', timestamp: new Date().toISOString() },
     ];
     localStorage.setItem(storageKey, JSON.stringify(storedMessages));
 
@@ -39,7 +39,7 @@ describe('useSession', () => {
       id: '2',
       role: 'assistant',
       content: 'Hello',
-      timestamp: new Date()
+      timestamp: new Date(),
     };
 
     act(() => {
@@ -53,7 +53,7 @@ describe('useSession', () => {
 
   it('should update an existing message', () => {
     const initial: ChatMessage[] = [
-      { id: 'msg-1', role: 'assistant', content: 'Old', timestamp: new Date() }
+      { id: 'msg-1', role: 'assistant', content: 'Old', timestamp: new Date() },
     ];
     const { result } = renderHook(() => useSession(sessionId, initial));
 
