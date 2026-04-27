@@ -69,8 +69,8 @@
     "test:coverage": "vitest run --coverage",
     "lint": "eslint src tests --ext .ts,.tsx --max-warnings 0",
     "lint:md": "markdownlint --fix \"**/*.md\" --ignore node_modules",
-    "format": "prettier --write \"**/*.{ts,tsx,js,mjs,json,md,css}\" --ignore-path .gitignore",
-    "format:check": "prettier --check \"**/*.{ts,tsx,js,mjs,json,md,css}\" --ignore-path .gitignore",
+    "format": "prettier --write \"**/*.{ts,tsx,js,mjs,json,md,css}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,mjs,json,md,css}\"",
     "typecheck": "tsc --noEmit",
     "deps:update": "pnpm update --interactive --latest"
   },
