@@ -22,13 +22,6 @@ function App() {
             DOCUMENTATION
           </a>
           <a
-            href="https://chitranklabs.github.io/ask-widget/storybook/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            STORYBOOK
-          </a>
-          <a
             href="https://www.npmjs.com/package/@chitrank2050/ask-widget"
             target="_blank"
             rel="noreferrer"
