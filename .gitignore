@@ -46,3 +46,16 @@ docs/.vitepress/cache
 *.njsproj
 *.sln
 *.sw?
+
+# Test & CI
+/coverage/
+/.ci-status/
+osv-scanner
+gitleaks
+gitleaks.tar.gz
+
+# Maintenance & Temporary
+.gemini/
+scratch/
+git-cliff/
+coverage

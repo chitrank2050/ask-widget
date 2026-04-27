@@ -1,28 +1,32 @@
 #!/bin/bash
+set -e
 
-# Define total steps
+# Source the logger utility
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/utils/logger.sh"
+
+log_header "🪄  ask-widget Obliviate Protocols"
+
 TOTAL_STEPS=4
 
-echo "🪄  Initiating obliviate protocols..."
-
 # Step 1: Build artifacts
-echo "[1/$TOTAL_STEPS] 🗑️  Removing build artifacts (dist)..."
+log_step 1 $TOTAL_STEPS "Removing build artifacts (dist)..."
 rm -rf dist
+log_success "Build artifacts cleared."
 
 # Step 2: Dependencies
-echo "[2/$TOTAL_STEPS] 💥 Removing dependencies (node_modules)..."
+log_step 2 $TOTAL_STEPS "Removing dependencies (node_modules)..."
 rm -rf node_modules
+log_success "Dependencies removed."
 
 # Step 3: Lockfiles
-echo "[3/$TOTAL_STEPS] 🔓 Removing lockfiles..."
-rm -f pnpm-lock.yaml
-# Clean up others just in case
-rm -f package-lock.json
-rm -f yarn.lock
-rm -f bun.lockb
+log_step 3 $TOTAL_STEPS "Removing lockfiles..."
+rm -f pnpm-lock.yaml package-lock.json yarn.lock bun.lockb
+log_success "Lockfiles purged."
 
 # Step 4: Caches
-echo "[4/$TOTAL_STEPS] 🧹 Clearing internal caches..."
+log_step 4 $TOTAL_STEPS "Clearing internal caches..."
 rm -rf .eslintcache
+log_success "Caches cleared."
 
-echo "✨  Obliviate complete. Project is now a blank slate."
+log_header "✨  Obliviate Complete (Blank Slate)"
