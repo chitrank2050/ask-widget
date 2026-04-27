@@ -3,12 +3,12 @@
  * This file is NOT included in the published package.
  */
 
-import { ChatWidget } from './index'
-import { version } from '../package.json'
-import './App.css'
+import { ChatWidget } from './index';
+import { version } from '../package.json';
+import './App.css';
 
 function App() {
-  const token = import.meta.env.VITE_CHAT_API_TOKEN || 'your-token-here'
+  const token = import.meta.env.VITE_CHAT_API_TOKEN || 'your-token-here';
 
   return (
     <div className="app-shell">
@@ -78,11 +78,11 @@ function App() {
               <button
                 className="app-copy-btn"
                 onClick={() => {
-                  navigator.clipboard.writeText('pnpm add @chitrank2050/ask-widget')
-                  const btn = document.querySelector('.app-copy-btn')
+                  navigator.clipboard.writeText('pnpm add @chitrank2050/ask-widget');
+                  const btn = document.querySelector('.app-copy-btn');
                   if (btn) {
-                    btn.classList.add('copied')
-                    setTimeout(() => btn.classList.remove('copied'), 2000)
+                    btn.classList.add('copied');
+                    setTimeout(() => btn.classList.remove('copied'), 2000);
                   }
                 }}
                 title="Copy to clipboard"
@@ -178,7 +178,7 @@ function App() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

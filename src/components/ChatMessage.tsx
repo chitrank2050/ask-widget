@@ -3,25 +3,25 @@
  * Handles the streaming cursor when the assistant is actively responding.
  */
 
-import type { ChatMessage as ChatMessageType, ChatLabels } from '../types'
-import { TerminalIcon } from './Icons'
+import type { ChatMessage as ChatMessageType, ChatLabels } from '../types';
+import { TerminalIcon } from './Icons';
 
 const timeFormatter = new Intl.DateTimeFormat('en-US', {
   hour: '2-digit',
   minute: '2-digit',
   second: '2-digit',
   hour12: false,
-})
+});
 
-const formatTimestamp = (timestamp: Date) => `T-${timeFormatter.format(timestamp)}`
+const formatTimestamp = (timestamp: Date) => `T-${timeFormatter.format(timestamp)}`;
 
 interface ChatMessageProps {
   /** The message data to render */
-  message: ChatMessageType
+  message: ChatMessageType;
   /** Whether this message is currently being streamed - shows blinking cursor */
-  isStreaming: boolean
+  isStreaming: boolean;
   /** Custom text labels */
-  labels?: ChatLabels
+  labels?: ChatLabels;
 }
 
 /**
@@ -39,10 +39,10 @@ export default function ChatMessage({ message, isStreaming, labels }: ChatMessag
         </div>
         <span className="chat-widget__timestamp">{formatTimestamp(message.timestamp)}</span>
       </article>
-    )
+    );
   }
 
-  const isWaitingForFirstToken = isStreaming && message.content.length === 0
+  const isWaitingForFirstToken = isStreaming && message.content.length === 0;
 
   return (
     <article className="chat-widget__message chat-widget__message--assistant">
@@ -73,5 +73,5 @@ export default function ChatMessage({ message, isStreaming, labels }: ChatMessag
         </div>
       </div>
     </article>
-  )
+  );
 }

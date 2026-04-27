@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "ask-widget"
-  text: "Drop-in AI chat for your portfolio."
+  name: 'ask-widget'
+  text: 'Drop-in AI chat for your portfolio.'
   tagline: Lightweight, streaming-first, and strictly monochrome.
   actions:
     - theme: brand

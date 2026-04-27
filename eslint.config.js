@@ -1,12 +1,22 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
-import { defineConfig, globalIgnores } from 'eslint/config'
+import js from '@eslint/js';
+import globals from 'globals';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+import prettier from 'eslint-config-prettier';
+import tseslint from 'typescript-eslint';
+import { defineConfig, globalIgnores } from 'eslint/config';
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores([
+    'dist',
+    'node_modules',
+    'coverage',
+    'eslint.config.js',
+    'lefthook.yml',
+    'pnpm-lock.yaml',
+    'vite.config.ts',
+    'cliff.toml',
+  ]),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
@@ -20,4 +30,5 @@ export default defineConfig([
       globals: globals.browser,
     },
   },
-])
+  prettier,
+]);

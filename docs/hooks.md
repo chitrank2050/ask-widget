@@ -2,12 +2,12 @@
 
 **ask-widget** is more than just a component-it's a collection of headless hooks that you can use to build your own completely custom chat interface.
 
-### `useChat`
+## `useChat`
 
 Manages chat state, message history, and the streaming lifecycle.
 
 ```tsx
-import { useChat } from 'ask-widget'
+import { useChat } from 'ask-widget';
 
 const {
   messages,
@@ -19,14 +19,14 @@ const {
   sendMessage,
   clearHistory,
 } = useChat({
-  initialMessage: "Hi! How can I help?",
-  streamResponse: async function* (message) { 
-    yield message.toUpperCase() 
-  }
-})
+  initialMessage: 'Hi! How can I help?',
+  streamResponse: async function* (message) {
+    yield message.toUpperCase();
+  },
+});
 ```
 
-### `useSSEStream`
+## `useSSEStream`
 
 Handles the SSE connection, fetch headers, and token parsing from any API.
 
@@ -43,14 +43,14 @@ const { streamResponse } = useSSEStream({
 <MyCustomUI onSend={(msg) => streamResponse(msg, history)} />
 ```
 
-### `useSession`
+## `useSession`
 
 A simple hook to handle message persistence to `localStorage`.
 
 ```tsx
-import { useSession } from 'ask-widget'
+import { useSession } from 'ask-widget';
 
 const { messages, saveMessages, clearSession } = useSession({
-  key: "my_chat_session"
-})
+  key: 'my_chat_session',
+});
 ```

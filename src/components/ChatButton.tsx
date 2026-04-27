@@ -1,14 +1,14 @@
-import { TerminalIcon } from './Icons'
+import { TerminalIcon } from './Icons';
 
 interface ChatButtonProps {
   /** Accessible label for the button - uses widget title */
-  title: string
+  title: string;
   /** Text shown in the pill (e.g., "ASK ME") */
-  label?: string
+  label?: string;
   /** Current theme for styling */
-  theme: 'light' | 'dark'
+  theme: 'light' | 'dark';
   /** Called when the button is clicked */
-  onClick: () => void
+  onClick: () => void;
 }
 
 export default function ChatButton({ title, label, theme, onClick }: ChatButtonProps) {
@@ -25,5 +25,5 @@ export default function ChatButton({ title, label, theme, onClick }: ChatButtonP
       </div>
       <span className="chat-widget__launcher-status-dot" />
     </button>
-  )
+  );
 }

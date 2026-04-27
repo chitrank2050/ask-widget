@@ -3,13 +3,13 @@
  * Handles the open/closed toggle and connects UI to the useChat hook.
  */
 
-import { useState } from 'react'
-import type { ChatWidgetProps } from '../types'
-import { useChat } from '../hooks/useChat'
-import { useSSEStream } from '../hooks/useSSEStream'
-import { demoStream } from '../lib/demoStream'
-import ChatButton from './ChatButton'
-import ChatPanel from './ChatPanel'
+import { useState } from 'react';
+import type { ChatWidgetProps } from '../types';
+import { useChat } from '../hooks/useChat';
+import { useSSEStream } from '../hooks/useSSEStream';
+import { demoStream } from '../lib/demoStream';
+import ChatButton from './ChatButton';
+import ChatPanel from './ChatPanel';
 
 /**
  * Root chat widget component.
@@ -49,14 +49,14 @@ export default function ChatWidget({
   labels,
   persistenceKey = 'ask_widget_session',
 }: ChatWidgetProps) {
-  const [isOpen, setIsOpen] = useState(defaultOpen)
+  const [isOpen, setIsOpen] = useState(defaultOpen);
 
   // When apiUrl is provided and no custom streamResponse is given, use the built-in SSE adapter.
   const { streamResponse: sseStreamResponse } = useSSEStream(
-    apiUrl ? { apiUrl, apiToken } : { apiUrl: '' }
-  )
+    apiUrl ? { apiUrl, apiToken } : { apiUrl: '' },
+  );
 
-  const resolvedStreamResponse = streamResponse ?? (apiUrl ? sseStreamResponse : demoStream)
+  const resolvedStreamResponse = streamResponse ?? (apiUrl ? sseStreamResponse : demoStream);
 
   const {
     messages,
@@ -71,12 +71,12 @@ export default function ChatWidget({
     initialMessage,
     streamResponse: resolvedStreamResponse,
     persistenceKey,
-  })
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    sendMessage(inputValue)
-  }
+    e.preventDefault();
+    sendMessage(inputValue);
+  };
 
   // Build custom styles from colors prop
   const customStyles = {
@@ -86,7 +86,7 @@ export default function ChatWidget({
     ...(colors?.border && { '--widget-border': colors.border }),
     ...(colors?.userBubble && { '--widget-user-bubble': colors.userBubble }),
     ...(colors?.surface && { '--widget-surface': colors.surface }),
-  } as React.CSSProperties
+  } as React.CSSProperties;
 
   return (
     <div className={`chat-widget chat-widget--${position}`} data-theme={theme} style={customStyles}>
@@ -114,5 +114,5 @@ export default function ChatWidget({
         />
       )}
     </div>
-  )
+  );
 }

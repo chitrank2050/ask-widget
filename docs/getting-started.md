@@ -20,8 +20,8 @@ yarn add ask-widget
 To use the widget, render it at the root of your application (or any top-level layout).
 
 ```tsx
-import { ChatWidget } from 'ask-widget'
-import 'ask-widget/styles.css'
+import { ChatWidget } from 'ask-widget';
+import 'ask-widget/styles.css';
 
 export default function App() {
   return (
@@ -34,7 +34,7 @@ export default function App() {
         title="Ask Anything"
       />
     </main>
-  )
+  );
 }
 ```
 

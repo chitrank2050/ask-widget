@@ -31,16 +31,21 @@ pnpm dev
 We use [Changesets](https://github.com/changesets/changesets) to manage versioning and changelogs.
 
 ### 1. Adding a Changeset
+
 Every PR that introduces code changes **must** include a changeset file.
+
 ```bash
 pnpm changeset
 ```
+
 - Select the appropriate bump type (**patch**, **minor**, or **major**).
 - Provide a clear, user-facing summary of what changed.
 - Commit the generated `.changeset/*.md` file with your PR.
 
 ### 2. Automated Releases
+
 Releases are automated via GitHub Actions:
+
 - On merge to `main`, a "Version Bump" PR is automatically created/updated if changesets exist.
 - When the **Version Bump PR** is merged, the package is automatically:
   - Published to npm
@@ -54,7 +59,7 @@ Releases are automated via GitHub Actions:
 
 Follow conventional commits:
 
-```
+```text
 feat: add configurable position prop
 fix: resolve SSE reconnect on mobile
 chore: update dependencies
@@ -70,11 +75,12 @@ docs: add usage examples to README
 - Google-style JSDoc on all exported functions and components
 
 ### Storybook
+
 Develop new components in isolation:
+
 ```bash
 pnpm storybook
 ```
-
 
 ```bash
 pnpm lint

@@ -1,22 +1,22 @@
-import type { SyntheticEvent } from 'react'
-import type { ChatLabels } from '../types'
-import { SendIcon } from './Icons'
+import type { SyntheticEvent } from 'react';
+import type { ChatLabels } from '../types';
+import { SendIcon } from './Icons';
 
 interface ChatInputProps {
   /** Current input field value */
-  value: string
+  value: string;
   /** Called when the input value changes */
-  onChange: (value: string) => void
+  onChange: (value: string) => void;
   /** Called when the form is submitted */
-  onSubmit: (event: SyntheticEvent<HTMLFormElement>) => void
+  onSubmit: (event: SyntheticEvent<HTMLFormElement>) => void;
   /** Whether the assistant is currently streaming - disables input */
-  isStreaming: boolean
+  isStreaming: boolean;
   /** Placeholder text for the input field */
-  placeholder: string
+  placeholder: string;
   /** Latency of the last response in seconds - null while streaming */
-  latency: number | null
+  latency: number | null;
   /** Custom text labels */
-  labels?: ChatLabels
+  labels?: ChatLabels;
 }
 
 /**
@@ -44,7 +44,7 @@ export default function ChatInput({
         <input
           type="text"
           value={value}
-          onChange={(event) => onChange(event.target.value)}
+          onChange={event => onChange(event.target.value)}
           placeholder={isStreaming ? 'Streaming response...' : placeholder}
           disabled={isStreaming}
           aria-label="Message input"
@@ -67,5 +67,5 @@ export default function ChatInput({
         </p>
       </div>
     </form>
-  )
+  );
 }

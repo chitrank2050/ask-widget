@@ -3,38 +3,38 @@
  * Rendered when the widget is open.
  */
 
-import { useEffect, useRef } from 'react'
-import type { FormEvent } from 'react'
-import type { ChatMessage as ChatMessageType, ChatLabels } from '../types'
-import ChatInput from './ChatInput'
-import ChatMessage from './ChatMessage'
-import { CloseIcon, ResetIcon } from './Icons'
+import { useEffect, useRef } from 'react';
+import type { FormEvent } from 'react';
+import type { ChatMessage as ChatMessageType, ChatLabels } from '../types';
+import ChatInput from './ChatInput';
+import ChatMessage from './ChatMessage';
+import { CloseIcon, ResetIcon } from './Icons';
 
 interface ChatPanelProps {
   /** Chat panel header title */
-  title: string
+  title: string;
   /** All messages in the current conversation */
-  messages: ChatMessageType[]
+  messages: ChatMessageType[];
   /** ID of the message currently being streamed - null when not streaming */
-  activeStreamId: string | null
+  activeStreamId: string | null;
   /** Whether the assistant is currently streaming */
-  isStreaming: boolean
+  isStreaming: boolean;
   /** Current input field value */
-  inputValue: string
+  inputValue: string;
   /** Called when the input value changes */
-  onInputChange: (value: string) => void
+  onInputChange: (value: string) => void;
   /** Called when the message form is submitted */
-  onSubmit: (event: FormEvent<HTMLFormElement>) => void
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
   /** Called when the collapse button is clicked */
-  onCollapse: () => void
+  onCollapse: () => void;
   /** Called when the reset history button is clicked */
-  onReset: () => void
+  onReset: () => void;
   /** Input placeholder text */
-  placeholder: string
+  placeholder: string;
   /** Latency of the last response in seconds */
-  latency: number | null
+  latency: number | null;
   /** Custom text labels */
-  labels?: ChatLabels
+  labels?: ChatLabels;
 }
 
 /**
@@ -57,26 +57,26 @@ export default function ChatPanel({
   latency,
   labels,
 }: ChatPanelProps) {
-  const feedRef = useRef<HTMLDivElement | null>(null)
+  const feedRef = useRef<HTMLDivElement | null>(null);
 
   // Auto-scroll to bottom on new messages or streaming updates
   useEffect(() => {
-    if (!feedRef.current) return
+    if (!feedRef.current) return;
 
     const nextFrame = window.requestAnimationFrame(() => {
-      const node = feedRef.current
-      if (!node) return
+      const node = feedRef.current;
+      if (!node) return;
 
       node.scrollTo({
         top: node.scrollHeight,
         behavior: 'smooth',
-      })
-    })
+      });
+    });
 
     return () => {
-      window.cancelAnimationFrame(nextFrame)
-    }
-  }, [messages, isStreaming])
+      window.cancelAnimationFrame(nextFrame);
+    };
+  }, [messages, isStreaming]);
 
   return (
     <section className="chat-widget__panel" aria-label={title}>
@@ -119,7 +119,7 @@ export default function ChatPanel({
           {labels?.systemStatus || 'SYSTEM.LINK_ESTABLISHED'}
         </div>
 
-        {messages.map((message) => (
+        {messages.map(message => (
           <ChatMessage
             key={message.id}
             message={message}
@@ -140,5 +140,5 @@ export default function ChatPanel({
         labels={labels}
       />
     </section>
-  )
+  );
 }

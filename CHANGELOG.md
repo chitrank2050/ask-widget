@@ -94,5 +94,3 @@ All notable changes to Ask Widget.
 - Initialize a new React application using Vite and TypeScript.
 - Establish foundational project infrastructure, development scripts, code quality tools, and community guidelines.
 - Add a dedicated script for Git tagging and refactor the release script to generate changelogs and manage GitHub releases.
-
-

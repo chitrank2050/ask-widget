@@ -13,13 +13,13 @@
 
 ## Links
 
-| Source | URL |
-| :--- | :--- |
-| **NPM** | [npmjs.com/package/@chitrank2050/ask-widget](https://www.npmjs.com/package/@chitrank2050/ask-widget) |
-| **GitHub** | [github.com/chitranklabs/ask-widget](https://github.com/chitranklabs/ask-widget) |
-| **Demo** | [ask-widget.netlify.app](https://ask-widget.netlify.app/) |
-| **Documentation** | [chitranklabs.github.io/ask-widget](https://chitranklabs.github.io/ask-widget/) |
-| 👤 Portfolio | [About me](https://chitrankagnihotri.com) |
+| Source            | URL                                                                                                  |
+| :---------------- | :--------------------------------------------------------------------------------------------------- |
+| **NPM**           | [npmjs.com/package/@chitrank2050/ask-widget](https://www.npmjs.com/package/@chitrank2050/ask-widget) |
+| **GitHub**        | [github.com/chitranklabs/ask-widget](https://github.com/chitranklabs/ask-widget)                     |
+| **Demo**          | [ask-widget.netlify.app](https://ask-widget.netlify.app/)                                            |
+| **Documentation** | [chitranklabs.github.io/ask-widget](https://chitranklabs.github.io/ask-widget/)                      |
+| 👤 Portfolio      | [About me](https://chitrankagnihotri.com)                                                            |
 
 ---
 
@@ -58,8 +58,8 @@ We use a two-phase automated release pipeline powered by **[git-hygiene](https:/
 ## 📖 Quick Start
 
 ```tsx
-import { ChatWidget } from '@chitrank2050/ask-widget'
-import '@chitrank2050/ask-widget/styles.css'
+import { ChatWidget } from '@chitrank2050/ask-widget';
+import '@chitrank2050/ask-widget/styles.css';
 
 export default function Portfolio() {
   return (
@@ -68,7 +68,7 @@ export default function Portfolio() {
       apiToken={import.meta.env.VITE_CHAT_API_TOKEN}
       title="Ask AI"
     />
-  )
+  );
 }
 ```
 

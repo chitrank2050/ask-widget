@@ -45,14 +45,14 @@ commit-msg:
   commands:
     # Enforce Conventional Commits via git-hygiene
     git-hygiene:
-      run: pnpm exec git-hygiene commit {1}
+      run: npx git-hygiene commit {1}
 
 pre-push:
   parallel: true
   commands:
     # Ensure branch naming follows standards
     branch-name:
-      run: pnpm exec git-hygiene branch
+      run: npx git-hygiene branch
 
     # Run tests before pushing
     test:

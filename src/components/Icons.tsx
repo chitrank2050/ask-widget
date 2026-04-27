@@ -22,7 +22,7 @@ export const TerminalIcon = () => (
       strokeWidth="1.5"
     />
   </svg>
-)
+);
 
 export const CloseIcon = () => (
   <svg viewBox="0 0 20 20" aria-hidden="true">
@@ -34,7 +34,7 @@ export const CloseIcon = () => (
       strokeWidth="1.5"
     />
   </svg>
-)
+);
 
 export const ResetIcon = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -55,10 +55,10 @@ export const ResetIcon = () => (
       strokeWidth="1.5"
     />
   </svg>
-)
+);
 
 export const SendIcon = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true">
     <path d="M6 19 18 12 6 5l1.6 5.3L13 12l-5.4 1.7L6 19Z" fill="currentColor" />
   </svg>
-)
+);

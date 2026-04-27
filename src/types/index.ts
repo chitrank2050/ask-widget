@@ -5,75 +5,75 @@
 // ── Theme ────────────────────────────────────────────────────────────────────
 
 /** Built-in theme presets */
-export type ChatTheme = 'light' | 'dark'
+export type ChatTheme = 'light' | 'dark';
 
 /** Custom color overrides - merged with theme defaults */
 export interface ChatColors {
   /** Primary accent color - buttons, user message bubbles */
-  primary?: string
+  primary?: string;
   /** Background color of the chat panel */
-  background?: string
+  background?: string;
   /** Text color */
-  text?: string
+  text?: string;
   /** Border color */
-  border?: string
+  border?: string;
   /** Background of the user's message bubble */
-  userBubble?: string
+  userBubble?: string;
   /** Background of terminal-style blocks or the input area */
-  surface?: string
+  surface?: string;
 }
 
 /** Localizable text strings used throughout the UI */
 export interface ChatLabels {
   /** Label for live streaming responses (default: "AI_ANALYSIS_STREAM") */
-  assistantTag?: string
+  assistantTag?: string;
   /** Label for cached responses (default: "AI_ANALYSIS_CACHE") */
-  cacheTag?: string
+  cacheTag?: string;
   /** Prefix for the latency display (default: "LATENCY") */
-  latencyPrefix?: string
+  latencyPrefix?: string;
   /** Aria-label for the collapse button */
-  collapseAction?: string
+  collapseAction?: string;
   /** Aria-label for the reset/clear button */
-  resetAction?: string
+  resetAction?: string;
   /** Text shown in the system chip at start (default: "SYSTEM.LINK_ESTABLISHED") */
-  systemStatus?: string
+  systemStatus?: string;
   /** Text shown inside the pill launcher button (default: title) */
-  launcherLabel?: string
+  launcherLabel?: string;
 }
 
 // ── Position ─────────────────────────────────────────────────────────────────
 
 /** Where the floating button and panel appear on screen */
-export type ChatPosition = 'bottom-right' | 'bottom-left' | 'bottom-center'
+export type ChatPosition = 'bottom-right' | 'bottom-left' | 'bottom-center';
 
 // ── Messages ─────────────────────────────────────────────────────────────────
 
 /** A single message in the conversation */
 export interface ChatMessage {
   /** Unique identifier for the message */
-  id: string
+  id: string;
   /** Who sent the message */
-  role: 'user' | 'assistant'
+  role: 'user' | 'assistant';
   /** Message text content */
-  content: string
+  content: string;
   /** UTC timestamp of when the message was created */
-  timestamp: Date
+  timestamp: Date;
   /** Whether this response came from the semantic cache */
-  cached?: boolean
+  cached?: boolean;
 }
 
 /** Value returned by a response adapter */
 export type ChatStreamResult =
   | string
   | AsyncIterable<string>
-  | Promise<string | AsyncIterable<string>>
+  | Promise<string | AsyncIterable<string>>;
 
 /**
  * Adapter invoked when the user submits a message.
  * Return an async iterable for true token streaming, or a string/promise
  * while the backend integration is still being prepared.
  */
-export type ChatStreamHandler = (message: string, history: ChatMessage[]) => ChatStreamResult
+export type ChatStreamHandler = (message: string, history: ChatMessage[]) => ChatStreamResult;
 
 // ── Props ────────────────────────────────────────────────────────────────────
 
@@ -86,7 +86,7 @@ export interface ChatWidgetProps {
    *
    * @example "https://your-api.railway.app"
    */
-  apiUrl?: string
+  apiUrl?: string;
 
   /**
    * Bearer token for API authentication.
@@ -94,59 +94,59 @@ export interface ChatWidgetProps {
    *
    * @example process.env.CHAT_API_TOKEN
    */
-  apiToken?: string
+  apiToken?: string;
 
   /**
    * Position of the floating button and chat panel.
    * @default "bottom-right"
    */
-  position?: ChatPosition
+  position?: ChatPosition;
 
   /**
    * Color theme preset.
    * @default "dark"
    */
-  theme?: ChatTheme
+  theme?: ChatTheme;
 
   /**
    * Custom color overrides - merged with theme defaults.
    */
-  colors?: ChatColors
+  colors?: ChatColors;
 
   /**
    * Title shown in the chat panel header.
    * @default "Ask AI"
    */
-  title?: string
+  title?: string;
 
   /**
    * Placeholder text in the message input.
    * @default "Ask me anything..."
    */
-  placeholder?: string
+  placeholder?: string;
 
   /**
    * First message displayed when the panel opens.
    * @default "Hello! How can I help you today?"
    */
-  initialMessage?: string
+  initialMessage?: string;
 
   /**
    * Whether the chat panel starts open.
    * @default false
    */
-  defaultOpen?: boolean
+  defaultOpen?: boolean;
 
   /**
    * Custom text labels for technical indicators in the UI.
    */
-  labels?: ChatLabels
+  labels?: ChatLabels;
 
   /**
    * The localStorage key used to persist chat history.
    * @default "ask_widget_session"
    */
-  persistenceKey?: string
+  persistenceKey?: string;
 
   /**
    * Custom response handler - takes full control of streaming.
@@ -163,5 +163,5 @@ export interface ChatWidgetProps {
    * }
    * ```
    */
-  streamResponse?: ChatStreamHandler
+  streamResponse?: ChatStreamHandler;
 }
