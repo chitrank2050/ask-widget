@@ -61,3 +61,7 @@ pre-push:
     # Ensure types are correct
     typecheck:
       run: pnpm run typecheck
+
+    # Scan for dependency vulnerabilities
+    audit:
+      run: if command -v osv-scanner > /dev/null; then osv-scanner --lockfile pnpm-lock.yaml; else echo "osv-scanner not found, skipping audit. Install with 'brew install osv-scanner'"; fi
