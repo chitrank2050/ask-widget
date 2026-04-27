@@ -151,9 +151,6 @@ jobs:
           pnpm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
           pnpm publish --access public --no-git-checks
 
-      - name: Deploy Docs 📄
-        run: pnpm run deploy:docs
-
       - name: Attest Release Artifacts 📜
         uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
         with:
