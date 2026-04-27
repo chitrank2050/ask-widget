@@ -28,14 +28,14 @@
     "chatbot",
     "ai"
   ],
-  "main": "./dist/ask-widget.umd.js",
+  "main": "./dist/ask-widget.cjs.js",
   "module": "./dist/ask-widget.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/ask-widget.es.js",
-      "require": "./dist/ask-widget.umd.js"
+      "require": "./dist/ask-widget.cjs.js"
     },
     "./styles.css": "./dist/style.css"
   },

@@ -19,7 +19,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'AskWidget',
       fileName: format => `ask-widget.${format}.js`,
-      formats: ['es', 'umd'],
+      formats: ['es', 'cjs', 'umd'],
     },
     rollupOptions: {
       external: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
