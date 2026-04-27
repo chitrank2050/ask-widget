@@ -1,22 +1,51 @@
-# ask-widget 🤖
+<div align="center">
+  <img src="./assets/logo.png" alt="ask-widget logo"  width="200" height="auto" />
+  <br/>
+  <br/>
+  <br/>
+  <h1>ask-widget 🤖</h1>
 
-> A state-of-the-art, lightweight chat widget for developer portfolios. Powered by **Vite 8** and the **Rolldown** engine for sub-5KB performance and perfect CSS isolation.
+  <p>A state-of-the-art, lightweight chat widget for developer portfolios. Powered by <strong>Vite 8</strong> and the <strong>Rolldown</strong> engine for sub-5KB performance and perfect CSS isolation.
+  </p>
+  <p>
+    <a href="https://www.npmjs.com/package/@chitrank2050/ask-widget">
+    <img src="https://img.shields.io/npm/v/@chitrank2050/ask-widget" alt="npm" />
+    </a>
+    <a href="https://jsr.io/@chitrank2050/ask-widget">
+    <img src="https://jsr.io/badges/@chitrank2050/ask-widget" alt="JSR" />
+    </a>
+  </p>
 
-[![CI 🌊](https://github.com/chitranklabs/ask-widget/actions/workflows/ci.yml/badge.svg)](https://github.com/chitranklabs/ask-widget/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/chitranklabs/ask-widget/branch/main/graph/badge.svg)](https://codecov.io/gh/chitranklabs/ask-widget)
-[![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/1/badge)](https://bestpractices.coreinfrastructure.org/projects/1)
-[![Scorecard Status](https://github.com/chitranklabs/ask-widget/actions/workflows/scorecard.yml/badge.svg)](https://github.com/chitranklabs/ask-widget/actions/workflows/scorecard.yml)
-[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/chitranklabs/ask-widget/badge)](https://scorecard.dev/viewer/?uri=github.com/chitranklabs/ask-widget)
-[![Security: Gitleaks](https://img.shields.io/badge/Security-Gitleaks-brightgreen?logo=gitleaks)](https://github.com/gitleaks/gitleaks)
-[![JSR](https://jsr.io/badges/@chitrank2050/ask-widget)](https://jsr.io/@chitrank2050/ask-widget)
-[![npm](https://img.shields.io/npm/v/@chitrank2050/ask-widget)](https://www.npmjs.com/package/@chitrank2050/ask-widget)
-[![SLSA Level 3](https://img.shields.io/badge/SLSA-Level_3-blue?logo=slsa)](https://github.com/chitranklabs/ask-widget/attestations)
-[![License](https://img.shields.io/github/license/chitranklabs/ask-widget)](LICENSE)
+  <p>
+  <a href="https://github.com/chitranklabs/ask-widget/actions/workflows/ci.yml">
+  <img src="https://github.com/chitranklabs/ask-widget/actions/workflows/ci.yml/badge.svg" alt="CI 🌊" />
+  </a>
+  <a href="https://codecov.io/gh/chitranklabs/ask-widget">
+  <img src="https://codecov.io/gh/chitranklabs/ask-widget/branch/main/graph/badge.svg" alt="codecov" />
+  </a>
+  <a href="https://bestpractices.coreinfrastructure.org/projects/1">
+  <img src="https://bestpractices.coreinfrastructure.org/projects/1/badge" alt="OpenSSF Best Practices" />
+  </a>
+  <a href="https://github.com/chitranklabs/ask-widget/actions/workflows/scorecard.yml">
+  <img src="https://github.com/chitranklabs/ask-widget/actions/workflows/scorecard.yml/badge.svg" alt="Scorecard Status" />
+  </a>
+  <a href="https://scorecard.dev/viewer/?uri=github.com/chitranklabs/ask-widget">
+  <img src="https://api.scorecard.dev/projects/github.com/chitranklabs/ask-widget/badge" alt="OpenSSF Scorecard" />
+  </a>
+  <a href="https://github.com/gitleaks/gitleaks">
+  <img src="https://img.shields.io/badge/Security-Gitleaks-brightgreen?logo=gitleaks" alt="Security: Gitleaks" />
+  </a>
+  <a href="https://github.com/chitranklabs/ask-widget/attestations">
+  <img src="https://img.shields.io/badge/SLSA-Level_3-blue?logo=slsa" alt="SLSA Level 3" />
+  </a>
+  <a href="./LICENSE">
+  <img src="https://img.shields.io/github/license/chitranklabs/ask-widget" alt="License" />
+  </a>
 
-<div>
- <a href="https://ko-fi.com/D1D71U581P" target="_blank">
+   <a href="https://ko-fi.com/D1D71U581P" target="_blank">
       <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Buy me a coffee at ko-fi.com">
     </a>
+  </p>
 </div>
 
 ---
