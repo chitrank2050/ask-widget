@@ -1,0 +1,16 @@
+{
+  "name": "@chitrank2050/ask-widget",
+  "version": "0.1.0",
+  "exports": "./src/index.ts",
+  "publish": {
+    "exclude": [
+      ".github",
+      "scripts",
+      "tests",
+      "vite.config.ts",
+      "vite.config.lib.ts",
+      "tsconfig.json",
+      "tsconfig.app.json"
+    ]
+  }
+}
