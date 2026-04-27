@@ -4,52 +4,31 @@ This document describes the technical process for maintaining and releasing `@ch
 
 ## Release Workflow
 
-We use **Changesets** to automate versioning and npm releases.
+We use **[git-hygiene](https://github.com/chitranklabs/git-hygiene)** to automate versioning, changelog generation, and npm releases.
 
-### 1. Development (The "Intent")
-For every feature or fix on a branch, you should generate a changeset file:
-```bash
-pnpm changeset
-```
-This creates a small Markdown file in `.changeset/`. This intent must be committed and pushed as part of your PR.
+### 1. Development (The "Commit")
+Every commit must follow the [Conventional Commits](https://www.conventionalcommits.org/) standard. This is enforced locally via **Lefthook** and in CI. The commit message determines the next version bump (major, minor, or patch).
 
-### 2. The Versioning PR
-When changes are merged into `main`, a GitHub Action (`release.yml`) checks for existance of changeset files. 
+### 2. Phase 1: Prepare (Release PR)
+To start a release, manually trigger the **`Release 1 - Prepare PR`** workflow from the GitHub Actions tab.
+- It calculates the recommended version bump using `git-hygiene`.
+- It updates `package.json` and `CHANGELOG.md`.
+- It opens a Pull Request for review.
 
-If they exist, it automatically creates (or updates) a PR titled `chore: version bump`. This PR:
-1. Consumes the changeset files.
-2. Updates `package.json` with the new version.
-3. Generates/updates the `CHANGELOG.md`.
-
-### 3. Publishing
-To trigger a release:
-1. **Merge the `chore: version bump` PR** into `main`.
-2. The GitHub Action will detect that there are no change files but a version bump occurred.
-3. It will run `pnpm release` which:
-   - Builds the library.
-   - Publishes to npm.
-   - Creates a GitHub Tag.
-   - Creates a GitHub Release with the changelog summary.
-   - Redeploys the Documentation site.
-
----
-
-## Manual Fallbacks (Emergency only)
-
-The old manual scripts are still available in `/scripts/` but labeled as automated in the CLI:
-```bash
-pnpm menu git
-```
-
-### Scripts reference:
-- `scripts/docs-deploy.sh`: Builds and pushes to `gh-pages`.
-- `scripts/git-tag.sh`: Tags the current version in `package.json`.
-- `scripts/git-release.sh`: Creates a GitHub release using `git-cliff`.
+### 3. Phase 2: Finalize (Publishing)
+When the Release PR is merged into `main`:
+1. The **`Release 2 - Finalize Tag`** workflow triggers automatically.
+2. It tags the commit with the new version (e.g., `v0.6.0`).
+3. It creates a GitHub Release with the changelog.
+4. It builds the library and publishes it to **NPM**.
+5. It generates SLSA Build Provenance for security.
+6. It redeploys the Documentation site.
 
 ---
 
 ## Infrastructure
 
-- **CI/CD:** `.github/workflows/release.yml`
-- **Configuration:** `.changeset/config.json`
-- **CLI Menu:** `scripts/menu.mjs`
+- **CI/CD:** `.github/workflows/`
+- **Bot Setup:** `.github/actions/setup-bot/`
+- **Hook Manager:** `lefthook.yml`
+- **Changelog Config:** `cliff.toml`

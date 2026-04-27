@@ -1,0 +1,50 @@
+# =============================================================
+# Lefthook: Git Hooks Manager 🥊
+#
+# Powered by git-hygiene 🌊
+# =============================================================
+
+pre-commit:
+  parallel: true
+  commands:
+    # 1. Block commits that contain secrets/credentials
+    secrets:
+      run: gitleaks protect --staged --redact -v
+
+    # 2. TS/TSX - ESLint + Prettier
+    lint-ts:
+      glob: 'src/**/*.{ts,tsx}'
+      run: pnpm exec eslint {staged_files} --fix && pnpm exec prettier --write {staged_files}
+      stage_fixed: true
+
+    # 3. Styles, JSON, MD - Prettier
+    format-assets:
+      glob: '**/*.{json,md,css,scss}'
+      run: pnpm exec prettier --write {staged_files}
+      stage_fixed: true
+
+    # 4. GitHub Actions - Security linting
+    lint-actions:
+      glob: '.github/workflows/*.yml'
+      run: if command -v zizmor > /dev/null; then zizmor {staged_files}; else npx -y zizmor {staged_files}; fi
+
+commit-msg:
+  commands:
+    # Enforce Conventional Commits via git-hygiene
+    git-hygiene:
+      run: npx -y chitranklabs/git-hygiene@7cd725abdbcd12d0e14b77fa94c423dd9ddf8933 title "{1}"
+
+pre-push:
+  parallel: true
+  commands:
+    # Ensure branch naming follows standards
+    branch-name:
+      run: npx -y chitranklabs/git-hygiene@7cd725abdbcd12d0e14b77fa94c423dd9ddf8933 branch
+
+    # Run tests before pushing
+    test:
+      run: pnpm run test
+
+    # Ensure types are correct
+    typecheck:
+      run: pnpm run typecheck

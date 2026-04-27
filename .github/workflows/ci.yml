@@ -51,8 +51,23 @@ jobs:
           node-version: 24
           cache: 'pnpm'
 
+      - name: Git Hygiene (PR Title) 🌊
+        if: github.event_name == 'pull_request'
+        uses: chitranklabs/git-hygiene@7cd725abdbcd12d0e14b77fa94c423dd9ddf8933
+        with:
+          command: 'title'
+          value: ${{ github.event.pull_request.title }}
+
+      - name: Secret Scan (Gitleaks) 🔑
+        run: |
+          VERSION="8.18.2"
+          curl -sSLo gitleaks.tar.gz "https://github.com/gitleaks/gitleaks/releases/download/v${VERSION}/gitleaks_${VERSION}_linux_x64.tar.gz"
+          tar -xzf gitleaks.tar.gz gitleaks
+          sudo install gitleaks /usr/local/bin/
+          gitleaks detect --source . --verbose --redact --staged
+
       - name: Install dependencies 🛠️
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Typecheck 🔍
         run: pnpm run typecheck

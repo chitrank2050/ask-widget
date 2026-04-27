@@ -1,0 +1,43 @@
+# =============================================================
+# Hygiene: Metadata Validation 🌊
+#
+# Enforces branch naming and PR title standards.
+# Powered by git-hygiene.
+# =============================================================
+
+name: Hygiene 🌊
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  validate:
+    name: Validate Metadata 🔍
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner 🛡️
+        uses: step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40 # v2.19.0
+        with:
+          egress-policy: audit
+
+      - name: Checkout 📥
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Validate Branch Name 🌿
+        uses: chitranklabs/git-hygiene@7cd725abdbcd12d0e14b77fa94c423dd9ddf8933 # v0.3.1
+        with:
+          command: 'branch'
+
+      - name: Validate PR Title 📝
+        if: github.event_name == 'pull_request'
+        uses: chitranklabs/git-hygiene@7cd725abdbcd12d0e14b77fa94c423dd9ddf8933 # v0.3.1
+        with:
+          command: 'title'
+          value: ${{ github.event.pull_request.title }}

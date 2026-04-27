@@ -2,15 +2,12 @@
 
 > A lightweight chat widget for developer portfolios. Drop-in floating chat with SSE streaming, dark/light themes, and configurable positioning. Aligned with the neutral zinc palette.
 
-![npm](https://img.shields.io/npm/v/@chitrank2050/ask-widget)
-![Install Size](https://img.shields.io/bundlephobia/min/@chitrank2050/ask-widget)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
-![React](https://img.shields.io/badge/React-18+-61dafb)
-![License](https://img.shields.io/badge/License-MIT-yellow)
-![CI](https://github.com/chitranklabs/ask-widget/actions/workflows/ci.yml/badge.svg)
-![Version](https://img.shields.io/badge/Version-0.5.3-blue)
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/D1D71U581P)
-
+[![npm](https://img.shields.io/npm/v/@chitrank2050/ask-widget)](https://www.npmjs.com/package/@chitrank2050/ask-widget)
+[![Install Size](https://img.shields.io/bundlephobia/min/@chitrank2050/ask-widget)](https://bundlephobia.com/package/@chitrank2050/ask-widget)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+[![Gitleaks](https://img.shields.io/badge/secrets-protected-brightgreen?logo=gitleaks)](https://github.com/gitleaks/gitleaks)
+[![Zizmor](https://img.shields.io/badge/actions-hardened-brightgreen?logo=github)](https://github.com/woodruffw/zizmor)
+[![Scorecard](https://img.shields.io/badge/scorecard-passing-brightgreen)](https://scorecard.dev/)
 
 ---
 
@@ -22,28 +19,43 @@
 | **GitHub** | [github.com/chitranklabs/ask-widget](https://github.com/chitranklabs/ask-widget) |
 | **Demo** | [ask-widget.netlify.app](https://ask-widget.netlify.app/) |
 | **Documentation** | [chitranklabs.github.io/ask-widget](https://chitranklabs.github.io/ask-widget/) |
-| 🎨 Storybook | [Storybook](https://chitranklabs.github.io/ask-widget/storybook) |
 | 👤 Portfolio | [About me](https://chitrankagnihotri.com) |
-| ☕ Support | [Buy me a coffee](https://ko-fi.com/D1D71U581P) |
 
 ---
 
-## 📖 Full Documentation
-**Visit the [ask-widget documentation site](https://chitranklabs.github.io/ask-widget/) for full details on API, theming, and standalone hooks.**
+## 🛠️ Development Setup
 
----
-
-## Installation
+This project uses **pnpm** and **Lefthook** for high-performance developer hygiene.
 
 ```bash
-npm install @chitrank2050/ask-widget
-# or
-pnpm add @chitrank2050/ask-widget
+# Install dependencies
+pnpm install
+
+# Install Git hooks
+pnpm exec lefthook install
 ```
 
 ---
 
-## Quick Start
+## 🚀 Release Process
+
+We use a two-phase automated release pipeline powered by **[git-hygiene](https://github.com/chitranklabs/git-hygiene)**.
+
+1. **Prepare**: Run the `Release 1 - Prepare PR` workflow. It bumps the version in `package.json`, updates `CHANGELOG.md`, and opens a PR.
+2. **Finalize**: Merge the PR to `main`. The `Release 2 - Finalize Tag` workflow will automatically tag the release, create a GitHub Release, and publish to NPM.
+
+---
+
+## 🛡️ Security & Quality
+
+- **Secret Scanning**: Gitleaks prevents credential leaks in every commit.
+- **Workflow Auditing**: Zizmor ensures GitHub Actions follow security best practices.
+- **Supply Chain**: All GitHub Actions are pinned to secure commit SHAs.
+- **Provenace**: Automated build attestations for every release.
+
+---
+
+## 📖 Quick Start
 
 ```tsx
 import { ChatWidget } from '@chitrank2050/ask-widget'
@@ -51,70 +63,14 @@ import '@chitrank2050/ask-widget/styles.css'
 
 export default function Portfolio() {
   return (
-    <main>
-      <ChatWidget
-        apiUrl="https://your-api.example.com"
-        apiToken={import.meta.env.VITE_CHAT_API_TOKEN}
-        position="bottom-right"
-        theme="dark"
-        title="Ask AI"
-      />
-    </main>
+    <ChatWidget
+      apiUrl="https://your-api.example.com"
+      apiToken={import.meta.env.VITE_CHAT_API_TOKEN}
+      title="Ask AI"
+    />
   )
 }
 ```
-
-### Usage with Next.js (App Router)
-
-To avoid React Hydration Mismatch errors in Server-Rendered frameworks, you must import the widget dynamically with SSR disabled. Create a wrapper Client Component:
-
-```tsx
-// src/components/ClientChatWidget.tsx
-"use client";
-
-import dynamic from "next/dynamic";
-import "@chitrank2050/ask-widget/styles.css";
-
-const ChatWidget = dynamic(
-  () => import("@chitrank2050/ask-widget").then((mod) => mod.ChatWidget),
-  { ssr: false }
-);
-
-export default function ClientChatWidget() {
-  return (
-    <ChatWidget
-      apiUrl="https://your-api.example.com"
-      title="Ask AI"
-    />
-  );
-}
-```
-
-You can then freely import and use `<ClientChatWidget />` in your `layout.tsx` or any Server Component!
-
----
-
-## Features
-
-- **⚡ SSE Streaming**: Built-in support for token-by-token streaming via Server-Sent Events.
-- **🎨 Zinc Aesthetic**: Strictly monochrome. Designed to match modern developer portfolios.
-- **🧩 Configurable API**: Control themes, initial messages, placeholders, and positions.
-- **🛠 Demo Mode**: Built-in fallback stream if no API is configured.
-- **🧩 Headless Hooks**: Build your own UI with `useChat`, `useSSEStream`, and `useSession`.
-
----
-
-## Core Props
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `apiUrl` | `string` | - | Base URL of your chat API. |
-| `apiToken` | `string` | - | Bearer token for API auth. |
-| `position` | `"bottom-right" \| "bottom-left" \| "bottom-center"` | `"bottom-right"` | Widget position on screen. |
-| `theme` | `"dark" \| "light"` | `"dark"` | Color theme preset. |
-| `title` | `string` | `"Ask AI"` | Header title. |
-| `placeholder` | `string` | `"Ask me anything..."` | Input placeholder. |
-| `initialMessage` | `string` | `"Hello! How can I help you today?"` | First message shown on open. |
 
 ---
 

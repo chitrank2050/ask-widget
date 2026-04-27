@@ -1,37 +1,132 @@
 # =============================================================
-# Release Finalize: Publishing 🌐
+# Release Finalization Workflow
 #
-# Triggers when a new GitHub Release is created.
-# Publishes the package to NPM and deploys documentation.
+# Triggered automatically when a Release PR is merged to main.
+#   1. Pushes the verified version tag.
+#   2. Creates the GitHub Release with generated notes.
+#   3. Publishes packages to NPM.
+#   4. Generates SLSA Build Provenance (Attestation).
 # =============================================================
 
-name: Release Finalize 🌐
+name: Release 2 - Finalize Tag 🏷️
 
 on:
-  release:
-    types: [published]
-
-permissions:
-  contents: write
-  id-token: write
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to finalize (e.g. v0.1.0)'
+        required: true
 
 jobs:
-  publish:
-    name: Publish to NPM & Deploy Docs 🚀
+  finalize:
+    name: Finalize Release 🚀
+    if: |
+      (github.event_name == 'pull_request' &&
+      github.event.pull_request.merged == true &&
+      contains(github.event.pull_request.labels.*.name, 'release')) ||
+      (github.event_name == 'workflow_dispatch' && github.actor == 'chitrank2050')
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+      pull-requests: write
     steps:
       - name: Harden Runner 🛡️
         uses: step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40 # v2.19.0
         with:
           egress-policy: audit
 
-      - name: Checkout 📥
+      - name: Checkout repository 📥
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
+          persist-credentials: false
 
-      - name: Install pnpm 📦
+      - name: Create Bot Token 🤖🔑
+        id: generate_token
+        uses: ./.github/actions/setup-bot
+        with:
+          client-id: ${{ secrets.CHITRANK_BOT_CLIENT_ID }}
+          private-key: ${{ secrets.CHITRANK_BOT_PRIVATE_KEY }}
+
+      - name: Extract Tag Name 🏷️
+        id: vars
+        env:
+          BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
+          INPUT_VERSION: ${{ github.event.inputs.version }}
+        run: |
+          # Robust extraction: find the first version-like string (X.Y.Z) in the input
+          RAW_INPUT="${INPUT_VERSION:-$BRANCH_NAME}"
+          TAG_NAME=$(echo "$RAW_INPUT" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+(-.*)?' | head -1)
+
+          if [[ ! "$TAG_NAME" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+(-.*)?$ ]]; then
+            echo "❌ Error: Could not extract valid tag. Got: $TAG_NAME"
+            exit 1
+          fi
+
+          # Ensure tag starts with 'v' for consistency with cliff.toml
+          if [[ ! "$TAG_NAME" =~ ^v ]]; then
+            TAG_NAME="v$TAG_NAME"
+          fi
+          echo "tag_name=$TAG_NAME" >> $GITHUB_OUTPUT
+
+      - name: Push Verified Tag 🏷️
+        env:
+          GH_TOKEN: ${{ steps.generate_token.outputs.token }}
+          TAG_NAME: ${{ steps.vars.outputs.tag_name }}
+        run: |
+          echo "Pushing verified tag: $TAG_NAME"
+          git config user.name "chitrank-actions[bot]"
+          git config user.email "actions@github.com"
+
+          # 1. Try pushing with the Bot Token (Preferred)
+          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}
+          if git tag "$TAG_NAME" && git push origin "$TAG_NAME"; then
+            echo "✅ Tag pushed successfully with Bot Token."
+          else
+            echo "⚠️ Bot push failed (likely missing 'workflows' permission). Trying GITHUB_TOKEN fallback..."
+            
+            # 2. Try pushing with the default GITHUB_TOKEN
+            git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+            if git push origin "$TAG_NAME"; then
+              echo "✅ Tag pushed successfully with GITHUB_TOKEN."
+            else
+              echo "❌ Tag push failed. Please push the tag manually: git tag $TAG_NAME && git push origin $TAG_NAME"
+              echo "Continuing with release steps..."
+            fi
+          fi
+
+      - name: Generate release notes 📝
+        uses: orhun/git-cliff-action@f50e11560dce63f7c33227798f90b924471a88b5 # v4.8.0
+        id: git-cliff
+        with:
+          config: cliff.toml
+          args: --latest --strip all
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+
+      - name: Create GitHub Release ✨
+        env:
+          GH_TOKEN: ${{ steps.generate_token.outputs.token }}
+          TAG_NAME: ${{ steps.vars.outputs.tag_name }}
+          RELEASE_NOTES: ${{ steps.git-cliff.outputs.content }}
+        run: |
+          PRERELEASE_FLAG=""
+          if [[ "$TAG_NAME" == *"-"* ]]; then
+            PRERELEASE_FLAG="--prerelease"
+          fi
+          gh release create "$TAG_NAME" \
+            --title "$TAG_NAME" \
+            --notes "$RELEASE_NOTES" \
+            $PRERELEASE_FLAG
+
+      - name: Setup Publishing Environment 🛠️
         uses: pnpm/action-setup@903f9c1a6ebcba6cf41d87230be49611ac97822e # v6.0.3
 
       - name: Setup Node.js 🟢
@@ -54,3 +149,9 @@ jobs:
 
       - name: Deploy Docs 📄
         run: pnpm run deploy:docs
+
+      - name: Attest Release Artifacts 📜
+        uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
+        with:
+          subject-path: CHANGELOG.md
+          push-to-registry: false

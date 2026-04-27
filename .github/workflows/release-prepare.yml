@@ -1,0 +1,136 @@
+# =============================================================
+# Release Preparation Workflow
+#
+# Triggered manually to:
+#   1. Bump version in package.json.
+#   2. Update CHANGELOG.md using git-cliff.
+#   3. Open a Release PR for review.
+# =============================================================
+
+name: Release 1 - Prepare PR 📝
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Manual tag to release (e.g. v0.1.0). Leave empty to use git-hygiene recommendation.'
+        required: false
+
+jobs:
+  prepare:
+    name: Prepare Release PR 🚀
+    if: github.actor == github.repository_owner || github.actor == 'chitrank2050'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      NODE_VERSION: 24
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    steps:
+      - name: Harden Runner 🛡️
+        uses: step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40 # v2.19.0
+        with:
+          egress-policy: audit
+
+      - name: Checkout repository 📥
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup pnpm 📦
+        uses: pnpm/action-setup@903f9c1a6ebcba6cf41d87230be49611ac97822e # v6.0.3
+
+      - name: Setup Node.js 🟢
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - name: Get Recommended Bump 🌊
+        id: hygiene
+        uses: chitranklabs/git-hygiene@7cd725abdbcd12d0e14b77fa94c423dd9ddf8933
+        with:
+          command: 'bump'
+
+      - name: Create Bot Token 🤖🔑
+        id: generate_token
+        uses: ./.github/actions/setup-bot
+        with:
+          client-id: ${{ secrets.CHITRANK_BOT_CLIENT_ID }}
+          private-key: ${{ secrets.CHITRANK_BOT_PRIVATE_KEY }}
+
+      - name: Configure Authenticated Git 🔧
+        env:
+          TOKEN: ${{ steps.generate_token.outputs.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          git remote set-url origin "https://x-access-token:${TOKEN}@github.com/${REPO}"
+
+      - name: Determine New Version 🔢
+        id: vars
+        env:
+          MANUAL_TAG: ${{ github.event.inputs.tag_name }}
+          BUMP: ${{ steps.hygiene.outputs.releaseType }}
+        run: |
+          CURRENT_VERSION=$(jq -r .version package.json)
+
+          if [ -n "$MANUAL_TAG" ]; then
+            NEW_VERSION=$(echo "$MANUAL_TAG" | sed 's/^v//')
+            echo "Using manual version: $NEW_VERSION"
+          else
+            echo "Calculating version from bump: $BUMP"
+            NEW_VERSION=$(node -e "
+              const semver = '$CURRENT_VERSION'.split('.').map(Number);
+              const type = '$BUMP';
+              if (type === 'major') semver[0]++, semver[1] = 0, semver[2] = 0;
+              else if (type === 'minor') semver[1]++, semver[2] = 0;
+              else semver[2]++;
+              console.log(semver.join('.'));
+            ")
+            echo "Calculated version: $NEW_VERSION"
+          fi
+
+          echo "clean_version=$NEW_VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag_name=v$NEW_VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Sync Versions 📦
+        env:
+          CLEAN_VERSION: ${{ steps.vars.outputs.clean_version }}
+        run: |
+          echo "Bumping package.json to $CLEAN_VERSION"
+          jq ".version = \"$CLEAN_VERSION\"" package.json > package.json.tmp && mv package.json.tmp package.json
+
+      - name: Update CHANGELOG.md 📝
+        uses: orhun/git-cliff-action@f50e11560dce63f7c33227798f90b924471a88b5 # v4.8.0
+        id: git-cliff
+        with:
+          config: cliff.toml
+          args: --tag ${{ steps.vars.outputs.tag_name }} --output CHANGELOG.md
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+
+      - name: Create Pull Request for Release 🔀
+        id: cpr
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          token: ${{ steps.generate_token.outputs.token }}
+          commit-message: 'chore(release): bump version to ${{ steps.vars.outputs.tag_name }}'
+          title: 'chore(release): 🚀 ${{ steps.vars.outputs.tag_name }}'
+          body: |
+            <!-- autofill-start -->
+            - chore(release): update CHANGELOG.md
+            - chore(release): bump version to ${{ steps.vars.outputs.tag_name }}
+            - chore(release): bump recommendation from git-hygiene (${{ steps.hygiene.outputs.releaseType }})
+            <!-- autofill-end -->
+          labels: |
+            chore
+            release
+          branch: 'chore/release-${{ steps.vars.outputs.tag_name }}'
+          base: main
+          delete-branch: true
+          assignees: chitrank2050
+          add-paths: |
+            CHANGELOG.md
+            package.json
