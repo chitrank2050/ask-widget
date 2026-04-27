@@ -48,6 +48,13 @@ jobs:
           client-id: ${{ secrets.CHITRANK_BOT_CLIENT_ID }}
           private-key: ${{ secrets.CHITRANK_BOT_PRIVATE_KEY }}
 
+      - name: Configure Authenticated Git 🔧
+        env:
+          TOKEN: ${{ steps.generate_token.outputs.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          git remote set-url origin "https://x-access-token:${TOKEN}@github.com/${REPO}"
+
       - name: Install pnpm 📦
         uses: pnpm/action-setup@903f9c1a6ebcba6cf41d87230be49611ac97822e # v6.0.3
 
@@ -60,13 +67,18 @@ jobs:
       - name: Install dependencies 📥
         run: pnpm install --frozen-lockfile --prefer-offline
 
+      # Match the Meterplex "Transient Docs" pattern
+      # Source stays at root, but CI copies it to docs/ for the build
+      - name: Copy transient docs 📝
+        run: |
+          cp CHANGELOG.md docs/changelog.md
+          if [ -f CODE_OF_CONDUCT.md ]; then cp CODE_OF_CONDUCT.md docs/code-of-conduct.md; fi
+
       - name: Build Documentation 🏗️
         run: pnpm run docs:build
 
       - name: Deploy to GitHub Pages 🚀
-        env:
-          GH_TOKEN: ${{ steps.generate_token.outputs.token }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          npx gh-pages -d docs/.vitepress/dist -m "docs: deploy automated build" -u "github-actions-bot <actions@github.com>"
+          git config user.name "chitrank-actions[bot]"
+          git config user.email "actions@github.com"
+          npx gh-pages -d docs/.vitepress/dist -m "docs: deploy automated build" -u "chitrank-actions[bot] <actions@github.com>"
