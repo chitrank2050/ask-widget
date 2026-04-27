@@ -7,6 +7,7 @@ export default defineConfig({
   title: 'ask-widget',
   description: 'A lightweight chat widget for developer portfolios.',
   base: '/ask-widget/',
+  cleanUrls: true,
   ignoreDeadLinks: true,
   vite: {
     plugins: [
