@@ -9,35 +9,42 @@ name: Hygiene 🌊
 
 on:
   pull_request:
-    types: [opened, edited, synchronize, reopened]
-  push:
     branches: [main]
+    types: [opened, synchronize, reopened, edited]
+
+env:
+  NODE_VERSION: 24
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 permissions:
   contents: read
   pull-requests: read
 
 jobs:
-  validate:
+  hygiene:
     name: Validate Metadata 🔍
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Harden Runner 🛡️
         uses: step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40 # v2.19.0
         with:
           egress-policy: audit
 
-      - name: Checkout 📥
+      - name: Checkout repository 📥
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-
-      - name: Validate Branch Name 🌿
-        uses: chitranklabs/git-hygiene@7cd725abdbcd12d0e14b77fa94c423dd9ddf8933 # v0.3.1
         with:
-          command: 'branch'
+          persist-credentials: false
+          fetch-depth: 100 # Needed to see history for commit validation
 
-      - name: Validate PR Title 📝
-        if: github.event_name == 'pull_request'
-        uses: chitranklabs/git-hygiene@7cd725abdbcd12d0e14b77fa94c423dd9ddf8933 # v0.3.1
+      - name: Validate PR Title 🏷️
+        uses: chitranklabs/git-hygiene@aa8da98514e2641c607bdb845b469c558afa2563 # v0.4.11
         with:
           command: 'title'
           value: ${{ github.event.pull_request.title }}
+
+      - name: Validate Branch Name 🌿
+        uses: chitranklabs/git-hygiene@aa8da98514e2641c607bdb845b469c558afa2563 # v0.4.11
+        with:
+          command: 'branch'
+          value: ${{ github.event.pull_request.head.ref }}
