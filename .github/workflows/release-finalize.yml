@@ -1,32 +1,23 @@
 # =============================================================
-# Release: Versioning & PR 🚀
+# Release Finalize: Publishing 🌐
 #
-# Monitors main for changes and opens/updates a "Version Bump" PR
-# using Changesets.
+# Triggers when a new GitHub Release is created.
+# Publishes the package to NPM and deploys documentation.
 # =============================================================
 
-name: Release 🚀
+name: Release Finalize 🌐
 
 on:
-  push:
-    branches: [main]
-    paths-ignore:
-      - 'docs/**'
-      - '**.md'
-      - '.github/ISSUE_TEMPLATE/**'
-      - '.vscode/**'
+  release:
+    types: [published]
 
 permissions:
   contents: write
-  pull-requests: write
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  id-token: write
 
 jobs:
-  version:
-    name: Versioning 📦
+  publish:
+    name: Publish to NPM & Deploy Docs 🚀
     runs-on: ubuntu-latest
 
     steps:
@@ -48,16 +39,18 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
+          registry-url: https://registry.npmjs.org
 
       - name: Install dependencies 🛠️
         run: pnpm install --frozen-lockfile
 
-      - name: Create release PR 🚀
-        id: changesets
-        uses: changesets/action@aba5b80aac86f353d0d4560e0622c19e19330361 # v1.4.9
-        with:
-          commit: 'chore: version bump'
-          title: 'chore: version bump'
-          version: pnpm version-packages
+      - name: Build Library 🏗️
+        run: pnpm run build:lib
+
+      - name: Publish to NPM 📦
+        run: pnpm publish --access public --no-git-checks
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Deploy Docs 📄
+        run: pnpm run deploy:docs

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":timezone(Asia/Kolkata)",
+    "mergeConfidence:all-badges",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "labels": ["dependencies", "renovate"],
+  "gitAuthor": "Chitrank agnihotri <chitrank2050@gmail.com>",
+  "baseBranchPatterns": ["main"],
+  "schedule": ["every weekend"],
+  "prBodyColumns": ["Package", "Change", "Age", "Confidence"],
+  "separateMinorPatch": true,
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "eslint",
+        "prettier",
+        "typescript-eslint",
+        "@eslint/js",
+        "eslint-plugin-react-hooks",
+        "eslint-plugin-react-refresh"
+      ],
+      "groupName": "linting & formatting"
+    },
+    {
+      "matchPackageNames": ["typescript", "vite", "vite-plugin-dts"],
+      "groupName": "core build tools"
+    },
+    {
+      "matchPackageNames": ["react", "react-dom", "@types/react", "@types/react-dom"],
+      "groupName": "react ecosystem"
+    },
+    {
+      "matchUpdateTypes": ["patch", "minor"],
+      "matchPackageNames": ["*"],
+      "groupName": "non-major dependencies",
+      "automerge": true,
+      "internalChecksFilter": "strict"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "github-actions dependencies",
+      "pinDigests": true
+    }
+  ],
+  "dependencyDashboard": true,
+  "prConcurrentLimit": 10,
+  "prHourlyLimit": 2,
+  "vulnerabilityAlerts": {
+    "enabled": true
+  },
+  "platformAutomerge": true,
+  "rangeStrategy": "pin"
+}

@@ -16,11 +16,12 @@
 
 ## Links
 
-| | URL |
-|---|---|
-| 🌐 Demo | [Demo](https://ask-widget.chitrankagnihotri.com/) |
-| 📦 NPM | [NPM](https://www.npmjs.com/package/@chitrank2050/ask-widget) |
-| 📚 Documentation | [Project Documentation](https://chitranklabs.github.io/ask-widget/) |
+| Source | URL |
+| :--- | :--- |
+| **NPM** | [npmjs.com/package/@chitrank2050/ask-widget](https://www.npmjs.com/package/@chitrank2050/ask-widget) |
+| **GitHub** | [github.com/chitranklabs/ask-widget](https://github.com/chitranklabs/ask-widget) |
+| **Demo** | [ask-widget.netlify.app](https://ask-widget.netlify.app/) |
+| **Documentation** | [chitranklabs.github.io/ask-widget](https://chitranklabs.github.io/ask-widget/) |
 | 🎨 Storybook | [Storybook](https://chitranklabs.github.io/ask-widget/storybook) |
 | 👤 Portfolio | [About me](https://chitrankagnihotri.com) |
 | ☕ Support | [Buy me a coffee](https://ko-fi.com/D1D71U581P) |
