@@ -41,7 +41,8 @@
   <a href="./LICENSE">
   <img src="https://img.shields.io/github/license/chitranklabs/ask-widget" alt="License" />
   </a>
-
+  <br/>
+  <br/>
    <a href="https://ko-fi.com/D1D71U581P" target="_blank">
       <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Buy me a coffee at ko-fi.com">
     </a>
