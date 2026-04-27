@@ -2,6 +2,7 @@
 # Lefthook: Git Hooks Manager 🥊
 #
 # Powered by git-hygiene 🌊
+# Reference: https://github.com/chitranklabs/git-hygiene
 # =============================================================
 
 pre-commit:
@@ -17,29 +18,41 @@ pre-commit:
       run: pnpm exec eslint {staged_files} --fix && pnpm exec prettier --write {staged_files}
       stage_fixed: true
 
-    # 3. Styles, JSON, MD - Prettier
-    format-assets:
-      glob: '**/*.{json,md,css,scss}'
+    # 3. Markdown files - markdownlint fix + Prettier format
+    lint-md:
+      glob: '*.md'
+      run: pnpm exec markdownlint --fix {staged_files} && pnpm exec prettier --write {staged_files}
+      stage_fixed: true
+
+    # 4. Styles - Prettier format only
+    format-styles:
+      glob: '**/*.{css,scss}'
       run: pnpm exec prettier --write {staged_files}
       stage_fixed: true
 
-    # 4. GitHub Actions - Security linting
+    # 5. JSON / YAML - Prettier format only
+    lint-json-yml:
+      glob: '*.{json,yml,yaml}'
+      run: pnpm exec prettier --write {staged_files}
+      stage_fixed: true
+
+    # 6. GitHub Actions - Security linting
     lint-actions:
       glob: '.github/workflows/*.yml'
-      run: if command -v zizmor > /dev/null; then zizmor {staged_files}; else npx -y zizmor {staged_files}; fi
+      run: if command -v zizmor > /dev/null; then zizmor {staged_files}; else echo "zizmor not found, skipping actions lint. Install with 'brew install zizmor'"; fi
 
 commit-msg:
   commands:
     # Enforce Conventional Commits via git-hygiene
     git-hygiene:
-      run: npx -y chitranklabs/git-hygiene@7cd725abdbcd12d0e14b77fa94c423dd9ddf8933 title "{1}"
+      run: pnpm exec git-hygiene commit {1}
 
 pre-push:
   parallel: true
   commands:
     # Ensure branch naming follows standards
     branch-name:
-      run: npx -y chitranklabs/git-hygiene@7cd725abdbcd12d0e14b77fa94c423dd9ddf8933 branch
+      run: pnpm exec git-hygiene branch
 
     # Run tests before pushing
     test:
