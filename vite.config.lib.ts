@@ -16,7 +16,7 @@ export default defineConfig({
   build: {
     target: 'esnext',
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
+      entry: resolve(__dirname, 'src/index.lib.ts'),
       name: 'AskWidget',
       fileName: format => `ask-widget.${format}.js`,
       formats: ['es', 'cjs', 'umd'],

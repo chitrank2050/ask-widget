@@ -10,7 +10,9 @@
       "vite.config.ts",
       "vite.config.lib.ts",
       "tsconfig.json",
-      "tsconfig.app.json"
+      "tsconfig.app.json",
+      "src/index.lib.ts",
+      "src/Main.tsx"
     ]
   }
 }

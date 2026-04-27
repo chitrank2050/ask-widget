@@ -37,7 +37,8 @@
       "import": "./dist/ask-widget.es.js",
       "require": "./dist/ask-widget.cjs.js"
     },
-    "./styles.css": "./dist/style.css"
+    "./styles.css": "./dist/style.css",
+    "./style.css": "./dist/style.css"
   },
   "files": [
     "dist",

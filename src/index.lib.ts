@@ -1,5 +1,9 @@
 'use client';
 
+import './styles/variables.css';
+import './styles/themes.css';
+import './styles/widget.css';
+
 // ── Main component ────────────────────────────────────────────────────────────
 export { default as ChatWidget } from './components/ChatWidget';
 
