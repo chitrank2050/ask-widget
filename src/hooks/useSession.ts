@@ -30,7 +30,11 @@ export function useSession(id = 'ask-widget-session', initialMessages: ChatMessa
   // Sync to localStorage on message changes
   useEffect(() => {
     try {
-      localStorage.setItem(`widget-session-${id}`, JSON.stringify(messages));
+      if (messages.length > 0) {
+        localStorage.setItem(`widget-session-${id}`, JSON.stringify(messages));
+      } else {
+        localStorage.removeItem(`widget-session-${id}`);
+      }
     } catch (e) {
       console.warn('Failed to save chat session', e);
     }

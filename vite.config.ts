@@ -20,6 +20,12 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './tests/setup.ts',
+    coverage: {
+      provider: 'v8',
+      include: ['src/**'],
+      exclude: ['src/Main.tsx', 'src/env.d.ts', 'src/types/**', 'src/assets/**'],
+      reporter: ['text', 'json', 'html'],
+    },
   },
   define: {
     __APP_ENV__: JSON.stringify(process.env.VITE_VERCEL_ENV || 'development'),
