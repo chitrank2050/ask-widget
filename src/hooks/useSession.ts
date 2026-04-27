@@ -1,11 +1,25 @@
-import { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import type { ChatMessage } from '../types';
+
+/**
+ * Return type of the useSession hook.
+ */
+export interface UseSessionReturn {
+  messages: ChatMessage[];
+  addMessage: (message: ChatMessage) => void;
+  updateMessage: (id: string, update: Partial<ChatMessage>) => void;
+  clearSession: () => void;
+  setMessages: React.Dispatch<React.SetStateAction<ChatMessage[]>>;
+}
 
 /**
  * Hook providing persistence for chat history.
  * Helps with Phase 3 - Session Persistence.
  */
-export function useSession(id = 'ask-widget-session', initialMessages: ChatMessage[] = []) {
+export function useSession(
+  id = 'ask-widget-session',
+  initialMessages: ChatMessage[] = [],
+): UseSessionReturn {
   const [messages, setMessages] = useState<ChatMessage[]>(initialMessages);
 
   // Load from localStorage on mount (Client-only)

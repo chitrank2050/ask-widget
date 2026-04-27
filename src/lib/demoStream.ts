@@ -18,7 +18,7 @@ const DEMO_REPLIES = [
 
 const getDemoReply = () => DEMO_REPLIES[Math.floor(Math.random() * DEMO_REPLIES.length)]!;
 
-export async function* demoStream() {
+export async function* demoStream(): AsyncGenerator<string, void, unknown> {
   const reply = getDemoReply();
   const chunks = reply.split(' ');
   for (const [index, chunk] of chunks.entries()) {

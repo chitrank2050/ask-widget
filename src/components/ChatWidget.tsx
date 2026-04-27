@@ -3,7 +3,7 @@
  * Handles the open/closed toggle and connects UI to the useChat hook.
  */
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import type { ChatWidgetProps } from '../types';
 import { useChat } from '../hooks/useChat';
 import { useSSEStream } from '../hooks/useSSEStream';
@@ -48,7 +48,7 @@ export default function ChatWidget({
   colors,
   labels,
   persistenceKey = 'ask_widget_session',
-}: ChatWidgetProps) {
+}: ChatWidgetProps): React.JSX.Element {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   // When apiUrl is provided and no custom streamResponse is given, use the built-in SSE adapter.

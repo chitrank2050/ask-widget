@@ -44,7 +44,25 @@ interface UseChatOptions {
   persistenceKey?: string;
 }
 
-export function useChat({ initialMessage, streamResponse, persistenceKey }: UseChatOptions = {}) {
+/**
+ * Return type of the useChat hook.
+ */
+export interface UseChatReturn {
+  messages: ChatMessage[];
+  isStreaming: boolean;
+  latency: number | null;
+  activeStreamId: string | null;
+  inputValue: string;
+  setInputValue: (value: string) => void;
+  sendMessage: (content: string) => Promise<void>;
+  clearHistory: () => void;
+}
+
+export function useChat({
+  initialMessage,
+  streamResponse,
+  persistenceKey,
+}: UseChatOptions = {}): UseChatReturn {
   const defaultMessages = initialMessage ? [createMessage('assistant', initialMessage, true)] : [];
   const { messages, setMessages, clearSession } = useSession(
     persistenceKey || 'ask_widget_temp',

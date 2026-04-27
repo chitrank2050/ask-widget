@@ -40,6 +40,16 @@ export interface SSEStreamOptions {
   extractChunk?: (data: unknown) => string | undefined;
 }
 
+/**
+ * Return type of the useSSEStream hook.
+ */
+export interface UseSSEStreamReturn {
+  streamResponse: (
+    message: string,
+    history: ChatMessage[],
+  ) => AsyncGenerator<string, void, unknown>;
+}
+
 const defaultExtractChunk = (data: unknown): string | undefined => {
   if (typeof data !== 'object' || data === null) return undefined;
   const choices = (data as Record<string, unknown>).choices;
@@ -78,7 +88,7 @@ export function useSSEStream({
   path = '/v1/chat',
   buildBody = defaultBuildBody,
   extractChunk = defaultExtractChunk,
-}: SSEStreamOptions) {
+}: SSEStreamOptions): UseSSEStreamReturn {
   const streamResponse = useCallback(
     async function* (message: string, history: ChatMessage[]) {
       const response = await fetch(`${apiUrl}${path}`, {
