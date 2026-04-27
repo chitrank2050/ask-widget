@@ -151,6 +151,14 @@ jobs:
           pnpm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
           pnpm publish --access public --no-git-checks
 
+      - name: Trigger JSR Publication 🦖
+        env:
+          GH_TOKEN: ${{ steps.generate_token.outputs.token }}
+          TAG_NAME: ${{ steps.vars.outputs.tag_name }}
+        run: |
+          echo "🚀 Triggering JSR publication for version $TAG_NAME..."
+          gh workflow run publish-jsr.yml --field version="$TAG_NAME"
+
       - name: Attest Build Artifacts 📜
         uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
         with:
