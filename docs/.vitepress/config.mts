@@ -1,11 +1,27 @@
 import { defineConfig } from 'vitepress'
+import { resolve } from 'path'
+import reactDocgenTypescript from '@joshwooding/vite-plugin-react-docgen-typescript'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'ask-widget',
   description: 'A lightweight chat widget for developer portfolios.',
   base: '/ask-widget/',
+  vite: {
+    plugins: [
+      reactDocgenTypescript({
+        tsconfigPath: resolve(__dirname, '../../tsconfig.app.json'),
+        propFilter: (prop) => {
+          if (prop.parent) {
+            return !prop.parent.fileName.includes('@types/react')
+          }
+          return true
+        },
+      }) as any,
+    ],
+  },
   themeConfig: {
+    // ... (rest of themeConfig)
     // https://vitepress.dev/reference/default-theme-config
     logo: '/logo.svg',
     nav: [
