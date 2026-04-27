@@ -2,7 +2,7 @@
 import { data as props } from './api/props.data.ts'
 </script>
 
-# API Referencessss
+# API References
 
 The `ChatWidget` component is the main entry point to add chat functionality to your site.
 
