@@ -8,6 +8,7 @@
 [![Gitleaks](https://img.shields.io/badge/secrets-protected-brightgreen?logo=gitleaks)](https://github.com/gitleaks/gitleaks)
 [![Zizmor](https://img.shields.io/badge/actions-hardened-brightgreen?logo=github)](https://github.com/woodruffw/zizmor)
 [![Scorecard](https://img.shields.io/badge/scorecard-passing-brightgreen)](https://scorecard.dev/)
+[![SLSA Level 3](https://img.shields.io/badge/SLSA-Level_3-blue?logo=slsa)](https://github.com/chitranklabs/ask-widget/attestations)
 
 ---
 

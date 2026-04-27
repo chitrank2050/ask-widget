@@ -5,8 +5,11 @@ import { resolve } from 'path';
 export default defineConfig({
   plugins: [react()],
   build: {
+    target: 'esnext',
     outDir: 'dist-app',
     sourcemap: true,
+    minify: true,
+    cssMinify: 'lightningcss',
   },
   resolve: {
     alias: {

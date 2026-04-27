@@ -14,6 +14,7 @@ export default defineConfig({
     }),
   ],
   build: {
+    target: 'esnext',
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'AskWidget',
@@ -32,7 +33,9 @@ export default defineConfig({
       },
     },
     sourcemap: true,
-    minify: false,
+    minify: true, // Powered by Oxc in Vite 8
+    cssMinify: 'lightningcss',
+    cssCodeSplit: false,
   },
   resolve: {
     alias: {
