@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.6.1] - 2026-04-27
+
+### 🚀 Features
+
+- Add pnpm setup and dependency installation to JSR publish workflow ([8072429](8072429dd6da06179f4e3aedb606077fbbcec6b5)) by @chitrank2050
+
+### 🚜 Refactor
+
+- Isolate library entry point in index.lib.ts and update package exports and JSR config ([9c1ed69](9c1ed69427e99af9b1a65ac85decffec32a86671)) by @chitrank2050
+- Add explicit return types to hooks and components, and update CI dep installation settings ([8b8cf7d](8b8cf7d62886e8077710eafbcb179cb9e6e29c77)) by @chitrank2050
+
+### 📚 Documentation
+
+- Fix typo in API References header ([94fcf8e](94fcf8e276e84c3164f70b77d23d47b72eca8735)) by @chitrank2050
+
+### ⚙️ Miscellaneous Tasks
+
+- Update scorecard action config to include repo token and full fetch depth ([5c5df34](5c5df3407d227929d774f458c7d851ea6aa55900)) by @chitrank2050
+- Update CI workflow to install dependencies and build library before publishing to JSR ([3bc03ef](3bc03efecc7866db988fc3cf3a745a72226f10bd)) by @chitrank2050
+- Add package description and integrate JSR publication into release workflow ([f511886](f511886f5e3df8b30a2ce758ac7d11946c7afd0e)) by @chitrank2050
+- Add oxc-minify to devDependencies ([a163ee1](a163ee1c0be81be00c0f4fece63468a3d67be526)) by @chitrank2050
+- Enable ignoreDeadLinks in VitePress configuration ([30f903a](30f903a4f301ad0af16e2dbcfc14da694bfe7ce5)) by @chitrank2050
+
+### Build
+
+- Update project dependencies in package.json ([292bb97](292bb97987bd8497e7ec19d8fc291bd459ccca73)) by @chitrank2050
+
 ## [0.6.0] - 2026-04-27
 
 ### 🚀 Features
@@ -61,12 +88,16 @@ All notable changes to this project will be documented in this file.
 - Remove storybook link from navigation menu ([b291cdf](b291cdf95d8e526d86f6eb56342a64c492fa22c3)) by @chitrank2050
 - Optimize build configuration and update release provenance attestations ([8e72e70](8e72e702258b5adca044de19312ca51a57287cea)) by @chitrank2050
 - Update project documentation, clean up LICENSE terms, and improve test formatting ([23df90a](23df90abc49450f5710db10f18f582bf3f65daf9)) by @chitrank2050
+- Update CI workflows to include Node.js 24 environment setup ([d05b21d](d05b21d6c892f7d98feb3efc7b1a4cd2e9a35838)) by @chitrank2050
+- Update linting configurations and prettier ignore patterns for better project coverage ([9f1c069](9f1c069a3d1ce879cdfae262714dcecd7416df4a)) by @chitrank2050
+- **release:** Bump version to v0.6.0 ([3cd8942](3cd8942754c6a64064df43c4c56078b43e4ec26d)) by [chitrank-actions[bot]](https://github.com/apps/chitrank-actions)
 
 ### Build
 
 - **deps:** Bump the npm_and_yarn group across 1 directory with 2 updates ([b0946fb](b0946fb4fe8b500edd4c9a79b712f9a24e3b2537)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - **deps-dev:** Bump the patch-and-minor group with 5 updates ([e31364c](e31364c1d2ec8eb8b7458711982a15942158eaa2)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Add CJS support to library build and update package entry points ([919c3b3](919c3b3568d5bd091755fe65c8a43caf033daca7)) by @chitrank2050
+- Migrate to @vitejs/plugin-react-swc and add jsx runtime globals to library configuration ([72f66bd](72f66bddb845ae5c6693df64f01946fb3cd278c4)) by @chitrank2050
 
 ## [0.5.3] - 2026-03-21
 
