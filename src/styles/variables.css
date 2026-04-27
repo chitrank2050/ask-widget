@@ -8,30 +8,32 @@
  * Import this file before themes.css and widget.css.
  */
 
-:root {
-  /* ── Typography ───────────────────────────────────────────────────────── */
-  --widget-font-mono: 'IBM Plex Mono', 'SFMono-Regular', 'SF Mono', Consolas, monospace;
-  --widget-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+@layer widget.tokens {
+  :root {
+    /* ── Typography ───────────────────────────────────────────────────────── */
+    --widget-font-mono: 'IBM Plex Mono', 'SFMono-Regular', 'SF Mono', Consolas, monospace;
+    --widget-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  /* ── Sizing ───────────────────────────────────────────────────────────── */
-  --widget-launcher-size: 64px;
-  --widget-panel-width: min(400px, calc(100vw - 32px));
-  --widget-panel-height: min(600px, calc(100svh - 32px));
-  --widget-header-height: 56px;
-  --widget-dot-size: 12px;
-  --widget-border-radius: 16px;
+    /* ── Sizing ───────────────────────────────────────────────────────────── */
+    --widget-launcher-size: 64px;
+    --widget-panel-width: min(400px, calc(100vw - 32px));
+    --widget-panel-height: min(600px, calc(100svh - 32px));
+    --widget-header-height: 56px;
+    --widget-dot-size: 12px;
+    --widget-border-radius: 16px;
 
-  /* ── Spacing ──────────────────────────────────────────────────────────── */
-  --widget-offset-bottom: 24px;
-  --widget-offset-side: 24px;
-  --widget-feed-padding: 16px 16px 20px;
-  --widget-composer-padding: 14px 16px;
+    /* ── Spacing ──────────────────────────────────────────────────────────── */
+    --widget-offset-bottom: 24px;
+    --widget-offset-side: 24px;
+    --widget-feed-padding: 16px 16px 20px;
+    --widget-composer-padding: 14px 16px;
 
-  /* ── Z-index ──────────────────────────────────────────────────────────── */
-  --widget-z: 9000;
+    /* ── Z-index ──────────────────────────────────────────────────────────── */
+    --widget-z: 9000;
 
-  /* ── Animation ────────────────────────────────────────────────────────── */
-  --widget-duration-fast: 160ms;
-  --widget-duration-normal: 200ms;
-  --widget-easing: ease;
+    /* ── Animation ────────────────────────────────────────────────────────── */
+    --widget-duration-fast: 160ms;
+    --widget-duration-normal: 200ms;
+    --widget-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
