@@ -14,13 +14,13 @@ pre-commit:
 
     # 2. TS/TSX - ESLint + Prettier
     lint-ts:
-      glob: 'src/**/*.{ts,tsx}'
+      glob: '{src,tests}/**/*.{ts,tsx}'
       run: pnpm exec eslint {staged_files} --fix && pnpm exec prettier --write {staged_files}
       stage_fixed: true
 
     # 3. Markdown files - markdownlint fix + Prettier format
     lint-md:
-      glob: '*.md'
+      glob: '**/*.md'
       run: pnpm exec markdownlint --fix {staged_files} && pnpm exec prettier --write {staged_files}
       stage_fixed: true
 
@@ -32,7 +32,7 @@ pre-commit:
 
     # 5. JSON / YAML - Prettier format only
     lint-json-yml:
-      glob: '*.{json,yml,yaml}'
+      glob: '**/*.{json,yml,yaml}'
       run: pnpm exec prettier --write {staged_files}
       stage_fixed: true
 

@@ -140,4 +140,4 @@ We use a two-phase automated release pipeline powered by **[git-hygiene](https:/
 
 Developed with ❤️ by [Chitrank Agnihotri](https://www.chitrankagnihotri.com)
 
-*If you use this in your project, a credit or star is appreciated.* ✨
+_If you use this in your project, a credit or star is appreciated._ ✨
