@@ -64,7 +64,7 @@
     "clean-build": "pnpm run obliviate && pnpm run init && pnpm run build:lib",
     "git": "node scripts/menu.mjs git",
     "docs": "node scripts/menu.mjs docs",
-    "prepare": "lefthook install",
+    "prepare": "test -n \"$CI\" || lefthook install",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
