@@ -107,7 +107,7 @@
     "react-docgen-typescript": "^2.4.0",
     "react-dom": "^19.2.5",
     "typescript": "~6.0.3",
-    "typescript-eslint": "^8.59.0",
+    "typescript-eslint": "^8.59.1",
     "vite": "^8.0.10",
     "vite-plugin-dts": "^4.5.4",
     "vitepress": "2.0.0-alpha.17",
@@ -143,6 +143,9 @@
     "onlyBuiltDependencies": [
       "esbuild",
       "lefthook"
+    ],
+    "ignoredBuiltDependencies": [
+      "@swc/core"
     ]
   },
   "git-hygiene": {
