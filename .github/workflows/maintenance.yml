@@ -88,9 +88,9 @@ jobs:
           token: ${{ steps.generate_token.outputs.token }}
           commit-message: 'chore(deps): prune redundant dependency overrides'
           branch: maintenance/prune-overrides
-          delete-branch: true
+            e
           assignees: chitrank2050
-          title: '🧹 Prune redundant dependency overrides'
+          title: 'chore(deps): prune redundant dependency overrides 🧹'
           body: |
             The weekly maintenance check has detected that your `pnpm.overrides` are no longer necessary.
             Upstream packages have been updated and the security vulnerabilities previously mitigated by these overrides are now resolved in the base versions.
