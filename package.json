@@ -119,11 +119,6 @@
     "pnpm": ">=9.0.0"
   },
   "pnpm": {
-    "overrides": {
-      "esbuild": "^0.28.0",
-      "picomatch": ">=4.0.4",
-      "vite": "^8.0.10"
-    },
     "peerDependencyRules": {
       "ignoreMissing": [
         "vite",
