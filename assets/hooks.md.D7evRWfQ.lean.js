@@ -1,0 +1,1 @@
+import{_ as i,o as a,c as n,ai as h}from"./chunks/framework.Bq8M-vz9.js";const g=JSON.parse('{"title":"Standalone Hooks","description":"","frontmatter":{},"headers":[],"relativePath":"hooks.md","filePath":"hooks.md"}'),t={name:"hooks.md"};function e(l,s,k,p,E,r){return a(),n("div",null,[...s[0]||(s[0]=[h("",11)])])}const o=i(t,[["render",e]]);export{g as __pageData,o as default};
