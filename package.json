@@ -101,7 +101,7 @@
     "jsdom": "^29.1.0",
     "lefthook": "^2.1.6",
     "markdownlint-cli": "^0.48.0",
-    "oxc-minify": "^0.132.0",
+    "oxc-minify": "^0.134.0",
     "picocolors": "^1.1.1",
     "prettier": "^3.8.3",
     "react": "^19.2.5",
@@ -114,7 +114,7 @@
     "vitepress": "2.0.0-alpha.17",
     "vitest": "^4.1.5"
   },
-  "packageManager": "pnpm@10.33.4",
+  "packageManager": "pnpm@10.34.1",
   "engines": {
     "node": ">=24.0.0",
     "pnpm": ">=9.0.0"
