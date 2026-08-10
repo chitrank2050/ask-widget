@@ -23,8 +23,8 @@
   <a href="https://codecov.io/gh/chitranklabs/ask-widget">
   <img src="https://codecov.io/gh/chitranklabs/ask-widget/branch/main/graph/badge.svg" alt="codecov" />
   </a>
-  <a href="https://bestpractices.coreinfrastructure.org/projects/1">
-  <img src="https://bestpractices.coreinfrastructure.org/projects/1/badge" alt="OpenSSF Best Practices" />
+  <a href="https://www.bestpractices.dev/projects/14016">
+  <img src="https://www.bestpractices.dev/projects/14016/baseline" alt="OpenSSF Best Practices" />
   </a>
   <a href="https://github.com/chitranklabs/ask-widget/actions/workflows/scorecard.yml">
   <img src="https://github.com/chitranklabs/ask-widget/actions/workflows/scorecard.yml/badge.svg" alt="Scorecard Status" />
