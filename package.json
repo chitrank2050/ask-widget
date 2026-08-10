@@ -73,7 +73,7 @@
     "lint:md": "markdownlint --fix \"**/*.md\" --ignore node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,js,mjs,json,md,css}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,mjs,json,md,css}\"",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "node node_modules/@typescript/native/bin/tsc --noEmit",
     "deps:update": "pnpm update --interactive --latest"
   },
   "peerDependencies": {
@@ -90,7 +90,9 @@
     "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@typescript/native": "npm:typescript@^7.0.2",
     "@vercel/analytics": "^2.0.1",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
     "@vitejs/plugin-react": "^6.0.5",
     "@vitest/coverage-v8": "^4.1.5",
     "eslint": "^10.2.1",
@@ -107,7 +109,6 @@
     "react": "^19.2.5",
     "react-docgen-typescript": "^2.4.0",
     "react-dom": "^19.2.5",
-    "typescript": "~6.0.3",
     "typescript-eslint": "^8.59.1",
     "vite": "^8.0.10",
     "vite-plugin-dts": "^5.0.0",

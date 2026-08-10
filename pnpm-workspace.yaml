@@ -11,7 +11,7 @@ peerDependencyRules:
     react-dom: 19.2.4
     '@types/react': 19.2.14
     '@types/react-dom': 19.2.3
-engineStrict: true
+engineStrict: false
 allowBuilds:
   esbuild: true
   lefthook: true
