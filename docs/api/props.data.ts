@@ -8,8 +8,8 @@ import { resolve } from 'path';
  * directly from the React component source code.
  */
 
-const componentPath = resolve(__dirname, '../../src/components/ChatWidget.tsx');
-const tsconfigPath = resolve(__dirname, '../../tsconfig.app.json');
+const componentPath = resolve(import.meta.dirname, '../../src/components/ChatWidget.tsx');
+const tsconfigPath = resolve(import.meta.dirname, '../../tsconfig.app.json');
 
 export default {
   load() {
