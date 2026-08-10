@@ -35,4 +35,4 @@ runs:
       with:
         client-id: ${{ inputs.client-id }}
         private-key: ${{ inputs.private-key }}
-        repositories: '["${{ github.repository }}"]'
+        repositories: ${{ github.event.repository.name }}
