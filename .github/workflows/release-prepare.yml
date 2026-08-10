@@ -16,6 +16,8 @@ on:
         description: 'Manual tag to release (e.g. v0.1.0). Leave empty to use git-hygiene recommendation.'
         required: false
 
+permissions: read-all
+
 jobs:
   prepare:
     name: Prepare Release PR 🚀

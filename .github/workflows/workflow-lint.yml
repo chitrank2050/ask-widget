@@ -16,6 +16,8 @@ env:
   NODE_VERSION: 24
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
+permissions: read-all
+
 jobs:
   zizmor:
     name: Run zizmor 🌈
