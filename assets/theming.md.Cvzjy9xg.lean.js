@@ -1,1 +1,0 @@
-import{_ as i,o as a,c as e,a4 as t}from"./chunks/framework.Cf9VNWP6.js";const c=JSON.parse('{"title":"Theming","description":"","frontmatter":{},"headers":[],"relativePath":"theming.md","filePath":"theming.md"}'),n={name:"theming.md"};function h(l,s,o,p,r,k){return a(),e("div",null,[...s[0]||(s[0]=[t("",10)])])}const g=i(n,[["render",h]]);export{c as __pageData,g as default};
