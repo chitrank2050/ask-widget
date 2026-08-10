@@ -12,7 +12,7 @@ export default defineConfig({
   vite: {
     plugins: [
       reactDocgenTypescript({
-        tsconfigPath: resolve(__dirname, '../../tsconfig.app.json'),
+        tsconfigPath: resolve(import.meta.dirname, '../../tsconfig.app.json'),
         propFilter: (prop) => {
           if (prop.parent) {
             return !prop.parent.fileName.includes('@types/react')
@@ -46,6 +46,7 @@ export default defineConfig({
           { text: 'API Reference', link: '/api' },
           { text: 'Theming', link: '/theming' },
           { text: 'Standalone Hooks', link: '/hooks' },
+          { text: 'Architecture', link: '/architecture' },
         ],
       },
     ],
