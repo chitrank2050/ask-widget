@@ -64,9 +64,7 @@ export interface ChatMessage {
 
 /** Value returned by a response adapter */
 export type ChatStreamResult =
-  | string
-  | AsyncIterable<string>
-  | Promise<string | AsyncIterable<string>>;
+  string | AsyncIterable<string> | Promise<string | AsyncIterable<string>>;
 
 /**
  * Adapter invoked when the user submits a message.

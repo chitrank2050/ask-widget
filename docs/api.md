@@ -35,9 +35,7 @@ If you have a non-standard API or require custom fetch logic, you can pass a `st
 
 ```ts
 export type ChatStreamResult =
-  | string
-  | AsyncIterable<string>
-  | Promise<string | AsyncIterable<string>>;
+  string | AsyncIterable<string> | Promise<string | AsyncIterable<string>>;
 
 export type ChatStreamHandler = (message: string, history: ChatMessage[]) => ChatStreamResult;
 ```

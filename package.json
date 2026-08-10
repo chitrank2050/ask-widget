@@ -100,7 +100,7 @@
     "globals": "^17.5.0",
     "jsdom": "^29.1.0",
     "lefthook": "^2.1.6",
-    "markdownlint-cli": "^0.48.0",
+    "markdownlint-cli": "^0.49.1",
     "oxc-minify": "^0.134.0",
     "picocolors": "^1.1.1",
     "prettier": "^3.8.3",
