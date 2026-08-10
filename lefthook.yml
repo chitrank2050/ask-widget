@@ -5,6 +5,8 @@
 # Reference: https://github.com/chitranklabs/git-hygiene
 # =============================================================
 
+colors: false
+
 pre-commit:
   parallel: true
   commands:
