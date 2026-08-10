@@ -114,35 +114,10 @@
     "vitepress": "2.0.0-alpha.17",
     "vitest": "^4.1.5"
   },
-  "packageManager": "pnpm@10.34.1",
+  "packageManager": "pnpm@11.21.0",
   "engines": {
     "node": ">=24.0.0",
     "pnpm": ">=9.0.0"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "vite",
-        "react",
-        "react-dom",
-        "@types/react",
-        "@types/react-dom"
-      ],
-      "allowedVersions": {
-        "vite": "8.0.0",
-        "react": "19.2.4",
-        "react-dom": "19.2.4",
-        "@types/react": "19.2.14",
-        "@types/react-dom": "19.2.3"
-      }
-    },
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "lefthook"
-    ],
-    "ignoredBuiltDependencies": [
-      "@swc/core"
-    ]
   },
   "git-hygiene": {
     "extends": [
