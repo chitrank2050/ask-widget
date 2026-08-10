@@ -20,7 +20,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
-      pull-requests: write
       contents: read
     if: |
       (github.event_name != 'workflow_dispatch' || github.actor == github.repository_owner) &&

@@ -38,7 +38,7 @@ jobs:
       (github.event_name == 'workflow_dispatch' && github.actor == 'chitrank2050')
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
     outputs:
       tag_name: ${{ steps.vars.outputs.tag_name }}
     steps:
@@ -111,7 +111,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
       id-token: write
       attestations: write
     steps:
